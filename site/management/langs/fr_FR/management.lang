@@ -1,0 +1,304 @@
+# Dolibarr language file - fr_FR - projects
+CHARSET=UTF-8
+##ADMIN
+NothingToSetup=Activez le module pour accéder à la page de configuration
+GeneralSetup=Paramètres généraux
+GeneralSetting=Paramètres généraux
+PatasTools=Outils Patas-M
+PatasToolsNews=Retrouvez ici les informations de patas-monkey.com (nécessite une connexion à internet)
+PatasMonkeyPresent=Ce module est une création des patas-monkey, une documentation de celui-ci est disponible sur notre site
+MoreModulesLink=Vous pouvez trouver tous nos développements sur le dolistore
+SettingIsOnToolsMenu=Le module ne nécessite pas de paramétrage particulier. <br/>Ses fonctionnalités sont accessibles depuis le menu principal "Outils Patas-M".
+BackToModuleList=Retour à la liste des modules
+NewVersionAviable=Une nouvelle version du module est disponible
+NumberVersion=Version
+MonthVersion=Mois de publication
+ChangesVersion=Principales modifications apportées
+
+##ABOUT
+About=À propos
+Slogan=Développement, support et formation pour Dolibarr
+LienModules=Nos modules
+LienServices=Nos services
+LienDoc=Nos documentations
+LienDolistore=Retrouvez nos autres modules
+Changelog=ChangeLog du module
+SupportModuleInformation=Informations techniques
+SupportModuleInformationDesc=<br/><em>Note : Ces informations sont utiles et pourront vous être demandées si vous rencontrez un bug dans le fonctionnement du module.</em>
+DolibarrVersion=Version de Dolibarr
+ModuleVersion=Version du module
+PHPVersion=Version de PHP
+DatabaseVersion=Version de la base de données
+WebServerVersion=Version du serveur web
+
+##EXTRAFIELDS
+Extrafield=Champ supplémentaire
+Extrafields=Champs supplémentaires
+
+DisplayTaskLabelInsteadTaskRef=Affichage des tâches des projets
+InfoDisplayTaskLabelInsteadTaskRef=Afficher le libellé des tâches plutôt que leur référence
+GenerateProjectTaskFromProposale=Création de projet
+InfoGenerateProjectTaskFromProposale=créer un projet depuis les lignes d'une proposition commerciale
+DefaultProjectStatutOnCreate=Statut du projet créé
+InfoDefaultProjectStatutOnCreate=Statut du projet créé depuis une proposition commerciale
+
+DefaultAssociatedServiceOnTask=Service par défaut sur les tâches
+InfoDefaultAssociatedServiceOnTask=Sélectionnez le service lié par défaut aux tâches des projets
+DefaultTHMPrice=THM par défaut
+InfoDefaultTHMPrice=Saisissez ici le Taux Horaire Moyen utilisé par défaut sur les tâches
+TimeSheetWeek=Saisie hebdomadaire
+description=Description
+TotalHrs=Durée totale
+Nb Hrs=Durée
+InfoModuleManagement=Gestion avancée du management (projet, contrat, fiche intervention)
+FichInterAskedBy=Interventions enregistrées par
+FichInterDoneBy=Interventions validées par
+ListTotal=Liste regroupée
+DateOpen=Date début
+FullDayEvent=Jour entier
+InterLineTotalHT=Total Détail HT
+DoneAndToDoInters=Liste des Interventions réalisées ou à faire
+FichInterAskedBy=Interventions enregistrées par
+FichInterDoneBy=Interventions validées par
+InterTotalHT=Total HT
+fichInterStatistics=Statistiques des interventions
+NbOfFichInters=Nombre d'interventions
+NbOfFichIntersByMonth=Nombre d'interventions Mensuelles
+AmountOfFichIntersByMonthHT=Montant HT des interventions Mensuelles
+AgendaShowFichInterEvents=Visualiser les Interventions
+AgendaShowInterDetailEvents=Visualiser le détail des Interventions
+TimeSheet=Saisie mensuelle
+SendInterventionByMail=Envoi de la fiche d'intervention par mail
+SendInterventionRef=Envoi Intervention %s
+InterId=Id intervention
+InterRef=Réf. intervention
+InterDateCreation=Date création
+InterDuration=Durée totale
+InterStatus=Statut
+InterNote=Description
+InterLine=Ligne intervention
+InterLineId=Id ligne détail
+InterLineDate=Date ligne
+InterLineDuration=Durée ligne
+InterLineDesc=Description ligne
+DocumentModelStandard=Modèle de fiche d'intervention standard
+ContratId=Id Contrat
+ProjetId=Id Projet
+PartialClose=Clôture Partielle
+StatusInterPartialClosed=Clôture Partielle
+StatusInterClosed=Clôturée
+StatusInterBilled=Facturée
+Finish=Terminée
+Transfered=Facturée
+CreateProjectBill=Facturer les tâches terminées
+##Admin setup
+ManagementSetup=Configuration du module Management
+GeneralSetup=Page principale
+FlyTimeAutomaticStopMode=Mode d'arrêt des temps en pause
+InfoFlyTimeAutomaticStopMode=Préciser la durée à partir de laquelle le chrono en pause s'arrête automatiquement
+FichinterHideEmptyDuration=Cacher les lignes d'interventions avec des durées vides
+InfoFichinterHideEmptyDuration=Les lignes vides ne sont pas affichées sur la fiche d'intervention.<br>ATTENTION, cette fonction nécessite un "patch" du core (copie des fichiers présents dans le dossier /corechange) <br>pour les versions de dolibarr inférieures à la 3.7
+FichinterBillOnlyReportLine=Transférer en facturation que les lignes du rapport
+InfoFichinterBillOnlyReportLine=Les lignes de détail de l'intervention ne sont pas transférées à la création d'un facture depuis l'intervention, seule les lignes du rapport le sont
+SelectTermMode=Période de sélection des échéances de contrat
+InfoSelectTermMode=Définissez le nombre et le type pour la sélection des échéances de contrats arrivant à terme<br>ex : "-2" et "semaine" pour les contrats arrivant à échéance dans 2 semaines<br>     "2" et "jours" pour les contrats échus depuis 2 jours
+SelectDefaultTermDuration=Durée d'échéance par défaut
+InfoSelectDefaultTermDuration=Permet de définir la durée d'échéance d'un contrat à proposer par défaut
+NbHoursOnAQuarterDay=Nb d'heures dans un 1/4 de jour
+InfoNbHoursOnAQuarterDay=Permet de utiliser une liste déroulante pour saisir les temps mensuels
+
+PatasMonkeyPresent=Ce module est une création des patas-monkey, une documentation de celui-ci est disponible sur notre site
+MoreModulesLink=Vous pouvez trouver tous nos développements sur le dolistore
+ProjectManagementSetting=Paramètres Projet
+ContractManagementSetting=Paramètres Contrat
+FichInterManagementSetting=Paramètres Fiche d'Intervention
+Quarter=Trimestre
+Semester=Semestre
+
+## projet cost
+PlannedTaskWorkload=Durée planifiée
+EstimatedLeftDuration=Durée restante déclarée
+CalculatedLeftDuration=Durée restante calculée
+CalculatedTotalDuration=Durée totale calculée
+ServiceAssociated=Service Associé
+SellPriceOfTask=Prix de vente HT de la tâche
+InfoSellPriceOfTask=Durée planifiée par le prix de vente HT de la prestation
+PlannedTHM=Taux Horaire Moyen Estimé (THME)
+RealTHM=Taux Horaire Moyen Réel (THMR)
+THMEstimated=Avec THM Estimé
+THMReal=Avec THM Réel
+NoAssociatedCustomersOnProject=Pas de client Associé au projet à facturer
+DeclaredCostPriceOfTask=Cout estimé planifié de la tâche 
+EstimatedCostPriceOfTask=Cout estimé effectif de la tâche 
+
+DeclaredRealCostPriceOfTask=Cout réel planifié de la tâche
+EstimatedRealCostPriceOfTask=Cout réel effectif de la tâche
+
+LeftCostPriceOfTask=Cout estimé restant de la tâche
+LeftRealCostPriceOfTask=Cout réel restant de la tâche
+
+TotalCostPriceOfTask=Cout total estimé de la tâche
+TotalRealCostPriceOfTask=Cout total réel de la tâche
+
+PerformedPriceHT=Prix HT Réalisée
+YearMonthDate=Année-Mois
+THMCost=Cout Horaire Total
+UnitTHM=Cout Horaire Moyen
+CreateTaskBill=Facturer la tâche
+
+## reportproject
+UserToDisplay=Sélection utilisateur
+DataToDisplay=Données affichées
+TimePassed=Temps Passé
+TimeCost=Cout Horaire
+TimeSell=Cout Vendu
+NoBilledModeSet=Pas de mode de facturation défini
+BilledOn=Facturation
+Billeable=Temps Facturable
+BillTimeProject=Facturer les temps du projet
+Managementtask=Tâche
+
+CreateProjectFromProposal=Création projet
+
+## FlyingTime
+TimeStarted=Action démarrée
+TimeStopped=Action terminée
+TimePaused=Action en Pause
+TimeRestarted=Action reprise
+
+##Export Addin
+DateOpen=Date début
+FullDayEvent=Jour entier
+InterLineTotalHT=Total Détail HT
+DoneAndToDoInters=Liste des Interventions réalisées ou à faire
+FichInterAskedBy=Interventions enregistrées par
+FichInterDoneBy=Interventions validées par
+InterTotalHT=Total HT
+Reopen=Réouvrir
+
+# Stat FICHINTER
+fichInterStatistics=Statistiques des interventions
+NbOfFichInters=Nombre d'interventions
+NbOfFichIntersByMonth=Nombre d'interventions Mensuelles
+AmountOfFichIntersByMonthHT=Montant HT des interventions Mensuelles
+AgendaShowFichInterEvents=Visualiser les Interventions
+AgendaShowInterDetailEvents=Visualiser le détail des Interventions
+Statistiques=Statistiques
+
+# calendar project
+DoneAndToDoTasks=Liste des tâches réalisées ou à faire
+TasksAskedBy=Tâches enregistrées par
+TasksDoneBy=Tâches validées par
+NbTasks=Nb. Tâches
+DurationTasks=Durées (Hrs)
+Total_ht=Montant HT
+DurationPlanned=Durée prévue
+Planned=Prévue
+DurationRemain=Restant estimée
+AgendaShowTaskProjet=Visualiser les tâches du projet
+AgendaShowTimeUse=Visualiser les temps consommés
+TaskStart=Début
+TaskEnd=Fin
+BillingMode=Mode de facturation
+BillingTimePlanned=au forfait
+BillingTimeMade=au réel (100%)
+BillingTimePassed=en régie
+TimeBilled=Temps Facturé
+
+### Stat PROJECT
+TimeSpentPeriodbyWeek=Saisie des temps hebdomadaires
+TimeSpentPeriod=Saisie des temps mensuels
+TimeSpentReport=Suivi des temps
+ListTotal=Liste regroupée
+ProjetStatistics=Statistiques Projets
+Add-on=Fonctions additionnelles
+NbOfProjectByMonth=Nombre de projet mensuel
+AmountOfProjectByMonthHT=Montant HT des projets mensuels
+TransfertInterTitle=Transfert de tâche en intervention
+TransfertInterText=Confirmation du transfert de tâche en intervention
+TransfertInterv=Transfert en Intervention
+PeriodAAAAMM=Période de saisie des temps
+PeriodAAAAUser=Période de Facturation
+PeriodAAAAMMUser=Période et utilisateur de filtrage
+StartStopTime=Saisie à la volée
+ShowHideWeekend=Afficher/cacher les week-ends
+PeriodUser=Utilisateur
+ChangeUser=Changer d'utilisateur
+Planned=Prévue
+YetMade=Réalisé
+YetBilled=Déjà facturé
+BillProject=Facturation des taches
+BillTimeLeft=Facturer le temps restant
+YouMade=par vous
+StartStop=Lancer / Arrêter
+Start=Lancer
+Stop=Arrêter
+FlyTimeTimerOne=Durée premier chrono
+InfoFlyTimeTimerOne=Définit la durée du premier chrono
+FlyTimeTimerTwo=Durée second chrono
+InfoFlyTimeTimerTwo=Définit la durée du second chrono
+ShowHideWeekendColumns=Affiche les colonnes des jours de week-end
+Quarterday1=1/4
+Quarterday2=1/2
+Quarterday3=3/4
+Quarterday4=1/1
+
+
+### Intervention
+ListOfGroupedInterventions=Liste des interventions regroupées
+FichInterModelList=Liste des modèles
+ChangeIntoRepeatableInterventional=Créer un modèle de fiche d'intervention
+CreateRepeatableIntervention=Créer un modèle de fiche d'intervention
+RepeatableInterventional=Modèles d'intervention
+ListInterventionalLinkToContract=Liste des interventions liées au contrat
+ModelListInterventionalLinkToContract=Liste des modèles d'interventions liées au contrat
+ToCreateAPredefinedInterventional=Pour créer une intervention à partir d'un modèle
+PredefinedInterventional=Modèle d'intervention
+CardFichinter=Fiche
+CreateFichInter=Créer une intervention à partir du modèle
+CloseNotToBill=Cloture or Facturation
+
+
+### contrats
+Terms=Périodes
+Term=Période
+Referents=Interventions liées
+AddNewTerm=Nouvelle période de contrat
+NewTerm=Nouvelle période de contrat
+DateBeginTerm=Début de la période
+DateEndTerm=Fin de la période
+AddTerm=Créer la période
+StartTerm=Activer la période
+CloseTerm=Finir la période
+EditTerm=Modifier la période
+AddInter=Nouvelle intervention
+InterOutofTerms=Intervention(s) hors période
+nbInter=Nb. Intervention
+nbTerm=Nb. Période
+CreateBillPeriod=Facturer les interventions clôturées liées à la période clôturée
+TermsToBills=Échéances à facturer
+ListOfContractsInTerm=Liste des contrats arrivant à terme
+ContractOpenForAddTerm=Le contrat doit être validé pour créer des échéances
+WEEK=semaine
+RenewTerm=Renouveler
+Totalttc= Total TTC
+
+## Trigger
+Triggers=Déclencheurs
+
+ManagementTask=Tâche
+Managementproject=Projet
+MONTH=mois
+DAY=jours()
+WEEK=semaine(s)
+QUARTER=trimestre(s)
+SEMESTER=semestre(s)
+YEAR=année(s)
+ListInterventionalLinkToContract=Liste des interventions associées au contrat
+ToBill= À facturer
+Managementcontratterm=Contrat lié
+contract=contrat
+
+UserName=Utilisateur
+Invoice=Facture
+management_managementproject=Projet

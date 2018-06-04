@@ -1,0 +1,281 @@
+# Dolibarr language file - es_ES - projects
+CHARSET=UTF-8
+InfoModuleManagement=Gestión avanzada del management (proyecto, contrato, ficha intervención)
+FichInterAskedBy=Intervenciones guardadas por
+FichInterDoneBy=Intevenciones validadas por
+ListTotal=Lista consolidada
+DateOpen=Fecha de inicio
+FullDayEvent=Día completo
+InterLineTotalHT=Total detallado sin IVA
+DoneAndToDoInters=Lista de intervenciones realizadas o pendientes
+FichInterAskedBy=Intervenciones guardadas por
+FichInterDoneBy=Intervenciones validadas por
+InterTotalHT=Total sin IVA
+fichInterStatistics=Estadísticas de intervenciones
+NbOfFichInters=Número de intervenciones
+NbOfFichIntersByMonth=Número de intervenciones por mes
+AmountOfFichIntersByMonthHT=Precio sin IVA de las intervenciones del mes
+AgendaShowFichInterEvents=Ver las intervenciones
+AgendaShowInterDetailEvents=Ver el detalle de las intervenciones
+TimeSheet=Entradas del mes
+SendInterventionByMail=Envío de la ficha de intervención por correo electrónico
+SendInterventionRef=Envío intervención %s
+InterId=Id intervención
+InterRef=Ref. intervención
+InterDateCreation=Fecha de creación
+InterDuration=Duración total
+InterStatus=Estado
+InterNote=Descripción
+InterLine=Línea intervención
+InterLineId=Id línea detalle
+InterLineDate=Fecha línea
+InterLineDuration=Duración línea
+InterLineDesc=Descripción línea
+DocumentModelStandard=Plantilla de ficha de intervención estándar
+ContratId=Id Contrato
+ProjetId=Id Proyecto
+PartialClose=Cierre parcial
+StatusInterPartialClosed=Cierre parcial
+StatusInterClosed=Cerrada
+StatusInterBilled=Facturada
+Finish=Terminada
+Transfered=Facturada
+CreateProjectBill=Facturar la tareas terminadas
+##Admin setup
+ManagementSetup=Configuración de Management
+FlyTimeAutomaticStopMode=Modo de parado del tiempo en pausa
+InfoFlyTimeAutomaticStopMode=Entrar la duración a partir de la cual el cronómetro se para automáticamente
+FichinterHideEmptyDuration=Ocultar las líneas de intervención con duración vacías
+InfoFichinterHideEmptyDuration=Las lineas vacías no se muestran en la ficha de intervención.<br>ATENCIÓN, esta función necesita un "patch" del core (copia de archivos presentes en la carpeta /corechange ) <br>para las versiones de dolibarr previas a la 3.7
+SelectTermMode=Periodo de selección de los plazos de contrato
+InfoSelectTermMode=Entrar el número y el tipo para la selección de los plazos de contrato expirando<br>ejemplo : "-2" y "semana" para los contratos expirando dentro de 2 semanas<br>     "2" y "días" para los contratos que han expirado hace 2 días
+SelectDefaultTermDuration=Duración del plazo por defecto
+InfoSelectDefaultTermDuration=Permite definir la duración del plazo de un contrat por defecto
+
+PatasMonkeyPresent=Este módulo es una creación de patas-monkey, una documentación esta disponible en nuestra web
+MoreModulesLink=Todos nuestros módulos se encuentran en el dolistore
+ProjectManagementSetting=Configuración Proyecto
+ContractManagementSetting=Configuración Contrato
+FichInterManagementSetting=Configuración Ficha de intervención
+Quarter=Trimestre
+Semester=Semestre
+
+## projet cost
+PlannedTaskWorkload=Duración planificada
+EstimatedLeftDuration=Duración restante declarada
+CalculatedLeftDuration=Duración restante calculada
+CalculatedTotalDuration=Duración total calculada
+ServiceAssociated=Servicio asociado
+SellPriceOfTask=Precio de venta sin IVA de la tarea
+InfoSellPriceOfTask=Duracion planificada por el precio de venta sin IVA de la prestación
+PlannedTHM=Tarifa por hora media estimada (THME)
+RealTHM=Tarifa por hora media real (THMR)
+THMEstimated=Con THM Estimada
+THMReal=Con THM real
+NoAssociatedCustomersOnProject=No hay cliente asociado al proyecto a facturar
+DeclaredCostPriceOfTask=Precio estimado planificado de la tarea
+EstimatedCostPriceOfTask=Precio estimado efectivo de la tarea
+
+DeclaredRealCostPriceOfTask=Precio real planificado de la tarea
+EstimatedRealCostPriceOfTask=Precio real efectivo de la tarea
+
+LeftCostPriceOfTask=Precio estimado restante de la tarea
+LeftRealCostPriceOfTask=Precio real restante de la tarea
+
+TotalCostPriceOfTask=Precio total estimado de la tarea
+TotalRealCostPriceOfTask=Precio total real de la tarea
+
+PerformedPriceHT=Precio sin IVA realizado
+YearMonthDate=Año-Mes
+THMCost=Tarifa por hora total
+UnitTHM=Tarifa por hora media
+CreateTaskBill=Facturar la tarea
+
+## reportproject
+UserToDisplay=Selección usuario
+DataToDisplay=Datos mostrados
+TimePassed=Tiempo dedicado
+TimeCost=Coste por hora
+TimeSell=Coste de venta
+NoBilledModeSet=No existe modo de facturación definido
+BilledOn=Facturación
+Billeable=Tiempo facturable
+BillTimeProject=Facturar los tiempos del proyecto
+Managementtask=Tarea
+
+## FlyingTime
+TimeStarted=Acción iniciada
+TimeStopped=Acción terminada
+TimePaused=Acción en Pausa
+TimeRestarted=Acción reiniciada
+
+##Export Addin
+DateOpen=Fecha de inicio
+FullDayEvent=Día completo
+InterLineTotalHT=Total detalle sin IVA
+DoneAndToDoInters=Lista de intervenciones realizadas o pendientes
+FichInterAskedBy=Intervenciones guardadas por
+FichInterDoneBy=Intervenciones validadas por
+InterTotalHT=Total sin IVA
+Reopen=Abrir de nuevo
+
+# Stat FICHINTER
+fichInterStatistics=Estadísticas de intervenciones
+NbOfFichInters=Número de intervenciones
+NbOfFichIntersByMonth=Número de intervenciones por mes
+AmountOfFichIntersByMonthHT=Precio sin IVA de las intervenciones por mes
+AgendaShowFichInterEvents=Ver las intervenciones
+AgendaShowInterDetailEvents=Ver el detalle de las intervenciones
+Statistiques=Estadísticas
+
+# calendar project
+DoneAndToDoTasks=Lista de tareas realizadas o pendientes
+TasksAskedBy=Tareas guardadas por
+TasksDoneBy=Tareas validadas por
+NbTasks=Número de tareas
+DurationTasks=Duraciones (Hrs)
+Total_ht=Precio sin IVA
+DurationPlanned=Duración prevista
+Planned=Prevista
+DurationRemain=Restante estimado
+AgendaShowTaskProjet=Ver las tareas del proyecto
+AgendaShowTimeUse=Ver el tiempo consumido
+TaskStart=Inicio
+TaskEnd=Fin
+BillingMode=Modo de facturación
+BillingTimePlanned=tarifa plana
+BillingTimeMade=tiempo real (100%)
+BillingTimePassed=tiempo pasado
+TimeBilled=Tiempo facturado
+
+### Stat PROJECT
+TimeSpentPeriod=Entrada de los tiempos por mes
+TimeSpentReport=Seguimiento de los tiempos
+ListTotal=Lista consolidada
+ProjetStatistics=Estadísticas proyecto
+Add-on=Funciones adicionales
+NbOfProjectByMonth=Número de proyecto por mes
+AmountOfProjectByMonthHT=Precio sin IVA de los proyectos por mes
+TransfertInterTitle=Transfert de tâche en intervention
+TransfertInterText=Confirmation du transfert de tâche en intervention
+TransfertInterv=Convertir en intervención
+PeriodAAAAMM=Periodo de entrada de los tiempos
+PeriodAAAAUser=Periodo de facturación
+PeriodAAAAMMUser=Periodo y usuario de filtro
+StartStopTime=Entrada sobre la marcha
+ShowHideWeekend=Mostrar/Ocultar los fines de semana
+PeriodUser=Usuario
+ChangeUser=Cambiar usuario
+Planned=Prevista
+YetMade=Realizada
+YetBilled=Ya facturado
+BillProject=Facturación de las tareas
+BillTimeLeft=Facturar el tiempo restante
+YouMade=por usted
+StartStop=Iniciar / Parar
+Start=Iniciar
+Stop=Parar
+FlyTimeTimerOne=Duración del primer cronómetro
+InfoFlyTimeTimerOne=Definir la duración del primer cronómetro
+FlyTimeTimerTwo=Duración del segundo cronómetro
+InfoFlyTimeTimerTwo=Definir la duración del segundo cronómetro
+
+### contrats
+Terms=Periodos
+Term=Periodo
+Referents=Intervenciones enlazadas
+AddNewTerm=Nuevo periodo de contrato
+NewTerm=Nuevo periodo de contrato
+DateBeginTerm=Inicio del periodo
+DateEndTerm=Fin del periodo
+AddTerm=Crear el periodo
+StartTerm=Activar el periodo
+CloseTerm=Finalizar el periodo
+EditTerm=Modificar el periodo
+AddInter=Nueva intervención
+InterOutofTerms=Intervención(es) fuera de periodo
+nbInter=Número intervención
+nbTerm=Número periodo
+CreateBillPeriod=Facturar las intervenciones cerradas del periodo
+TermsToBills=Plazos a facturar
+ListOfContractsInTerm=Lista de contratos expirando
+ContractOpenForAddTerm=Tiene que validar el contrato para crear plazos
+
+## Trigger
+Triggers=Disparadores
+
+ManagementTask=Tarea
+Managementproject=Proyecto
+
+
+## New langs factory area
+
+FactoryArea=Área de fabricación
+
+FactoryStatutRepart=Status
+
+OFByProductRepart=Ordenes de fabricación y cantidad por producto
+
+OFByStorageRepart=Ordenes de fabricación y cantidad por almacén
+
+LastFactory=Ultimas ordenes de fabricación modificadas
+
+QtyOfWarehouse=Existencia
+
+FactoryDurationPlanned=Duración planificada de la producción
+
+EntrepotStock=Almacén
+
+Entrepot=Almacén
+
+DescOfComponents=Descripción de componentes
+
+QtyUnit=Cant. Unit
+
+CloneOF=Clonar
+
+FactoryMovement=Movimientos
+
+QtyNeed=Necesario
+
+ListOfProductInOF=Ordenes de fabricación relacionadas al pedido
+
+Warehouse=Almacén
+
+PhysicalStock=Stock físico
+
+QtyInOFMade=Cantidad real
+
+QtyInOFPlanned=Cantidad planificada
+
+DateEndOF=Fin real
+
+DateStartOF=Inicio real
+
+Statut=Status
+
+RefProduct=Ref. producto
+
+DurationInOFMade=Duración real
+
+DurationInOFPlanned=Duración prevista
+
+ListOfProductBuildable=Listado de productos para producir
+
+RefProduit=Ref. Producto
+
+NoLinkedOFMatchFound=No hay ordenes de fabricación relacionadas
+
+RelatedFactory=Fabricación relacionada
+
+QtyOrder=Cantidad <br>ordenada
+
+Composition=Composición
+
+ImportExportComposition=Importar/Exportar XML para composición
+
+StockLimit=Stock límite para alertas
+
+Declination=Declinaciones
+
+ChangeGlobalQtyFactory=Modificar composición

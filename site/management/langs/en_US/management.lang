@@ -1,0 +1,239 @@
+# Dolibarr language file - fr_FR - projects
+CHARSET=UTF-8
+InfoModuleManagement=Time and Cost management (project, contract, intervention sheet)
+FichInterAskedBy=Interventions saved by
+FichInterDoneBy=Interventions validated by
+ListTotal=gatered list
+DateOpen=beginning date
+FullDayEvent=Whole day
+InterLineTotalHT=Total Détail excl.tax
+DoneAndToDoInters=Intervention to do or to be done
+FichInterAskedBy=Interventions saved by
+FichInterDoneBy=Interventions validated by
+InterTotalHT=Total HT
+fichInterStatistics=Interventions Statistics
+NbOfFichInters=quantity of interventions
+NbOfFichIntersByMonth=Monthly quantity of interventions
+AmountOfFichIntersByMonthHT=Monehtly amount excl. tax of interventions
+AgendaShowFichInterEvents=display interventions
+AgendaShowInterDetailEvents=display interventions details
+TimeSheet=monthly input
+SendInterventionByMail=send by mail
+SendInterventionRef=sending Intervention %s
+InterId=Id intervention
+InterRef=Réf. intervention
+InterDateCreation=Creation date
+InterDuration=Whole duration
+InterStatus=Status
+InterNote=Description
+InterLine=Line of intervention
+InterLineId=Id line détail
+InterLineDate=line Date
+InterLineDuration=line duration
+InterLineDesc=Line description
+DocumentModelStandard=standard intervention shhet template
+ContratId=Id Contract
+ProjetId=Id Project
+PartialClose=partial closure
+StatusInterPartialClosed=partially closed
+StatusInterClosed=closed
+StatusInterBilled=invoiced
+Finish=finished
+Transfered=invoices
+CreateProjectBill=invoices finished tasks
+##Admin setup
+ManagementSetup=Management settings
+FlyTimeAutomaticStopMode=break time stopping duration
+InfoFlyTimeAutomaticStopMode=Enter the duration after which the chrono will stop
+FichinterHideEmptyDuration=hide intervention empty duration lines
+InfoFichinterHideEmptyDuration=empty lines will not be displayed on intervention sheet.<br>ATTENTION, this feature requires to apply a corechange for Dolibarr version <3.7
+SelectTermMode=Selection period of contract deadlines
+InfoSelectTermMode=Set the number and type for the selection of contracts expiring maturities <br> eg "-2 " and " week " for contracts maturing in two weeks <br> "2" and "days" for contracts that matured since 2 days
+SelectDefaultTermDuration=Default expiry Time
+InfoSelectDefaultTermDuration=Sets the maturity term of a contract to provide default
+
+PatasMonkeyPresent=This module is a creation of patas -monkey , documentation of it is available on our website
+MoreModulesLink=You can find all our developments on the dolistore
+ProjectManagementSetting=Project settings
+ContractManagementSetting=Contract parameters
+FichInterManagementSetting=Parameters intervention Sheet
+Quarter=quarter
+Semester=semester
+
+## projet cost
+PlannedTaskWorkload=planified duration
+EstimatedLeftDuration=remaining declared duration
+CalculatedLeftDuration=claculated remainig duration
+CalculatedTotalDuration=calculated chole duration
+ServiceAssociated=service
+SellPriceOfTask=task excl. tax price
+InfoSellPriceOfTask=planified duration per task excl. tax price
+PlannedTHM=Average Hourly Rate Estimated (THME)
+RealTHM=Average Hourly Rate Real (THMR)
+THMEstimated=With estimated THM 
+THMReal=with real THM
+NoAssociatedCustomersOnProject=No customer billing Associate Project
+DeclaredCostPriceOfTask=Estimated cost of the planned task
+EstimatedCostPriceOfTask=Cost estimated effective task
+
+DeclaredRealCostPriceOfTask=Real cost of the planned task
+EstimatedRealCostPriceOfTask=Real cost effective task
+
+LeftCostPriceOfTask=Estimated remaining cost of the task
+LeftRealCostPriceOfTask=Actual cost of the work remaining
+
+TotalCostPriceOfTask=Estimated total cost of the task
+TotalRealCostPriceOfTask=Actual total cost of the task
+
+PerformedPriceHT=Priced Made
+YearMonthDate=YEer-Month
+THMCost=Hours Total Cost
+UnitTHM=Average Cost Schedule
+CreateTaskBill=Charge the task
+
+## reportproject
+UserToDisplay=Select user
+DataToDisplay=displayed data
+TimePassed=Spent time
+TimeCost=Hourly cost
+TimeSell=sell price
+NoBilledModeSet=no invoicing mode defined
+BilledOn=invoicing mode : 
+Billeable=time to invoice
+BillTimeProject=invoice project time
+
+## FlyingTime
+TimeStarted=Action begun
+TimeStopped=Action completed
+TimePaused=Action paused
+TimeRestarted=Action resumed
+
+##Export Addin
+DateOpen=Start date
+FullDayEvent=Whole day
+InterLineTotalHT=excl. tax detailed amount
+DoneAndToDoInters=List of interventions done or to do
+FichInterAskedBy=Interventions registered by
+FichInterDoneBy=Interventions validated by
+InterTotalHT=Exlc. tax global amount
+Reopen=Reopen
+
+# Stat FICHINTER
+fichInterStatistics=Interventions stats
+NbOfFichInters=number of interventions
+NbOfFichIntersByMonth=Number of monthly interventions
+AmountOfFichIntersByMonthHT=monthly interventions excl. tax amount
+AgendaShowFichInterEvents=See interventions
+AgendaShowInterDetailEvents=See interventions details
+Statistiques=Stats
+
+# calendar project
+DoneAndToDoTasks=List of tasks done or to do
+TasksAskedBy=Tasks registered by
+TasksDoneBy=Tasks validated by
+NbTasks=Nb of tasks
+DurationTasks=Duration (Hrs)
+Total_ht=Excl. tax amount
+DurationPlanned=Planned duration
+Planned=Planned
+DurationRemain=Remainig planned time
+AgendaShowTaskProjet=See tasks on project
+AgendaShowTimeUse=See spent time
+TaskStart=Start
+TaskEnd=End
+BillingMode=Invoicing mode
+BillingTimePlanned=Planned time
+BillingTimeMade=Completed time
+BillingTimePassed=Spent time
+TimeBilled=Invoiced time
+
+### Stat PROJECT
+TimeSpentPeriod=Enter monthly time
+TimeSpentReport=saving time
+ListTotal=consolidated list
+ProjetStatistics=Projects stats
+Add-on=Additional functions
+NbOfProjectByMonth=Number of project per month
+AmountOfProjectByMonthHT=Net amount of projects per month
+TransfertInterTitle=Transfer of intervention onto a task
+TransfertInterText=Confirmation of the transfer of intervention onto a task
+TransfertInterv=Transfer Intervention
+PeriodAAAAMM=Application Time Period
+PeriodAAAAUser=Invoicing period
+PeriodAAAAMMUser=Period and fitrage user
+StartStopTime=New enter on the fly
+ShowHideWeekend=Show / hide weekend
+PeriodUser=User
+ChangeUser=Switch user
+Planned=expected
+YetMade=Executed
+YetBilled=Already invoiced
+BillProject=Tasks invoicing
+BillTimeLeft=Invoice remaining time
+YouMade=By you
+StartStop=Start / Stop
+Start=Launch
+Stop=Stop
+FlyTimeTimerOne=First Timer
+InfoFlyTimeTimerOne=Define the duration of the first timer
+FlyTimeTimerTwo=Second Timer
+InfoFlyTimeTimerTwo=Define the duration of the second Timer
+
+### contrats
+Terms=periods
+Term=period
+Referents=related interventions
+AddNewTerm=New contract period
+NewTerm=New contract period
+DateBeginTerm=Beginning of period
+DateEndTerm=End of period
+AddTerm=Create the period
+StartTerm=Enable period
+CloseTerm=Finish time
+EditTerm=Change period
+AddInter=new intervention
+InterOutofTerms=Intervention(s) off period
+nbInter=Nb intervention
+nbTerm=Nb period
+CreateBillPeriod=Bill fenced interventions of the period
+TermsToBills=Deadlines to charge
+ListOfContractsInTerm=List of futures contracts arriving
+ContractOpenForAddTerm=The contract must be validated to create timelines
+
+## Trigger
+Triggers=Trigger
+description=Description
+TotalHrs=Global duration
+Nb Hrs=Duration
+FichinterBillOnlyReportLine=Bill only lines of the report
+InfoFichinterBillOnlyReportLine=detailed lines of interventions are not transfered in invoices lines. Only reports lines are.
+Managementtask=Task
+ListOfGroupedInterventions=Gathered interventions list
+FichInterModelList=Templates list
+ChangeIntoRepeatableInterventional=Create intervention
+CreateRepeatableIntervention=Create  intervention document template
+RepeatableInterventional=Intervention template
+ListInterventionalLinkToContract=Intervention linked to contract
+ModelListInterventionalLinkToContract=List of interventions templates linked to contract
+ToCreateAPredefinedInterventional=To create an intervention from a template
+PredefinedInterventional=Intervention template
+CardFichinter=Card
+CreateFichInter=Create an intervention from template
+WEEK=week
+RenewTerm=Renew
+Totalttc=Total
+ManagementTask=Task
+Managementproject=Project
+MONTH=month
+DAY=days()
+WEEK=week(s)
+QUARTER=term(s)
+SEMESTER=semester(s)
+YEAR=year(s)
+ListInterventionalLinkToContract=Liste des interventions associées au contrat
+ToBill= To bill
+Managementcontratterm=Contract linked
+contract=contract
+UserName=User
+Invoice=Invoice
+management_managementproject=Projet

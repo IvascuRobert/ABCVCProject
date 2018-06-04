@@ -1,0 +1,269 @@
+.filterable {
+    margin-top: 15px;
+}
+.filterable .panel-heading .pull-left {
+    margin-right: 10px;
+}
+.filterable .filters input[disabled] {
+    background-color: transparent;
+    border: none;
+    cursor: auto;
+    box-shadow: none;
+    padding: 0;
+    height: auto;
+}
+.filterable .filters input[disabled]::-webkit-input-placeholder {
+    color: #333;
+}
+.filterable .filters input[disabled]::-moz-placeholder {
+    color: #333;
+}
+.filterable .filters input[disabled]:-ms-input-placeholder {
+    color: #333;
+}
+.container {
+    width: 100%;
+}
+.panel-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 30px;
+    color: inherit;
+}
+
+/*EDIT ZONE BUTTON (Supprimer) */
+.butAction, .butAction:link, .butAction:visited, .butAction:hover, .butAction:active, .butActionDelete, .butActionDelete:link, .butActionDelete:visited, .butActionDelete:hover, .butActionDelete:active {
+    text-decoration: none;
+    padding: 5px 10px 5px 10px;
+    margin-left: -12px
+}
+
+
+.maxwidth75 {
+    max-width: 100px;
+}
+
+div.pagination {
+    float: right;
+    margin: 0;
+}
+div.pagination li {
+    margin:0;
+}
+
+
+.menu_contenu {
+    padding:0;
+}
+
+.abcvc_view label {
+    margin: 0px;
+}
+
+/*tmp hack*/
+#s2id_socid{
+    width: auto !important;
+}
+
+/*SORTABLE LOT*/
+.switch-container {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80px;
+}
+
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+ol.example li.placeholder {
+  position: relative;
+  /** More li styles **/
+}
+ol.example li.placeholder:before {
+  position: absolute;
+  /** Define arrowhead **/
+}
+.nested_with_switch{
+    list-style: none;
+}
+
+.link_edit_lot:hover {
+    font-family: roboto,arial,tahoma,verdana,helvetica;
+    font-weight: normal;
+    color: rgb(0,0,120);
+    text-decoration: none;
+}
+
+.link_edit_category:hover {
+    font-family: roboto,arial,tahoma,verdana,helvetica;
+    font-weight: normal;
+    color: rgb(0,0,120);
+    text-decoration: none;
+}
+
+.link_edit_poste:hover {
+    font-family: roboto,arial,tahoma,verdana,helvetica;
+    font-weight: normal;
+    color: rgb(0,0,120);
+    text-decoration: none;
+}
+
+.link_edit_subposte:hover {
+    font-family: roboto,arial,tahoma,verdana,helvetica;
+    font-weight: normal;
+    color: rgb(0,0,120);
+    text-decoration: none;
+}
+
+.link_edit_subsubposte:hover {
+    font-family: roboto,arial,tahoma,verdana,helvetica;
+    font-weight: normal;
+    color: rgb(0,0,120);
+    text-decoration: none;
+}
+
+
+select.flat, form.flat select {
+  color:#000;
+}
+
+td div.titre {
+    font-family: roboto,arial,tahoma,verdana,helvetica;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    color: black;
+}
+
+.timesheetalreadyrecorded{
+    display: block;
+
+}
+.timesheetalreadyrecorded input{
+    width: 100%;
+    padding: 0;
+    background-color: rgba(255,255,255,1);
+
+}
+.timesheetalNOTreadyrecorded{
+    height: 20px;
+}
+
+a:link, a:visited, a:hover, a:active {
+    font-family: roboto,arial,tahoma,verdana,helvetica;
+    font-weight: normal;
+    color: rgb(0,0,120);
+    text-decoration: none;
+}
+
+div.abcvc_view table.formdoc #s2id_model {
+    display: none;
+}
+
+.paginate_button, .paginate_active {
+    border: none !important;
+    padding : 0 !important;
+}
+
+input.smallpadd {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    width: 50px;
+}
+ 
+ textarea{
+    width: 100%;
+ }
+
+ .visible{
+    display:none;
+ }
+ 
+.calendar_prime .ui-datepicker-calendar {
+    display: none !important;
+    }
+
+
+.timespent_per_task_day{
+    cursor:pointer;
+}
+
+#timespent_header_code .label_task{
+    font-size: 10px;
+    font-style: italic;
+    font-weight: 300;
+}    
+#timespent_header_code{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#ex1Slider{
+    width: 96%;
+}
+
+#perioduser{
+    width: 100%;
+}
+
+.slider.slider-horizontal {
+    width: 100% !important ;
+    height: 20px;
+}
+
+.tr_lot{
+    background-color: #cccccc;
+}
+.tr_categorie{
+    background-color: #eaeaea;
+}
+
+.select2-container-multi.select2-container-disabled .select2-choices {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+}
+
+.progress {
+    margin-bottom: 0;
+    background-color: #ccc;
+}
+
+.infos_task{
+    color:#fff;
+}
+
+.timespent_panier{
+    float: right;
+    
+}
+
+.timespent_trajet{
+    float: right;
+    margin-left: 4px;
+}
+
+#presencepage .table {
+    margin-bottom: 2px;
+}
+#presencepage .table td{
+    border-top: none;
+}
+

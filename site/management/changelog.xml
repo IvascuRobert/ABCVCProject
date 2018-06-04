@@ -1,0 +1,112 @@
+<changelog>
+<Version Number="3.6.+2.0.0"> MonthVersion="2015-01" >
+	<change type='inf'> Initial version after projet V2 ( 1.x.x)</change>
+</Version> 
+<Version Number="3.6.+2.0.1" MonthVersion="2015-01">
+	<change type='fix'> bgcolor in total ligne error</change>
+	<change type='fix'> calendar habilitation fail</change>
+	<change type='fix'> corechange error on bill</change>
+</Version> 
+<Version Number="3.6.+2.0.2" MonthVersion="2015-01">
+	<change type='fix'> minor fix and core integration</change>
+	<change type='add'> terms contract bill generator</change>
+</Version> 
+<Version Number="3.6.+2.0.3" MonthVersion="2015-03">
+	<change type='add'> 1click additional time on task</change>
+	<change type='fix'> contract bugs correction</change>
+	<change type='chg'> better project and task report display (title and orange background)</change>
+</Version> 
+<Version Number="3.6.+2.0.4" MonthVersion="2015-04">
+	<change type='fix'> bad filtering in month (forgot year filter)</change>
+	<change type='add'> better acces right project management</change>
+</Version> 
+<Version Number="3.6.+2.0.5" MonthVersion="2015-05">
+	<change type='add'> report can be filtered by customer</change>
+	<change type='add'> progress can be change during monthly report</change>
+	<change type='add'> additionnal lign on monthly report for detail of task</change>
+	<change type='fix'> extrafields error during intervention transfert to bill </change>
+	<change type='fix'> include contract error during bill generation based on contact term</change>
+</Version> 
+<Version Number="3.7.+2.1.0" MonthVersion="2015-06">
+	<change type='fix'> ThirdParty vs Society 3.7 compatibility</change>
+	<change type='add'> show/hide week-end on month type</change>
+	<change type='fix'> trigger error on monthly keyin</change>
+</Version> 
+<Version Number="3.8.+2.2.0" MonthVersion="2015-10">
+	<change type='add'> time passed billing mode</change>
+	<change type='add'> predefined billing mode task (planned, made or passed)</change>
+	<change type='add'> get text_note on monthly keyin</change>
+	<change type='add'> transfert project on bill depending billing mode </change>
+</Version> 
+<Version Number="3.8.+2.2.1" MonthVersion="2015-11">
+	<change type='add'> access right on task and project price</change>
+	<change type='fix'> correct some bug with other user than admin</change>
+	<change type='add'> display task label on billproject page</change>
+	<change type='fix'> task status updated on create task trigger</change>
+	<change type='fix'> time billed with fk_facture=0 not used on sumtimebilled</change>
+	<change type='fix'> some errot on fichinter calendar view</change>
+</Version> 
+<Version Number="3.8.+2.2.2" MonthVersion="2015-12">
+	<change type='add'> fichinter datei = date of close report</change>
+	<change type='fix'> fichinter rapport hook rules change</change>
+</Version> 
+<Version Number="3.9.+2.3.0" MonthVersion="2016-03">
+	<change type='add'> change statut of task with trigger with timespend add/update/delete</change>
+</Version> 
+<Version Number="3.9.+2.3.1" MonthVersion="2016-04">
+	<change type='chg'> custom folder compatibility</change>
+	<change type='chg'> 3.9 compatibility</change>
+</Version> 
+<Version Number="3.9.+2.3.2" MonthVersion="2016-05">
+	<change type='add'> fichinter models management</change>
+	<change type='fix'> error on reportprojet ambigus fields</change>
+	<change type='add'> contract term next period date sugestion from setting</change>
+	<change type='fix'> bad url on create bill from contact</change>
+	<change type='add'> new const FICHINTER_ONLY_REPORT_BILLED</change>
+</Version> 
+<Version Number="3.9.+2.3.3" MonthVersion="2016-06">
+	<change type='fix'>fill timespent_datehour in listtime</change>
+	<change type='add'>xml version changelog feature</change>
+</Version> 
+<Version Number="3.9.+2.3.4" MonthVersion="2016-07">
+	<change type='fix'>Error on create bill if task have no service associated</change>
+	<change type='fix'>admin icon menu</change>
+	<change type='add'>xml dolibarr version changelog feature</change>
+	<change type='fix'>interventional report remise_percent predef changed on 3.9</change>
+</Version> 
+<Version Number="4.0.+2.4.0" MonthVersion="2016-09">
+	<change type='inf'>4.0 Compatibility</change>
+</Version> 
+<Version Number="4.0.+2.4.1" MonthVersion="2016-12">
+	<change type='fix'>inversion on cloture button of interventionnal</change>
+	<change type='fix'>term of contrat error on create (fields name key changed)</change>
+	<change type='fix'>old agenda vue for > 4.0 too</change>
+	<change type='add'>new intervention close statut : not to bill</change>
+</Version> 
+<Version Number="5.0.+2.5.0" MonthVersion="2017-01">
+	<change type='inf'>5.0 Compatibility</change>
+	<change type='add'>send contract by mail (4.0 and 5.0 only)</change>
+	<change type='add'>Entry of monthly times in part of days</change>
+</Version> 
+<Version Number="5.0.+2.5.1" MonthVersion="2017-02">
+	<change type='fix'>fichinter line function loose</change>
+	<change type='fix'>Bad selection user on fling Time</change>
+	<change type='add'>new look on admin about page</change>
+	<change type='add'>information version on admin setup page</change>
+	<change type='add'>allow define default service on create task</change>
+</Version> 
+<Version Number="5.0.+2.5.2" MonthVersion="2017-03">
+	<change type='fix'>fichinter line function loose</change>
+	<change type='fix'>duration_effective field changed by task_duration</change>
+	<change type='add'>Generate project from proposal</change>
+	<change type='chg'>Display tasklabel instead taskref on listtime</change>
+</Version> 
+<Version Number="5.0.+2.5.3" MonthVersion="2017-04">
+	<change type='fix'>listtimeweek monday not get correctly (us style)</change>
+	<change type='add'>New calendar mode (1 month = 1 line)</change>	
+	<change type='fix'>listtime progress not saved</change>
+
+</Version> 
+
+<Dolibarr minVersion="3.6.0"/>
+</changelog>
