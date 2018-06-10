@@ -1178,282 +1178,265 @@ if ($action == 'create' && $user->rights->projet->creer)
 				color: #444;
 			}	
 		</style>
-	    <?php echo load_fiche_titre($langs->trans("NewProject"), '', 'title_project'); ?>
-	    <form class="form-horizontal" action="<?php echo $_SERVER["PHP_SELF"];?>" method="POST">
-
-	    	<input type="hidden" name="token" value="<?php echo $_SESSION['newtoken'];?>">
-	    	<input type="hidden" name="action" value="add">
-	    	<input type="hidden" name="backtopage" value="<?php echo $backtopage;?>">
-
-			<div class="container-fluid abcvc_view">
-				<div class="row">
-					
-					<div class="col-md-6 col-xs-12">
-
-					    <div class="form-group">
-					        <label for="labelEdit" class="col-sm-2 control-label">	
-					        	<?php echo $langs->trans("Label");?>
-					        </label>
-					        <div class="col-sm-10">
-					        	<input type="text" name="title" value="<?php echo GETPOST("title");?>" class="form-control">
-					        </div>
-					    </div>
-					
-					    <div class="form-group">    
-					        <label for="refEdit" class="col-sm-2 control-label">
-					        	<?php echo $langs->trans("Ref");?>
-					        </label>
-					        <div class="col-sm-10">
-						    <?php
-
-							    $defaultref='';
-							    //$modele = empty($conf->global->PROJECT_ADDON)?'mod_projectAbcvc_simple':$conf->global->PROJECT_ADDON;
-							    $modele = 'mod_projectAbcvc_simple';
-
-						    	// Search template files
-							    $file=''; $classname=''; $filefound=0;
-							    $dirmodels=array_merge(array('/'),(array) $conf->modules_parts['models']);
-							    //var_dump($dirmodels);
-
-							    foreach($dirmodels as $reldir) {
-							    	$file=dol_buildpath($reldir."core/modules/projectAbcvc/".$modele.'.php',0);
-
-							    	//var_dump($reldir."core/modules/projectAbcvc/".$modele.'.php');
-							    	
-							    	if (file_exists($file)) {
-							    		$filefound=1;
-							    		$classname = $modele;
-							    		break;
-							    	}
-							    }
-							    //var_dump($filefound);
-							    //exit;
-
-							    if ($filefound) {
-								    $result = dol_include_once($reldir."core/modules/projectAbcvc/".$modele.'.php');
-								    $modProject = new $classname;
-								    //var_dump($classname);
-								    //exit;
-
-								    $defaultref = $modProject->getNextValue($thirdparty,$object);
-							    }
-
-							    if (is_numeric($defaultref) && $defaultref <= 0) $defaultref='';
-
-						    	// Ref
-							    $suggestedref=($_POST["ref"]?$_POST["ref"]:$defaultref);
-					        	//$suggestedref=$object->ref;
-					        	?>	
-					        	<input size="20" name="ref" value="<?php echo $suggestedref;?>" class="form-kcontrol readonly" readonly>
-					        	<?php 
-					        		echo $form->textwithpicto('', $langs->trans("YouCanCompleteRef", $suggestedref)); 
-					        	?>
-					        </div>	
-					    </div>
-
-					    <?php
-				        // Thirdparty
-					    if ($conf->societe->enabled) { ?>
-			
-				        	<div class="form-group">
-				        		<label for="thirdCreate" class="col-sm-2 control-label">
-				        			<?php echo $langs->trans("ThirdParty");?>
-				        		</label>
-					       		<div class="col-sm-10">
-							       	<?php
-    								// function select_thirdparty_list($selected='',$htmlname='socid',$filter='',$showempty='', $showtype=0, $forcecombo=0, $events=array(), $filterkey='', $outputmode=0, $limit=0, $morecss='minwidth100', $moreparam='')
-							        $filteronlist='s.client in (1,3)'; // TO SEE client CUSTOMERS 
-							        if (! empty($conf->global->PROJECT_FILTER_FOR_THIRDPARTY_LIST)) $filteronlist=$conf->global->PROJECT_FILTER_FOR_THIRDPARTY_LIST;
-							       	
-							       	$text=$form->select_thirdparty_list(GETPOST('socid','int'), 'socid', $filteronlist, 'None', 1, 0, array(), '', 0, 0, 'minwidth300');
-							        
-							        if (empty($conf->global->PROJECT_CAN_ALWAYS_LINK_TO_ALL_SUPPLIERS) && empty($conf->dol_use_jmobile)) {
-							   			$texthelp=$langs->trans("IfNeedToUseOhterObjectKeepEmpty");
-							        	echo $form->textwithtooltip($text.' '.img_help(), $texthelp, 1, 0, '', '', 2);
-
-							        } else {
-								    
-								    	echo $text; ?>
-							        		<small id="">
-							        			<a  href="<?php echo DOL_URL_ROOT.'/societe/soc.php?action=create&backtopage='.urlencode($_SERVER["PHP_SELF"].'?action=create');?>">
-							        				<?php echo $langs->trans("AddThirdParty"); ?>
-							        			</a>
-							        		</small>
-								    <?php
-							       	}
-							       	?>
-					       		</div>
-					       	</div>
-					    <?php   	
-					    }
-					    ?>
-						<?php /*  
-				    	<div class="form-group">
-				    		<label for="visibilityCreate" class="col-sm-2 control-label">
-				    			<?php echo $langs->trans("Visibility");?>
-				    		</label>
-				    		<div class="col-sm-10">
-				    			[TODO] ask if they want to select Visibility of the project?
-								 		
-								    $array=array();
-								    if (empty($conf->global->PROJECT_DISABLE_PRIVATE_PROJECT)) $array[0] = $langs->trans("PrivateProject");
-								    if (empty($conf->global->PROJECT_DISABLE_PUBLIC_PROJECT)) $array[1] = $langs->trans("SharedProject");
-								?>
-					    		<?php echo $form->selectarray('public',$array,GETPOST('public')?GETPOST('public'):(isset($conf->global->PROJECT_DEFAULT_PUBLIC)?$conf->global->PROJECT_DEFAULT_PUBLIC:$object->public));   
-				    		</div>
-				    	</div>
-				    	*/ ?>
-
-				    	<?php  if ($status != '') : ?>
-				    	<div class="form-group">
-		        			<label class="col-sm-2 control-label">
-		        				<?php echo $langs->trans("Status");?>
-		        			</label>
-		        			<div class="col-sm-10">
-								<input type="hidden" class="form-control" id="statusCreate" name="status" value="<?php echo $status;?>" >
-			    				<?php echo $object->LibStatut($status, 4);?>		        					
-	        				</div>	
-	        			</div>
-	        			<?php  endif; ?>
-
-	        			<div class="form-group">
-					    	<label for="id_address" class="col-sm-2 control-label">
-					    		<?php  echo $langs->trans("Address");?>
-					    	</label>
-					    	<div class="col-sm-10">
-					        	<input type="text" name="id_address" class="form-control">
-					        </div>
-					    </div>
-
-					    <div class="form-group">
-					    	<label for="id_postalcode" class="col-sm-2 control-label">
-					    		<?php  echo $langs->trans("Code postal");?>
-					    	</label>
-					    	<div class="col-sm-10">
-					        	<input type="text" name="id_postalcode" class="form-control">
-					        </div>
-					    </div>
-
-					    <div class="form-group">
-					    	<label for="id_city" class="col-sm-2 control-label">
-					    		<?php  echo $langs->trans("Ville");?>
-					    	</label>
-					    	<div class="col-sm-10">
-					        	<input type="text" name="id_city" class="form-control">
-					        </div>
-					    </div>
-
-	        		</div>
-	        		
-	        		<div class="col-md-6 col-xs-12">	
 
 
-					    <div class="form-group">
-					    	<label for="descEdit" class="col-sm-2 control-label">
-					    		<?php echo $langs->trans("Description");?>
-					    	</label>
-					    	<div class="col-sm-10">
-				    			<textarea name="description" wrap="soft" rows="8" class="form-control"><?php echo GETPOST("description");?></textarea>						    		
-					    	</div>	
-					    </div>
+<form class="form-horizontal" action="<?php echo $_SERVER["PHP_SELF"];?>" method="POST">
 
-					    <div class="form-group">
-					    	<label for="zones" class="col-sm-2 control-label">
-					    		<?php echo $langs->trans("Zones");?>
-					    	</label>
-					    	<div class="col-sm-10">
-					    		<select name="id_zone">
-								    <?php foreach ($allzones as $zone): ?>
-								    	<option value="<?php echo $zone->rowid; ?>"><?php echo $zone->label.' ('.$zone->kilometers.')'; ?></option>
-								    <?php endforeach; ?>
-								</select> 
-							</div>
-					    </div>
-
-
-					    <div class="form-group">
-					    	<label for="zones" class="col-sm-2 control-label">Charges fixes</label>
-					    	<div class="col-sm-10">
-					    		<div class="input-group"> 
-								    <span class="input-group-addon">$</span>
-					    			<input type="text" name="id_chargesfixe" class="form-control currency"> 
-					    		</div>	
-							</div>
-					    </div>
-
-
-
-
-						<?php
-			        	// Categories
-					    /*if ($conf->categorie->enabled) {  	?>
-
-						    	<div class="form-group">	
-						    		<label for="categCreate" class="col-sm-2 control-label">
-						    			<?php echo $langs->trans("Categories");?>
-						    		</label>
-								    <div class="col-sm-10">
-
-								    	<?php
-									    	$cate_arbo = $form->select_all_categories(Categorie::TYPE_PROJECT, '', 'parent', 64, 0, 1);
-									    	$arrayselected=GETPOST('categories', 'array');
-									    	print $form->multiselectarray('categories', $cate_arbo, $arrayselected, '', 0, '', 0, '30%');
-								    	?>
-								   	</div>
-						    	</div>
-					    	<?php
-					    }*/
-					    ?>
-					</div>
+	<div class="panel panel-info">
+		<!-- Default panel contents -->
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				Proiect nou
+				<div class="pull-right">
+					<input type="submit" class="btn btn-primary btn-link btn-lg" value="<?php echo $langs->trans("Crează");?>">
+					<?php
+						if (! empty($backtopage)) {
+							print ' &nbsp; &nbsp; ';
+							print '<input type="submit" class="btn btn-link btn-lg" name="cancel" value="'.$langs->trans("Cancel").'">';
+						}
+						else {
+							print ' &nbsp; &nbsp; ';
+							print '<input type="button" class="btn btn-link btn-lg" value="' . $langs->trans("Cancel") . '" onClick="javascript:history.go(-1)">';
+						}
+					?>
 				</div>
+			</h3>
+		</div>
+		<div class="panel-body">
+			<p>CEVA DESCIRERE</p>
+		</div>
 
-			</div>	
+		<input type="hidden" name="token" value="<?php echo $_SESSION['newtoken'];?>">
+		<input type="hidden" name="action" value="add">
+		<input type="hidden" name="backtopage" value="<?php echo $backtopage;?>">
+
+		<div class="container-fluid abcvc_view">
+			<div class="row">
+				
+				<div class="col-md-6 col-xs-12">
+
+					<div class="form-group">
+						<label for="labelEdit" class="col-sm-2 control-label">	
+							<?php echo $langs->trans("Label");?>
+						</label>
+						<div class="col-sm-10">
+							<input type="text" name="title" value="<?php echo GETPOST("title");?>" class="form-control">
+						</div>
+					</div>
+				
+					<div class="form-group">    
+						<label for="refEdit" class="col-sm-2 control-label">
+							<?php echo $langs->trans("Ref");?>
+						</label>
+						<div class="col-sm-10">
+						<?php
+							$defaultref='';
+							//$modele = empty($conf->global->PROJECT_ADDON)?'mod_projectAbcvc_simple':$conf->global->PROJECT_ADDON;
+							$modele = 'mod_projectAbcvc_simple';
+							// Search template files
+							$file=''; $classname=''; $filefound=0;
+							$dirmodels=array_merge(array('/'),(array) $conf->modules_parts['models']);
+							//var_dump($dirmodels);
+							foreach($dirmodels as $reldir) {
+								$file=dol_buildpath($reldir."core/modules/projectAbcvc/".$modele.'.php',0);
+								//var_dump($reldir."core/modules/projectAbcvc/".$modele.'.php');
+								if (file_exists($file)) {
+									$filefound=1;
+									$classname = $modele;
+									break;
+								}
+							}
+							//var_dump($filefound);
+							//exit;
+							if ($filefound) {
+								$result = dol_include_once($reldir."core/modules/projectAbcvc/".$modele.'.php');
+								$modProject = new $classname;
+								//var_dump($classname);
+								//exit;
+								$defaultref = $modProject->getNextValue($thirdparty,$object);
+							}
+							if (is_numeric($defaultref) && $defaultref <= 0) $defaultref='';
+							// Ref
+							$suggestedref=($_POST["ref"]?$_POST["ref"]:$defaultref);
+							//$suggestedref=$object->ref;
+							?>	
+							<input size="20" name="ref" value="<?php echo $suggestedref;?>" class="form-kcontrol readonly" readonly>
+							<?php 
+								echo $form->textwithpicto('', $langs->trans("YouCanCompleteRef", $suggestedref)); 
+							?>
+						</div>	
+					</div>
+
+					<?php
+					// Thirdparty
+					if ($conf->societe->enabled) { ?>
+						<div class="form-group">
+							<label for="thirdCreate" class="col-sm-2 control-label">
+								<?php echo $langs->trans("ThirdParty");?>
+							</label>
+							<div class="col-sm-10">
+								<?php
+								// function select_thirdparty_list($selected='',$htmlname='socid',$filter='',$showempty='', $showtype=0, $forcecombo=0, $events=array(), $filterkey='', $outputmode=0, $limit=0, $morecss='minwidth100', $moreparam='')
+								$filteronlist='s.client in (1,3)'; // TO SEE client CUSTOMERS 
+								if (! empty($conf->global->PROJECT_FILTER_FOR_THIRDPARTY_LIST)) $filteronlist=$conf->global->PROJECT_FILTER_FOR_THIRDPARTY_LIST;
+								$text=$form->select_thirdparty_list(GETPOST('socid','int'), 'socid', $filteronlist, 'None', 1, 0, array(), '', 0, 0, 'minwidth300');
+								if (empty($conf->global->PROJECT_CAN_ALWAYS_LINK_TO_ALL_SUPPLIERS) && empty($conf->dol_use_jmobile)) {
+									$texthelp=$langs->trans("IfNeedToUseOhterObjectKeepEmpty");
+									echo $form->textwithtooltip($text.' '.img_help(), $texthelp, 1, 0, '', '', 2);
+								} else {
+									echo $text; ?>
+										<small id="">
+											<a  href="<?php echo DOL_URL_ROOT.'/societe/soc.php?action=create&backtopage='.urlencode($_SERVER["PHP_SELF"].'?action=create');?>">
+												<?php echo $langs->trans("AddThirdParty"); ?>
+											</a>
+										</small>
+								<?php
+								}
+								?>
+							</div>
+						</div>
+					<?php   	
+					}
+					?>
+					<?php /*  
+					<div class="form-group">
+						<label for="visibilityCreate" class="col-sm-2 control-label">
+							<?php echo $langs->trans("Visibility");?>
+						</label>
+						<div class="col-sm-10">
+							[TODO] ask if they want to select Visibility of the project?
+									
+								$array=array();
+								if (empty($conf->global->PROJECT_DISABLE_PRIVATE_PROJECT)) $array[0] = $langs->trans("PrivateProject");
+								if (empty($conf->global->PROJECT_DISABLE_PUBLIC_PROJECT)) $array[1] = $langs->trans("SharedProject");
+							?>
+							<?php echo $form->selectarray('public',$array,GETPOST('public')?GETPOST('public'):(isset($conf->global->PROJECT_DEFAULT_PUBLIC)?$conf->global->PROJECT_DEFAULT_PUBLIC:$object->public));   
+						</div>
+					</div>
+					*/ ?>
+
+					<?php  if ($status != '') : ?>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">
+							<?php echo $langs->trans("Status");?>
+						</label>
+						<div class="col-sm-10">
+							<input type="hidden" class="form-control" id="statusCreate" name="status" value="<?php echo $status;?>" >
+							<?php echo $object->LibStatut($status, 4);?>		        					
+						</div>	
+					</div>
+					<?php  endif; ?>
+
+					<div class="form-group">
+						<label for="id_address" class="col-sm-2 control-label">
+							<?php  echo $langs->trans("Address");?>
+						</label>
+						<div class="col-sm-10">
+							<input type="text" name="id_address" class="form-control">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="id_postalcode" class="col-sm-2 control-label">
+							<?php  echo $langs->trans("Cod postal");?>
+						</label>
+						<div class="col-sm-10">
+							<input type="text" name="id_postalcode" class="form-control">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="id_city" class="col-sm-2 control-label">
+							<?php  echo $langs->trans("Oraș");?>
+						</label>
+						<div class="col-sm-10">
+							<input type="text" name="id_city" class="form-control">
+						</div>
+					</div>
+
+				</div>
+				
+				<div class="col-md-6 col-xs-12">	
+
+					<div class="form-group">
+						<label for="descEdit" class="col-sm-2 control-label">
+							<?php echo $langs->trans("Description");?>
+						</label>
+						<div class="col-sm-10">
+							<textarea name="description" wrap="soft" rows="8" class="form-control"><?php echo GETPOST("description");?></textarea>						    		
+						</div>	
+					</div>
+
+					<div class="form-group">
+						<label for="zones" class="col-sm-2 control-label">
+							<?php echo $langs->trans("Șantier");?>
+						</label>
+						<div class="col-sm-10">
+							<select name="id_zone">
+								<?php foreach ($allzones as $zone): ?>
+									<option value="<?php echo $zone->rowid; ?>"><?php echo $zone->label.' ('.$zone->kilometers.')'; ?></option>
+								<?php endforeach; ?>
+							</select> 
+						</div>
+					</div>
 
 
-			<?php
-
-			/*
-			*****************************************************************************************
-			*/
-		    ?>
-	    	<div class="center">
-	    		<input type="submit" class="btn btn-primary btn-default" value="<?php echo $langs->trans("Create");?>">
-			    <?php 
-
-			    if (! empty($backtopage)) {
-			        print ' &nbsp; &nbsp; ';
-				    print '<input type="submit" class="btn btn-default" name="cancel" value="'.$langs->trans("Cancel").'">';
-			    }
-			    else {
-			        print ' &nbsp; &nbsp; ';
-			        print '<input type="button" class="btn btn-default" value="' . $langs->trans("Cancel") . '" onClick="javascript:history.go(-1)">';
-			    }    
-
-			    ?>
-	    	</div>
-		</form>
-		<?php
-
-	    // Change probability from status
-	    print '<script type="text/javascript" language="javascript">
-	        jQuery(document).ready(function() {
-	        	function change_percent()
-	        	{
-	                var element = jQuery("#opp_status option:selected");
-	                var defaultpercent = element.attr("defaultpercent");
-	                /*if (jQuery("#opp_percent_not_set").val() == "") */
-	                jQuery("#opp_percent").val(defaultpercent);
-	        	}
-	        	/*init_myfunc();*/
-	        	jQuery("#opp_status").change(function() {
-	        		change_percent();
-	        	});
-	        });
-	        </script>';
+					<div class="form-group">
+						<label for="zones" class="col-sm-2 control-label">Cheltuieli fixe</label>
+						<div class="col-sm-10">
+							<div class="input-group"> 
+								<span class="input-group-addon">€</span>
+								<input type="text" name="id_chargesfixe" class="form-control currency"> 
+							</div>	
+						</div>
+					</div>
 
 
 
 
+					<?php
+					// Categories
+					/*if ($conf->categorie->enabled) {  	?>
+
+							<div class="form-group">	
+								<label for="categCreate" class="col-sm-2 control-label">
+									<?php echo $langs->trans("Categories");?>
+								</label>
+								<div class="col-sm-10">
+
+									<?php
+										$cate_arbo = $form->select_all_categories(Categorie::TYPE_PROJECT, '', 'parent', 64, 0, 1);
+										$arrayselected=GETPOST('categories', 'array');
+										print $form->multiselectarray('categories', $cate_arbo, $arrayselected, '', 0, '', 0, '30%');
+									?>
+								</div>
+							</div>
+						<?php
+					}*/
+					?>
+				</div>
+			</div>
+
+		</div>	
+	</div>
+</form>
+	<?php
+	// Change probability from status
+	print '<script type="text/javascript" language="javascript">
+		jQuery(document).ready(function() {
+			function change_percent()
+			{
+				var element = jQuery("#opp_status option:selected");
+				var defaultpercent = element.attr("defaultpercent");
+				/*if (jQuery("#opp_percent_not_set").val() == "") */
+				jQuery("#opp_percent").val(defaultpercent);
+			}
+			/*init_myfunc();*/
+			jQuery("#opp_status").change(function() {
+				change_percent();
+			});
+		});
+		</script>';
 }
 elseif ($object->id > 0) 
 {
@@ -1673,7 +1656,7 @@ elseif ($object->id > 0)
 
 						    <div class="form-group">
 						    	<label for="id_postalcode" class="col-sm-2 control-label">
-						    		<?php  echo $langs->trans("Code postal");?>
+						    		<?php  echo $langs->trans("Cod postal");?>
 						    	</label>
 						    	<div class="col-sm-10">
 						        	<input type="text" name="id_postalcode" value="<?php echo $object->postal_code; ?>" class="form-control">
@@ -1682,7 +1665,7 @@ elseif ($object->id > 0)
 
 						    <div class="form-group">
 						    	<label for="id_city" class="col-sm-2 control-label">
-						    		<?php  echo $langs->trans("Ville");?>
+						    		<?php  echo $langs->trans("Oraș");?>
 						    	</label>
 						    	<div class="col-sm-10">
 						        	<input type="text" name="id_city" value="<?php echo $object->city; ?>" class="form-control">
@@ -1767,7 +1750,7 @@ elseif ($object->id > 0)
 
 						    <div class="form-group">
 						    	<label for="zones" class="col-sm-2 control-label">
-						    		<?php echo $langs->trans("Zones");?>
+						    		<?php echo $langs->trans("Șantier");?>
 						    	</label>
 						    	<div class="col-sm-10">
 						    		<select name="id_zone">
@@ -1873,7 +1856,7 @@ elseif ($object->id > 0)
 							</div>
 							<div class="form-group"> 
 								<label for="id_postalcode" class=" control-label">
-									<?php  echo $langs->trans("Code postal"); ?>
+									<?php  echo $langs->trans("Cod postal"); ?>
 								</label><br />
 								<?php 
 									echo $object->postal_code;
@@ -1881,7 +1864,7 @@ elseif ($object->id > 0)
 							</div>
 							<div class="form-group"> 
 								<label for="id_city" class=" control-label">
-									<?php  echo $langs->trans("Ville"); ?>
+									<?php  echo $langs->trans("Oraș"); ?>
 								</label><br />
 								<?php 
 									echo $object->city;
@@ -1960,7 +1943,7 @@ elseif ($object->id > 0)
 
 							<div class="form-group"> 
 								<label for="zones" class=" control-label">
-									<?php echo $langs->trans("Zone"); ?>
+									<?php echo $langs->trans("Șantier"); ?>
 								</label><br />
 									<?php foreach ($allzones as $zone): ?>
 								    	<?php echo ($zone->rowid == $object->fk_zones)?  $zone->label.' ('.$zone->kilometers.')':''; ?>
@@ -1969,7 +1952,7 @@ elseif ($object->id > 0)
 
 							
 							<div class="form-group">
-						    	<label for="zones" class=" control-label">Charges fixes</label><br />
+						    	<label for="zones" class=" control-label">Cheltuieli fixe</label><br />
 						    	<?php 
 									echo price($object->chargesfixe)." €";
 								?>

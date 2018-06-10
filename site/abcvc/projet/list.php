@@ -407,127 +407,109 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';
 ?>
 
 <form method="POST" id="searchFormList" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-    <div class="panel panel-primary filterable">
+    <div class="panel panel-info filterable">
             <div class="panel-heading">
-                
-                            
-                                <?php
-                                if ($optioncss != '') 
-                                ?>
-                                <input type="hidden" name="optioncss" value="<?php echo $optioncss; ?>">
-                                <input type="hidden" name="token" value="<?php echo $_SESSION['newtoken']; ?>">
-                                <input type="hidden" name="formfilteraction" id="formfilteraction" value="list">
-                                <input type="hidden" name="action" value="list">
-                                <input type="hidden" name="sortfield" value="<?php echo $sortfield; ?>">
-                                <input type="hidden" name="sortorder" value="<?php echo $sortorder; ?>">
-                                <input type="hidden" name="type" value="<?php echo $type; ?>">
-                                <input type="hidden" name="contextpage" value="<?php echo $contextpage; ?>">
+                <?php
+                if ($optioncss != '') 
+                ?>
+                <input type="hidden" name="optioncss" value="<?php echo $optioncss; ?>">
+                <input type="hidden" name="token" value="<?php echo $_SESSION['newtoken']; ?>">
+                <input type="hidden" name="formfilteraction" id="formfilteraction" value="list">
+                <input type="hidden" name="action" value="list">
+                <input type="hidden" name="sortfield" value="<?php echo $sortfield; ?>">
+                <input type="hidden" name="sortorder" value="<?php echo $sortorder; ?>">
+                <input type="hidden" name="type" value="<?php echo $type; ?>">
+                <input type="hidden" name="contextpage" value="<?php echo $contextpage; ?>">
 
-                                <?php
-                                print_barre_liste($text, $page, $_SERVER["PHP_SELF"], $param, $sortfield, $sortorder, "", $num, $nbtotalofrecords, 'title_project', 0, '', '', $limit);
-                                
-                                // Show description of content
-                                if ($search_user == $user->id) 
-                                    {
-                                    echo $langs->trans("MyProjectsDesc");
-                                    ?>
-                                    <br><br>
-                                    <?php
-                                    }
-                                else
-                                    {
-                                        if ($user->rights->projet->all->lire && ! $socid) 
-                                        {
-                                        echo $langs->trans("ProjectsDesc");
-                                        ?>
-                                        <br><br>
-                                        <?php
-                                        }
-                                        else 
-                                        {
-                                            echo $langs->trans("ProjectsPublicDesc"); ?>
-                                            <br><br>
-                                            <?php
-                                        }
-                                    }
+                <?php
+                print_barre_liste($text, $page, $_SERVER["PHP_SELF"], $param, $sortfield, $sortorder, "", $num, $nbtotalofrecords, 'title_project', 0, '', '', $limit);
 
-
-                                    if ($search_all)
-                                    {
-                                        foreach($fieldstosearchall as $key => $val) $fieldstosearchall[$key]=$langs->trans($val);
-                                        print $langs->trans("FilterOnInto", $search_all) . join(', ',$fieldstosearchall);
-                                    }
-                                ?>
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="pull-left">
-                                            <a href="/abcvc/projet/card.php?leftmenu=abcvc&action=create" style="color:black" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span>Nouveau projet</a>
-                                        </div>
-
-                                       <!--  <div class="pull-left">
-                                            <button class="btn btn-default btn-sm btn-filter"><span class="glyphicon glyphicon-filter"></span>Filter</button>
-                                        </div> -->
-                                    </div>  
-                                </div>  
+                // Show description of content
+                if ($search_user == $user->id) 
+                    {
+                    echo $langs->trans("MyProjectsDesc");
+                    ?>
+                    <br><br>
+                    <?php
+                    }
+                else
+                    {
+                        if ($user->rights->projet->all->lire && ! $socid) 
+                        {
+                        echo $langs->trans("ProjectsDesc");
+                        ?>
+                        <br><br>
+                        <?php
+                        }
+                        else 
+                        {
+                            echo $langs->trans("ProjectsPublicDesc"); ?>
+                            <br><br>
+                            <?php
+                        }
+                    }
+                    if ($search_all)
+                    {
+                        foreach($fieldstosearchall as $key => $val) $fieldstosearchall[$key]=$langs->trans($val);
+                        print $langs->trans("FilterOnInto", $search_all) . join(', ',$fieldstosearchall);
+                    }
+                ?>
             </div>
-
-                <table class="table table-responsive">
-                    
-                    <tbody>
-                        <?php 
-                           // Filter on categories
-                                    if (! empty($conf->categorie->enabled))
-                                    {
-                                        require_once DOL_DOCUMENT_ROOT . '/categories/class/categorie.class.php';
-                                        $moreforfilter.='<div class="divsearchfield">';
-                                        $moreforfilter.=$langs->trans('Categories'). ': ';
-                                        $moreforfilter.=$formother->select_categories('project',$search_categ,'search_categ',1);
-                                        $moreforfilter.='</div>';
-                                    }
-
-                                    // If the user can view user other than himself
+            <table class="table table-responsive">
+                <tbody>
+                    <?php 
+                        // Filter on categories
+                                if (! empty($conf->categorie->enabled))
+                                {
+                                    require_once DOL_DOCUMENT_ROOT . '/categories/class/categorie.class.php';
                                     $moreforfilter.='<div class="divsearchfield">';
-                                    $moreforfilter.=$langs->trans('ProjectsWithThisUserAsContact'). ': ';
-                                    $includeonly='';
-                                    if (empty($user->rights->user->user->lire)) $includeonly=array($user->id);
-                                    $moreforfilter.=$form->select_dolusers($search_user, 'search_user', 1, '', 0, $includeonly, '', 0, 0, 0, '', 0, '', 'maxwidth300');
+                                    $moreforfilter.=$langs->trans('Categories'). ': ';
+                                    $moreforfilter.=$formother->select_categories('project',$search_categ,'search_categ',1);
                                     $moreforfilter.='</div>';
+                                }
+                                // If the user can view user other than himself
+                                $moreforfilter.='<div class="divsearchfield">';
+                                $moreforfilter.=$langs->trans('ProjectsWithThisUserAsContact'). ': ';
+                                $includeonly='';
+                                if (empty($user->rights->user->user->lire)) $includeonly=array($user->id);
+                                $moreforfilter.=$form->select_dolusers($search_user, 'search_user', 1, '', 0, $includeonly, '', 0, 0, 0, '', 0, '', 'maxwidth300');
+                                $moreforfilter.='</div>';
 
-                                    // If the user can view thirdparties other than his'
-                                    if ($user->rights->societe->client->voir || $socid)
-                                    {
-                                        $langs->load("commercial");
-                                        $moreforfilter.='<div class="divsearchfield">';
-                                        $moreforfilter.=$langs->trans('ThirdPartiesOfSaleRepresentative'). ': ';
-                                        $moreforfilter.=$formother->select_salesrepresentatives($search_sale, 'search_sale', $user, 0, 1, 'maxwidth300');
-                                        $moreforfilter.='</div>';
-                                    }
+                                // If the user can view thirdparties other than his'
+                                if ($user->rights->societe->client->voir || $socid)
+                                {
+                                    $langs->load("commercial");
+                                    $moreforfilter.='<div class="divsearchfield">';
+                                    $moreforfilter.=$langs->trans('ThirdPartiesOfSaleRepresentative'). ': ';
+                                    $moreforfilter.=$formother->select_salesrepresentatives($search_sale, 'search_sale', $user, 0, 1, 'maxwidth300');
+                                    $moreforfilter.='</div>';
+                                }
 
-                                    if (! empty($moreforfilter))
-                                    {
-                                        ?>
-                                        <div class="liste_titre liste_titre_bydiv centpercent">
-                                        <?php
-                                        echo $moreforfilter;
-                                        $parameters=array();
-                                        $reshook=$hookmanager->executeHooks('printFieldPreListTitle',$parameters);    // Note that $action and $object may have been modified by hook
-                                        echo $hookmanager->resPrint;
-                                        ?>
-                                        </div>
-                                        <?php
-                                    }
-
-                                    $varpage=empty($contextpage)?$_SERVER["PHP_SELF"]:$contextpage;
-                                    $selectedfields=$form->multiSelectArrayWithCheckbox('selectedfields', $arrayfields, $varpage);  // This also change content of $arrayfields
-
+                                if (! empty($moreforfilter))
+                                {
                                     ?>
-                                    <div class="div-table-responsive">
-                                    <table class="tagtable liste<?php echo ($moreforfilter?" listwithfilterbefore":""); ?>">
-                                        <?php 
-                                        echo "\n";
-                                        ?>
-                                        <tr class="liste_titre">
-                                            <?php
+                                    <div class="liste_titre liste_titre_bydiv centpercent">
+                                    <?php
+                                    echo $moreforfilter;
+                                    $parameters=array();
+                                    $reshook=$hookmanager->executeHooks('printFieldPreListTitle',$parameters);    // Note that $action and $object may have been modified by hook
+                                    echo $hookmanager->resPrint;
+                                    ?>
+                                    </div>
+                                    <?php
+                                }
+
+                                $varpage=empty($contextpage)?$_SERVER["PHP_SELF"]:$contextpage;
+                                $selectedfields=$form->multiSelectArrayWithCheckbox('selectedfields', $arrayfields, $varpage);  // This also change content of $arrayfields
+
+                                ?>
+                                <div class="div-table-responsive">
+                                <table class="tagtable liste<?php echo ($moreforfilter?" listwithfilterbefore":""); ?>">
+                                    <?php 
+                                    echo "\n";
+                                    ?>
+                                    <tr class="liste_titre">
+                                        <?php
                                             if (! empty($arrayfields['p.ref']['checked']))           
                                                 print_liste_field_titre($arrayfields['p.ref']['label'],$_SERVER["PHP_SELF"],"p.ref","",$param,"",$sortfield,$sortorder);
                                             if (! empty($arrayfields['p.title']['checked']))         
@@ -553,14 +535,14 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';
                                             // Extra fields
                                             if (is_array($extrafields->attribute_label) && count($extrafields->attribute_label))
                                             {
-                                               foreach($extrafields->attribute_label as $key => $val) 
-                                               {
-                                                   if (! empty($arrayfields["ef.".$key]['checked'])) 
-                                                   {
+                                                foreach($extrafields->attribute_label as $key => $val) 
+                                                {
+                                                    if (! empty($arrayfields["ef.".$key]['checked'])) 
+                                                    {
                                                         $align=$extrafields->getAlignFlag($key);
                                                         print_liste_field_titre($extralabels[$key],$_SERVER["PHP_SELF"],"ef.".$key,"",$param,($align?'align="'.$align.'"':''),$sortfield,$sortorder);
-                                                   }
-                                               }
+                                                    }
+                                                }
                                             }
                                             // Hook fields
                                             $parameters=array('arrayfields'=>$arrayfields);
@@ -570,564 +552,564 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';
                                             if (! empty($arrayfields['p.tms']['checked']))    print_liste_field_titre($arrayfields['p.tms']['label'],$_SERVER["PHP_SELF"],"p.tms","",$param,'align="center" class="nowrap"',$sortfield,$sortorder);
                                             if (! empty($arrayfields['p.fk_statut']['checked'])) print_liste_field_titre($arrayfields['p.fk_statut']['label'],$_SERVER["PHP_SELF"],"p.fk_statut","",$param,'align="right"',$sortfield,$sortorder);
                                             print_liste_field_titre($selectedfields, $_SERVER["PHP_SELF"],"",'','','align="right"',$sortfield,$sortorder,'maxwidthsearch ');
-                                            ?>
-                                        </tr>
-                                        <?php
-                                        echo "\n";
+                                        ?>
+                                    </tr>
+                                    <?php
+                                    echo "\n";
 
+                                    ?>
+                                    <tr class="liste_titre">
+                                    <?php
+                                    if (! empty($arrayfields['p.ref']['checked']))
+                                    {
                                         ?>
-                                        <tr class="liste_titre">
+                                        <td class="liste_titre">
+                                        <input type="text" class="flat" name="search_ref" value="<?php echo $search_ref; ?>" size="6">
+                                        </td>
                                         <?php
-                                        if (! empty($arrayfields['p.ref']['checked']))
-                                        {
-                                            ?>
-                                            <td class="liste_titre">
-                                            <input type="text" class="flat" name="search_ref" value="<?php echo $search_ref; ?>" size="6">
-                                            </td>
-                                            <?php
-                                        }
-                                        if (! empty($arrayfields['p.title']['checked']))
-                                        {
-                                            ?>
-                                            <td class="liste_titre">
-                                            <input type="text" class="flat" name="search_label" size="8" value="<?php echo $search_label; ?>">
-                                            </td>
-                                            <?php
-                                        }
-                                        if (! empty($arrayfields['s.nom']['checked']))
-                                        {
-                                            ?>
-                                            <td class="liste_titre">
-                                            <input type="text" class="flat" name="search_societe" size="8" value="<?php echo $search_societe; ?>">
-                                            </td>
-                                            <?php
-                                        }
-                                        // Sale representative
-                                        if (! empty($arrayfields['commercial']['checked']))
-                                        {
-                                            ?>
-                                            <td class="liste_titre">&nbsp;</td>
-                                            <?php
-                                        }
-                                        // Start date
-                                        if (! empty($arrayfields['p.dateo']['checked']))
-                                        {
-                                            ?>
-                                            <td class="liste_titre center">
-                                            <?php
-                                            if (! empty($conf->global->MAIN_LIST_FILTER_ON_DAY)) 
-                                            ?>
-                                            <input class="flat" type="text" size="1" maxlength="2" name="sday" value="<?php echo $sday; ?>">
-                                            <input class="flat" type="text" size="1" maxlength="2" name="smonth" value="<?php echo $smonth; ?>">
-                                            <?php
-                                            $formother->select_year($syear?$syear:-1,'syear',1, 20, 5);
-                                            ?>
-                                            </td>
-                                            <?php
-                                        }
-                                        // End date
-                                        if (! empty($arrayfields['p.datee']['checked']))
-                                        {
-                                            ?>
-                                            <td class="liste_titre center">
-                                            <?php
-                                            if (! empty($conf->global->MAIN_LIST_FILTER_ON_DAY)) 
-                                            ?>
-                                            <input class="flat" type="text" size="1" maxlength="2" name="day" value="<?php echo $day; ?>">
-                                            <input class="flat" type="text" size="1" maxlength="2" name="month" value="<?php echo $month; ?>">
-                                            <?php
-                                            $formother->select_year($year?$year:-1,'year',1, 20, 5);
-                                            ?>
-                                            </td>
-                                            <?php
-                                        }
-                                        if (! empty($arrayfields['p.public']['checked']))
-                                        {
-                                            ?>
-                                            <td class="liste_titre">
-                                            <?php
-                                            $array=array(''=>'',0 => $langs->trans("PrivateProject"),1 => $langs->trans("SharedProject"));
-                                            echo $form->selectarray('search_public',$array,$search_public);
-                                            ?>
-                                            </td>
-                                            <?php
-                                        }
-                                        if (! empty($arrayfields['p.opp_amount']['checked']))
-                                        {
-                                            ?>
-                                            <td class="liste_titre nowrap right">
-                                            <input type="text" class="flat" name="search_opp_amount" size="3" value="<?php echo $search_opp_amount; ?>">
-                                            </td>
-                                            <?php
-                                        }
-                                        if (! empty($arrayfields['p.fk_opp_status']['checked']))
-                                        {
-                                            ?>
-                                            <td class="liste_titre nowrap center">
-                                            <?php
-                                            echo $formproject->selectOpportunityStatus('search_opp_status',$search_opp_status,1,1,1);
-                                            ?>
-                                            </td>
-                                            <?php
-                                        }
-                                        if (! empty($arrayfields['p.opp_percent']['checked']))
-                                        {
-                                            ?>
-                                            <td class="liste_titre nowrap right">
-                                            <input type="text" class="flat" name="search_opp_percent" size="2" value="<?php echo $search_opp_percent; ?>">
-                                            </td>
-                                            <?php
-                                        }
-                                        if (! empty($arrayfields['p.budget_amount']['checked']))
-                                        {
-                                            ?>
-                                            <td class="liste_titre nowrap" align="right">
-                                            <input type="text" class="flat" name="search_budget_amount" size="4" value="<?php echo $search_budget_amount; ?>">
-                                            </td>
-                                            <?php
-                                        }
-                                        // Extra fields
-                                        if (is_array($extrafields->attribute_label) && count($extrafields->attribute_label))
-                                        {
-                                            foreach($extrafields->attribute_label as $key => $val)
-                                            {
-                                                if (! empty($arrayfields["ef.".$key]['checked']))
-                                                {
-                                                    $align=$extrafields->getAlignFlag($key);
-                                                    $typeofextrafield=$extrafields->attribute_type[$key];
-                                                    ?>
-                                                    <td class="liste_titre<?php echo ($align?" $align":""); ?>">
-                                                    <?php
-                                                    if (in_array($typeofextrafield, array('varchar', 'int', 'double', 'select')))
-                                                    {
-                                                        $crit=$val;
-                                                        $tmpkey=preg_replace('/search_options_/','',$key);
-                                                        $searchclass='';
-                                                        if (in_array($typeofextrafield, array('varchar', 'select'))) $searchclass='searchstring';
-                                                        if (in_array($typeofextrafield, array('int', 'double'))) $searchclass='searchnum';
-                                                        ?>
-                                                        <input class="flat<?php echo ($searchclass?" $searchclass":""); ?>" size="4" type="text" name="search_options_<?php echo $tmpkey; ?>" value="<?php echo dol_escape_htmltag($search_array_options["search_options_".$tmpkey]); ?>">
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                    </td>
-                                                    <?php
-                                                }
-                                            }
-                                        }
-                                        // Fields from hook
-                                        $parameters=array('arrayfields'=>$arrayfields);
-                                        $reshook=$hookmanager->executeHooks('printFieldListOption',$parameters);    // Note that $action and $object may have been modified by hook
-                                        echo $hookmanager->resPrint;
-                                        if (! empty($arrayfields['p.datec']['checked']))
-                                        {
-                                            // Date creation
-                                            ?>
-                                            <td class="liste_titre">
-                                            </td>
-                                            <?php
-                                        }
-                                        if (! empty($arrayfields['p.tms']['checked']))
-                                        {
-                                            // Date modification
-                                            ?>
-                                            <td class="liste_titre">
-                                            </td>
-                                            <?php
-                                        }
-                                        if (! empty($arrayfields['p.fk_statut']['checked']))
-                                        {
-                                            ?>
-                                            <td class="liste_titre nowrap" align="right">
-                                            <?php
-                                            $arrayofstatus = array();
-                                            foreach($projectstatic->statuts_short as $key => $val) $arrayofstatus[$key]=$langs->trans($val);
-                                            $arrayofstatus['99']=$langs->trans("NotClosed").' ('.$langs->trans('Draft').'+'.$langs->trans('Opened').')';
-                                            echo $form->selectarray('search_status', $arrayofstatus, $search_status, 1, 0, 0, '', 0, 0, 0, '', 'maxwidth100');
-                                            ?>
-                                            </td>
-                                            <?php
-                                        }
-                                        // Action column
+                                    }
+                                    if (! empty($arrayfields['p.title']['checked']))
+                                    {
                                         ?>
-                                        <td class="liste_titre" align="right">
+                                        <td class="liste_titre">
+                                        <input type="text" class="flat" name="search_label" size="8" value="<?php echo $search_label; ?>">
+                                        </td>
                                         <?php
-                                        $searchpitco=$form->showFilterAndCheckAddButtons(0);
-                                        echo $searchpitco;
+                                    }
+                                    if (! empty($arrayfields['s.nom']['checked']))
+                                    {
+                                        ?>
+                                        <td class="liste_titre">
+                                        <input type="text" class="flat" name="search_societe" size="8" value="<?php echo $search_societe; ?>">
+                                        </td>
+                                        <?php
+                                    }
+                                    // Sale representative
+                                    if (! empty($arrayfields['commercial']['checked']))
+                                    {
+                                        ?>
+                                        <td class="liste_titre">&nbsp;</td>
+                                        <?php
+                                    }
+                                    // Start date
+                                    if (! empty($arrayfields['p.dateo']['checked']))
+                                    {
+                                        ?>
+                                        <td class="liste_titre center">
+                                        <?php
+                                        if (! empty($conf->global->MAIN_LIST_FILTER_ON_DAY)) 
+                                        ?>
+                                        <input class="flat" type="text" size="1" maxlength="2" name="sday" value="<?php echo $sday; ?>">
+                                        <input class="flat" type="text" size="1" maxlength="2" name="smonth" value="<?php echo $smonth; ?>">
+                                        <?php
+                                        $formother->select_year($syear?$syear:-1,'syear',1, 20, 5);
                                         ?>
                                         </td>
-
-                                        </tr>
                                         <?php
-                                        echo "\n";
-
-                                        $i=0;
-                                        $var=true;
-                                        $totalarray=array();
-                                        while ($i < min($num,$limit))
+                                    }
+                                    // End date
+                                    if (! empty($arrayfields['p.datee']['checked']))
+                                    {
+                                        ?>
+                                        <td class="liste_titre center">
+                                        <?php
+                                        if (! empty($conf->global->MAIN_LIST_FILTER_ON_DAY)) 
+                                        ?>
+                                        <input class="flat" type="text" size="1" maxlength="2" name="day" value="<?php echo $day; ?>">
+                                        <input class="flat" type="text" size="1" maxlength="2" name="month" value="<?php echo $month; ?>">
+                                        <?php
+                                        $formother->select_year($year?$year:-1,'year',1, 20, 5);
+                                        ?>
+                                        </td>
+                                        <?php
+                                    }
+                                    if (! empty($arrayfields['p.public']['checked']))
+                                    {
+                                        ?>
+                                        <td class="liste_titre">
+                                        <?php
+                                        $array=array(''=>'',0 => $langs->trans("PrivateProject"),1 => $langs->trans("SharedProject"));
+                                        echo $form->selectarray('search_public',$array,$search_public);
+                                        ?>
+                                        </td>
+                                        <?php
+                                    }
+                                    if (! empty($arrayfields['p.opp_amount']['checked']))
+                                    {
+                                        ?>
+                                        <td class="liste_titre nowrap right">
+                                        <input type="text" class="flat" name="search_opp_amount" size="3" value="<?php echo $search_opp_amount; ?>">
+                                        </td>
+                                        <?php
+                                    }
+                                    if (! empty($arrayfields['p.fk_opp_status']['checked']))
+                                    {
+                                        ?>
+                                        <td class="liste_titre nowrap center">
+                                        <?php
+                                        echo $formproject->selectOpportunityStatus('search_opp_status',$search_opp_status,1,1,1);
+                                        ?>
+                                        </td>
+                                        <?php
+                                    }
+                                    if (! empty($arrayfields['p.opp_percent']['checked']))
+                                    {
+                                        ?>
+                                        <td class="liste_titre nowrap right">
+                                        <input type="text" class="flat" name="search_opp_percent" size="2" value="<?php echo $search_opp_percent; ?>">
+                                        </td>
+                                        <?php
+                                    }
+                                    if (! empty($arrayfields['p.budget_amount']['checked']))
+                                    {
+                                        ?>
+                                        <td class="liste_titre nowrap" align="right">
+                                        <input type="text" class="flat" name="search_budget_amount" size="4" value="<?php echo $search_budget_amount; ?>">
+                                        </td>
+                                        <?php
+                                    }
+                                    // Extra fields
+                                    if (is_array($extrafields->attribute_label) && count($extrafields->attribute_label))
+                                    {
+                                        foreach($extrafields->attribute_label as $key => $val)
                                         {
-                                            $obj = $db->fetch_object($resql);
-
-                                            $projectstatic->id = $obj->projectid;
-                                            $projectstatic->user_author_id = $obj->fk_user_creat;
-                                            $projectstatic->public = $obj->public;
-                                            $projectstatic->ref = $obj->ref;
-                                            $projectstatic->datee = $db->jdate($obj->date_end);
-                                            $projectstatic->statut = $obj->fk_statut;
-                                            $projectstatic->opp_status = $obj->fk_opp_status;
-                                             
-                                            $userAccess = $projectstatic->restrictedProjectArea($user);    // why this ?
-                                            if ($userAccess >= 0)
+                                            if (! empty($arrayfields["ef.".$key]['checked']))
                                             {
-                                                $var=!$var;
+                                                $align=$extrafields->getAlignFlag($key);
+                                                $typeofextrafield=$extrafields->attribute_type[$key];
                                                 ?>
-                                                <tr <?php echo $bc[$var]; ?> >
+                                                <td class="liste_titre<?php echo ($align?" $align":""); ?>">
                                                 <?php
+                                                if (in_array($typeofextrafield, array('varchar', 'int', 'double', 'select')))
+                                                {
+                                                    $crit=$val;
+                                                    $tmpkey=preg_replace('/search_options_/','',$key);
+                                                    $searchclass='';
+                                                    if (in_array($typeofextrafield, array('varchar', 'select'))) $searchclass='searchstring';
+                                                    if (in_array($typeofextrafield, array('int', 'double'))) $searchclass='searchnum';
+                                                    ?>
+                                                    <input class="flat<?php echo ($searchclass?" $searchclass":""); ?>" size="4" type="text" name="search_options_<?php echo $tmpkey; ?>" value="<?php echo dol_escape_htmltag($search_array_options["search_options_".$tmpkey]); ?>">
+                                                    <?php
+                                                }
+                                                ?>
+                                                </td>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                    // Fields from hook
+                                    $parameters=array('arrayfields'=>$arrayfields);
+                                    $reshook=$hookmanager->executeHooks('printFieldListOption',$parameters);    // Note that $action and $object may have been modified by hook
+                                    echo $hookmanager->resPrint;
+                                    if (! empty($arrayfields['p.datec']['checked']))
+                                    {
+                                        // Date creation
+                                        ?>
+                                        <td class="liste_titre">
+                                        </td>
+                                        <?php
+                                    }
+                                    if (! empty($arrayfields['p.tms']['checked']))
+                                    {
+                                        // Date modification
+                                        ?>
+                                        <td class="liste_titre">
+                                        </td>
+                                        <?php
+                                    }
+                                    if (! empty($arrayfields['p.fk_statut']['checked']))
+                                    {
+                                        ?>
+                                        <td class="liste_titre nowrap" align="right">
+                                        <?php
+                                        $arrayofstatus = array();
+                                        foreach($projectstatic->statuts_short as $key => $val) $arrayofstatus[$key]=$langs->trans($val);
+                                        $arrayofstatus['99']=$langs->trans("NotClosed").' ('.$langs->trans('Draft').'+'.$langs->trans('Opened').')';
+                                        echo $form->selectarray('search_status', $arrayofstatus, $search_status, 1, 0, 0, '', 0, 0, 0, '', 'maxwidth100');
+                                        ?>
+                                        </td>
+                                        <?php
+                                    }
+                                    // Action column
+                                    ?>
+                                    <td class="liste_titre" align="right">
+                                    <?php
+                                    $searchpitco=$form->showFilterAndCheckAddButtons(0);
+                                    echo $searchpitco;
+                                    ?>
+                                    </td>
 
-                                                // Project url
-                                                if (! empty($arrayfields['p.ref']['checked']))
+                                    </tr>
+                                    <?php
+                                    echo "\n";
+
+                                    $i=0;
+                                    $var=true;
+                                    $totalarray=array();
+                                    while ($i < min($num,$limit))
+                                    {
+                                        $obj = $db->fetch_object($resql);
+
+                                        $projectstatic->id = $obj->projectid;
+                                        $projectstatic->user_author_id = $obj->fk_user_creat;
+                                        $projectstatic->public = $obj->public;
+                                        $projectstatic->ref = $obj->ref;
+                                        $projectstatic->datee = $db->jdate($obj->date_end);
+                                        $projectstatic->statut = $obj->fk_statut;
+                                        $projectstatic->opp_status = $obj->fk_opp_status;
+                                            
+                                        $userAccess = $projectstatic->restrictedProjectArea($user);    // why this ?
+                                        if ($userAccess >= 0)
+                                        {
+                                            $var=!$var;
+                                            ?>
+                                            <tr <?php echo $bc[$var]; ?> >
+                                            <?php
+
+                                            // Project url
+                                            if (! empty($arrayfields['p.ref']['checked']))
+                                            {
+                                                ?>
+                                                <td class="nowrap">
+                                                <?php
+                                                echo $projectstatic->getNomUrl(1);
+                                                if ($projectstatic->hasDelay()) print img_warning($langs->trans('Late'));
+                                                ?>
+                                                </td>
+                                                <?php
+                                                if (! $i) $totalarray['nbfield']++;
+                                            }
+                                            // Title
+                                            if (! empty($arrayfields['p.title']['checked']))
+                                            {
+                                                ?>
+                                                <td>
+                                                <?php
+                                                echo dol_trunc($obj->title,80);
+                                                ?>
+                                                </td>
+                                                <?php
+                                                if (! $i) $totalarray['nbfield']++;
+                                            }
+                                            // Company
+                                            if (! empty($arrayfields['s.nom']['checked']))
+                                            {
+                                                ?>
+                                                <td>
+                                                <?php
+                                                if ($obj->socid)
                                                 {
-                                                    ?>
-                                                    <td class="nowrap">
-                                                    <?php
-                                                    echo $projectstatic->getNomUrl(1);
-                                                    if ($projectstatic->hasDelay()) print img_warning($langs->trans('Late'));
-                                                    ?>
-                                                    </td>
-                                                    <?php
-                                                    if (! $i) $totalarray['nbfield']++;
+                                                    $socstatic->id=$obj->socid;
+                                                    $socstatic->name=$obj->name;
+                                                    echo $socstatic->getNomUrl(1);
                                                 }
-                                                // Title
-                                                if (! empty($arrayfields['p.title']['checked']))
+                                                else
                                                 {
-                                                    ?>
-                                                    <td>
-                                                    <?php
-                                                    echo dol_trunc($obj->title,80);
-                                                    ?>
-                                                    </td>
-                                                    <?php
-                                                    if (! $i) $totalarray['nbfield']++;
+                                                    ?>&nbsp;<?php
                                                 }
-                                                // Company
-                                                if (! empty($arrayfields['s.nom']['checked']))
+                                                ?>
+                                                    
+                                                </td>
+                                                <?php
+                                                if (! $i) $totalarray['nbfield']++;
+                                            }
+                                            // Sales Representatives
+                                            if (! empty($arrayfields['commercial']['checked']))
+                                            {
+                                                ?>
+                                                <td>
+                                                <?php
+                                                if ($obj->socid)
                                                 {
-                                                    ?>
-                                                    <td>
-                                                    <?php
-                                                    if ($obj->socid)
-                                                    {
-                                                        $socstatic->id=$obj->socid;
-                                                        $socstatic->name=$obj->name;
-                                                        echo $socstatic->getNomUrl(1);
-                                                    }
-                                                    else
-                                                    {
-                                                        ?>&nbsp;<?php
-                                                    }
-                                                    ?>
-                                                        
-                                                    </td>
-                                                    <?php
-                                                    if (! $i) $totalarray['nbfield']++;
-                                                }
-                                                // Sales Representatives
-                                                if (! empty($arrayfields['commercial']['checked']))
-                                                {
-                                                    ?>
-                                                    <td>
-                                                    <?php
-                                                    if ($obj->socid)
-                                                    {
-                                                        $socstatic->id=$obj->socid;
-                                                        $socstatic->name=$obj->name;
-                                                        $listsalesrepresentatives=$socstatic->getSalesRepresentatives($user);
-                                                        $nbofsalesrepresentative=count($listsalesrepresentatives);
-                                                        if ($nbofsalesrepresentative > 3)   // We print only number
-                                                        {
-                                                            ?>
-                                                            <a href="'.DOL_URL_ROOT.'/societe/commerciaux.php?socid='.$socstatic->id.'">
-                                                            <?php
-                                                            echo $nbofsalesrepresentative;
-                                                            ?>
-                                                                
-                                                            </a>
-                                                            <?php
-                                                        }
-                                                        else if ($nbofsalesrepresentative > 0)
-                                                        {
-                                                            $userstatic=new User($db);
-                                                            $j=0;
-                                                            foreach($listsalesrepresentatives as $val)
-                                                            {
-                                                                $userstatic->id=$val['id'];
-                                                                $userstatic->lastname=$val['lastname'];
-                                                                $userstatic->firstname=$val['firstname'];
-                                                                $userstatic->email=$val['email'];
-                                                                $userstatic->statut=$val['statut'];
-                                                                $userstatic->entity=$val['entity'];
-                                                                echo $userstatic->getNomUrl(1);
-                                                                $j++;
-                                                                if ($j < $nbofsalesrepresentative) echo ', ';
-                                                            }
-                                                        }
-                                                        //else print $langs->trans("NoSalesRepresentativeAffected");
-                                                    }
-                                                    else
+                                                    $socstatic->id=$obj->socid;
+                                                    $socstatic->name=$obj->name;
+                                                    $listsalesrepresentatives=$socstatic->getSalesRepresentatives($user);
+                                                    $nbofsalesrepresentative=count($listsalesrepresentatives);
+                                                    if ($nbofsalesrepresentative > 3)   // We print only number
                                                     {
                                                         ?>
-                                                        &nbsp
+                                                        <a href="'.DOL_URL_ROOT.'/societe/commerciaux.php?socid='.$socstatic->id.'">
+                                                        <?php
+                                                        echo $nbofsalesrepresentative;
+                                                        ?>
+                                                            
+                                                        </a>
                                                         <?php
                                                     }
-                                                    ?>
-                                                    </td>
-                                                    <?php
-                                                    if (! $i) $totalarray['nbfield']++;
-                                                }
-                                                // Date start
-                                                if (! empty($arrayfields['p.dateo']['checked']))
-                                                {
-                                                    ?>
-                                                    <td class="center">
-                                                    <?php
-                                                    echo dol_print_date($db->jdate($obj->date_start),'day');
-                                                    ?>
-                                                    </td>
-                                                    <?php
-                                                    if (! $i) $totalarray['nbfield']++;
-                                                }
-                                                // Date end
-                                                if (! empty($arrayfields['p.datee']['checked']))
-                                                {
-                                                    ?>
-                                                    <td class="center">
-                                                    <?php
-                                                    echo dol_print_date($db->jdate($obj->date_end),'day');
-                                                    ?>
-                                                    </td>
-                                                    <?php
-                                                    if (! $i) $totalarray['nbfield']++;
-                                                }
-                                                // Visibility
-                                                if (! empty($arrayfields['p.public']['checked']))
-                                                {
-                                                    ?>
-                                                    <td align="left">
-                                                    <?php
-                                                    if ($obj->public) echo $langs->trans('SharedProject');
-                                                    else echo $langs->trans('PrivateProject');
-                                                    ?>
-                                                        
-                                                    </td>
-                                                    <?php
-                                                    if (! $i) $totalarray['nbfield']++;
-                                                }
-                                                // Amount
-                                                if (! empty($arrayfields['p.opp_amount']['checked']))
-                                                {
-                                                    ?>
-                                                    <td align="right">
-                                                    <?php
-                                                    if ($obj->opp_status_code) 
+                                                    else if ($nbofsalesrepresentative > 0)
                                                     {
-                                                        echo price($obj->opp_amount, 1, '', 1, -1, -1, '');
-                                                        $totalarray['totalopp'] += $obj->opp_amount;
-                                                    }
-                                                    ?>
-                                                    </td>
-                                                    <?php
-                                                    if (! $i) $totalarray['nbfield']++;
-                                                    if (! $i) $totalarray['totaloppfield']=$totalarray['nbfield'];
-                                                }
-                                                if (! empty($arrayfields['p.fk_opp_status']['checked']))
-                                                {
-                                                    ?>
-                                                    <td align="middle">
-                                                    <?php
-                                                    if ($obj->opp_status_code) echo $langs->trans("OppStatusShort".$obj->opp_status_code);
-                                                    ?>
-                                                    </td>
-                                                    <?php
-                                                    if (! $i) $totalarray['nbfield']++;
-                                                }
-                                                if (! empty($arrayfields['p.opp_percent']['checked']))
-                                                {
-                                                    ?>
-                                                    <td align="right">
-                                                    <?php
-                                                    if ($obj->opp_percent) echo price($obj->opp_percent, 1, '', 1, 0).'%';
-                                                    ?>
-                                                        
-                                                    </td>
-                                                    <?php
-                                                    if (! $i) $totalarray['nbfield']++;
-                                                }
-                                                if (! empty($arrayfields['p.budget_amount']['checked']))
-                                                {
-                                                    ?>
-                                                    <td align="right">
-                                                    <?php
-                                                    if ($obj->budget_amount != '') 
-                                                    {
-                                                        echo price($obj->budget_amount, 1, '', 1, -1, -1);
-                                                        $totalarray['totalbudget'] += $obj->budget_amount;
-                                                    }
-                                                    ?>
-                                                    </td>
-                                                    <?php
-                                                    if (! $i) $totalarray['nbfield']++;
-                                                    if (! $i) $totalarray['totalbudgetfield']=$totalarray['nbfield'];
-                                                }
-                                                // Extra fields
-                                                if (is_array($extrafields->attribute_label) && count($extrafields->attribute_label))
-                                                {
-                                                    foreach($extrafields->attribute_label as $key => $val)
-                                                    {
-                                                        if (! empty($arrayfields["ef.".$key]['checked']))
+                                                        $userstatic=new User($db);
+                                                        $j=0;
+                                                        foreach($listsalesrepresentatives as $val)
                                                         {
-                                                            ?>
-                                                            <td
-                                                            <?php $align=$extrafields->getAlignFlag($key);
-                                                            if ($align) ?>align=<?php echo $align; ?>
-                                                            >
-                                                            <?php
-                                                            $tmpkey='options_'.$key;
-                                                            echo $extrafields->showOutputField($key, $obj->$tmpkey, '', 1);
-                                                            ?>
-                                                            </td>
-                                                            <?php
+                                                            $userstatic->id=$val['id'];
+                                                            $userstatic->lastname=$val['lastname'];
+                                                            $userstatic->firstname=$val['firstname'];
+                                                            $userstatic->email=$val['email'];
+                                                            $userstatic->statut=$val['statut'];
+                                                            $userstatic->entity=$val['entity'];
+                                                            echo $userstatic->getNomUrl(1);
+                                                            $j++;
+                                                            if ($j < $nbofsalesrepresentative) echo ', ';
                                                         }
                                                     }
-                                                    if (! $i) $totalarray['nbfield']++;
+                                                    //else print $langs->trans("NoSalesRepresentativeAffected");
                                                 }
-                                                // Fields from hook
-                                                $parameters=array('arrayfields'=>$arrayfields, 'obj'=>$obj);
-                                                $reshook=$hookmanager->executeHooks('printFieldListValue',$parameters);    // Note that $action and $object may have been modified by hook
-                                                echo $hookmanager->resPrint;
-                                                // Date creation
-                                                if (! empty($arrayfields['p.datec']['checked']))
+                                                else
                                                 {
                                                     ?>
-                                                    <td align="center">
-                                                    <?php 
-                                                    echo dol_print_date($db->jdate($obj->date_creation), 'dayhour');
-                                                    ?>
-                                                        
-                                                    </td>
-                                                    <?php
-                                                    if (! $i) $totalarray['nbfield']++;
-                                                }
-                                                // Date modification
-                                                if (! empty($arrayfields['p.tms']['checked']))
-                                                {
-                                                    ?>
-                                                    <td align="center"><?php
-                                                    echo dol_print_date($db->jdate($obj->date_update), 'dayhour');
-                                                    ?>
-                                                    </td>
-                                                    <?php
-                                                    if (! $i) $totalarray['nbfield']++;
-                                                }
-                                                // Status
-                                                if (! empty($arrayfields['p.fk_statut']['checked']))
-                                                {
-                                                    $projectstatic->statut = $obj->fk_statut;
-                                                    ?><td align="right"><?php echo $projectstatic->getLibStatut(5); ?></td>
-                                                    <?php
-                                                    if (! $i) $totalarray['nbfield']++;
-                                                }
-                                                // Action column
-                                                ?>
-                                                <td class="nowrap" align="center">
-                                                <?php
-                                                if ($massactionbutton || $massaction)   // If we are in select mode (massactionbutton defined) or if we have already selected and sent an action ($massaction) defined
-                                                {
-                                                    $selected=0;
-                                                    if (in_array($obj->rowid, $arrayofselected)) $selected=1;
-                                                    ?>
-                                                    <input id="cb<?php echo $obj->rowid; ?>" class="flat checkforselect" type="checkbox" name="toselect[]" 
-                                                    value="<?php echo $obj->rowid; ?>"<?php echo ($selected?' checked="checked"':''); ?> >
+                                                    &nbsp
                                                     <?php
                                                 }
                                                 ?>
                                                 </td>
                                                 <?php
                                                 if (! $i) $totalarray['nbfield']++;
-                                                ?>
-                                                </tr>
-                                                <?php
-                                                echo "\n";
-
                                             }
-
-                                            $i++;
-
-                                        }
-
-                                        // Show total line
-                                        if (isset($totalarray['totaloppfield']) || isset($totalarray['totalbudgetfield']))
-                                        {
-                                            ?>
-                                            <tr class="liste_total">
-                                            <?php
-                                            $i=0;
-                                            while ($i < $totalarray['nbfield'])
+                                            // Date start
+                                            if (! empty($arrayfields['p.dateo']['checked']))
                                             {
-                                                $i++;
-                                                if ($i == 1)
-                                                {
-                                                    if ($num < $limit) 
-                                                        {
-                                                            ?>
-                                                            <td align="left"><?php echo $langs->trans("Total"); ?></td>
-                                                            <?php
-                                                        }
-                                                    else {
-                                                        ?>
-                                                        <td align="left"><?php echo $langs->trans("Totalforthispage"); ?></td>
-                                                        <?php
-                                                         } 
-                                                }
-                                                elseif ($totalarray['totaloppfield'] == $i) 
-                                                    {
-                                                        ?>
-                                                        <td align="right"><?php echo price($totalarray['totalopp']); ?></td>
-                                                        <?php
-                                                    }
-                                                elseif ($totalarray['totalbudgetfield'] == $i) 
-                                                    {
-                                                        ?>
-                                                        <td align="right"><?php echo price($totalarray['totalbudget']); ?></td>
-                                                        <?php
-                                                    }
-                                                else 
-                                                    {
-                                                        ?><td></td>
-                                                        <?php
-                                                    }
+                                                ?>
+                                                <td class="center">
+                                                <?php
+                                                echo dol_print_date($db->jdate($obj->date_start),'day');
+                                                ?>
+                                                </td>
+                                                <?php
+                                                if (! $i) $totalarray['nbfield']++;
                                             }
-                                            ?></tr><?php
+                                            // Date end
+                                            if (! empty($arrayfields['p.datee']['checked']))
+                                            {
+                                                ?>
+                                                <td class="center">
+                                                <?php
+                                                echo dol_print_date($db->jdate($obj->date_end),'day');
+                                                ?>
+                                                </td>
+                                                <?php
+                                                if (! $i) $totalarray['nbfield']++;
+                                            }
+                                            // Visibility
+                                            if (! empty($arrayfields['p.public']['checked']))
+                                            {
+                                                ?>
+                                                <td align="left">
+                                                <?php
+                                                if ($obj->public) echo $langs->trans('SharedProject');
+                                                else echo $langs->trans('PrivateProject');
+                                                ?>
+                                                    
+                                                </td>
+                                                <?php
+                                                if (! $i) $totalarray['nbfield']++;
+                                            }
+                                            // Amount
+                                            if (! empty($arrayfields['p.opp_amount']['checked']))
+                                            {
+                                                ?>
+                                                <td align="right">
+                                                <?php
+                                                if ($obj->opp_status_code) 
+                                                {
+                                                    echo price($obj->opp_amount, 1, '', 1, -1, -1, '');
+                                                    $totalarray['totalopp'] += $obj->opp_amount;
+                                                }
+                                                ?>
+                                                </td>
+                                                <?php
+                                                if (! $i) $totalarray['nbfield']++;
+                                                if (! $i) $totalarray['totaloppfield']=$totalarray['nbfield'];
+                                            }
+                                            if (! empty($arrayfields['p.fk_opp_status']['checked']))
+                                            {
+                                                ?>
+                                                <td align="middle">
+                                                <?php
+                                                if ($obj->opp_status_code) echo $langs->trans("OppStatusShort".$obj->opp_status_code);
+                                                ?>
+                                                </td>
+                                                <?php
+                                                if (! $i) $totalarray['nbfield']++;
+                                            }
+                                            if (! empty($arrayfields['p.opp_percent']['checked']))
+                                            {
+                                                ?>
+                                                <td align="right">
+                                                <?php
+                                                if ($obj->opp_percent) echo price($obj->opp_percent, 1, '', 1, 0).'%';
+                                                ?>
+                                                    
+                                                </td>
+                                                <?php
+                                                if (! $i) $totalarray['nbfield']++;
+                                            }
+                                            if (! empty($arrayfields['p.budget_amount']['checked']))
+                                            {
+                                                ?>
+                                                <td align="right">
+                                                <?php
+                                                if ($obj->budget_amount != '') 
+                                                {
+                                                    echo price($obj->budget_amount, 1, '', 1, -1, -1);
+                                                    $totalarray['totalbudget'] += $obj->budget_amount;
+                                                }
+                                                ?>
+                                                </td>
+                                                <?php
+                                                if (! $i) $totalarray['nbfield']++;
+                                                if (! $i) $totalarray['totalbudgetfield']=$totalarray['nbfield'];
+                                            }
+                                            // Extra fields
+                                            if (is_array($extrafields->attribute_label) && count($extrafields->attribute_label))
+                                            {
+                                                foreach($extrafields->attribute_label as $key => $val)
+                                                {
+                                                    if (! empty($arrayfields["ef.".$key]['checked']))
+                                                    {
+                                                        ?>
+                                                        <td
+                                                        <?php $align=$extrafields->getAlignFlag($key);
+                                                        if ($align) ?>align=<?php echo $align; ?>
+                                                        >
+                                                        <?php
+                                                        $tmpkey='options_'.$key;
+                                                        echo $extrafields->showOutputField($key, $obj->$tmpkey, '', 1);
+                                                        ?>
+                                                        </td>
+                                                        <?php
+                                                    }
+                                                }
+                                                if (! $i) $totalarray['nbfield']++;
+                                            }
+                                            // Fields from hook
+                                            $parameters=array('arrayfields'=>$arrayfields, 'obj'=>$obj);
+                                            $reshook=$hookmanager->executeHooks('printFieldListValue',$parameters);    // Note that $action and $object may have been modified by hook
+                                            echo $hookmanager->resPrint;
+                                            // Date creation
+                                            if (! empty($arrayfields['p.datec']['checked']))
+                                            {
+                                                ?>
+                                                <td align="center">
+                                                <?php 
+                                                echo dol_print_date($db->jdate($obj->date_creation), 'dayhour');
+                                                ?>
+                                                    
+                                                </td>
+                                                <?php
+                                                if (! $i) $totalarray['nbfield']++;
+                                            }
+                                            // Date modification
+                                            if (! empty($arrayfields['p.tms']['checked']))
+                                            {
+                                                ?>
+                                                <td align="center"><?php
+                                                echo dol_print_date($db->jdate($obj->date_update), 'dayhour');
+                                                ?>
+                                                </td>
+                                                <?php
+                                                if (! $i) $totalarray['nbfield']++;
+                                            }
+                                            // Status
+                                            if (! empty($arrayfields['p.fk_statut']['checked']))
+                                            {
+                                                $projectstatic->statut = $obj->fk_statut;
+                                                ?><td align="right"><?php echo $projectstatic->getLibStatut(5); ?></td>
+                                                <?php
+                                                if (! $i) $totalarray['nbfield']++;
+                                            }
+                                            // Action column
+                                            ?>
+                                            <td class="nowrap" align="center">
+                                            <?php
+                                            if ($massactionbutton || $massaction)   // If we are in select mode (massactionbutton defined) or if we have already selected and sent an action ($massaction) defined
+                                            {
+                                                $selected=0;
+                                                if (in_array($obj->rowid, $arrayofselected)) $selected=1;
+                                                ?>
+                                                <input id="cb<?php echo $obj->rowid; ?>" class="flat checkforselect" type="checkbox" name="toselect[]" 
+                                                value="<?php echo $obj->rowid; ?>"<?php echo ($selected?' checked="checked"':''); ?> >
+                                                <?php
+                                            }
+                                            ?>
+                                            </td>
+                                            <?php
+                                            if (! $i) $totalarray['nbfield']++;
+                                            ?>
+                                            </tr>
+                                            <?php
+                                            echo "\n";
+
                                         }
 
-                                        $db->free($resql);
+                                        $i++;
 
-                                        $parameters=array('sql' => $sql);
-                                        $reshook=$hookmanager->executeHooks('printFieldListFooter',$parameters);    // Note that $action and $object may have been modified by hook
-                                        echo $hookmanager->resPrint;
+                                    }
 
+                                    // Show total line
+                                    if (isset($totalarray['totaloppfield']) || isset($totalarray['totalbudgetfield']))
+                                    {
                                         ?>
-                                    </table>
-                                    <?php
+                                        <tr class="liste_total">
+                                        <?php
+                                        $i=0;
+                                        while ($i < $totalarray['nbfield'])
+                                        {
+                                            $i++;
+                                            if ($i == 1)
+                                            {
+                                                if ($num < $limit) 
+                                                    {
+                                                        ?>
+                                                        <td align="left"><?php echo $langs->trans("Total"); ?></td>
+                                                        <?php
+                                                    }
+                                                else {
+                                                    ?>
+                                                    <td align="left"><?php echo $langs->trans("Totalforthispage"); ?></td>
+                                                    <?php
+                                                        } 
+                                            }
+                                            elseif ($totalarray['totaloppfield'] == $i) 
+                                                {
+                                                    ?>
+                                                    <td align="right"><?php echo price($totalarray['totalopp']); ?></td>
+                                                    <?php
+                                                }
+                                            elseif ($totalarray['totalbudgetfield'] == $i) 
+                                                {
+                                                    ?>
+                                                    <td align="right"><?php echo price($totalarray['totalbudget']); ?></td>
+                                                    <?php
+                                                }
+                                            else 
+                                                {
+                                                    ?><td></td>
+                                                    <?php
+                                                }
+                                        }
+                                        ?></tr><?php
+                                    }
 
-                                    echo "\n";
+                                    $db->free($resql);
+
+                                    $parameters=array('sql' => $sql);
+                                    $reshook=$hookmanager->executeHooks('printFieldListFooter',$parameters);    // Note that $action and $object may have been modified by hook
+                                    echo $hookmanager->resPrint;
+
                                     ?>
-                                    </div>
-                                
+                                </table>
                                 <?php
+
                                 echo "\n";
-                    ?>
-                    </tbody>                        
-                </table>
+                                ?>
+                                </div>
+                            
+                            <?php
+                            echo "\n";
+                ?>
+                </tbody>                        
+            </table>
     </div>
 </form>
 

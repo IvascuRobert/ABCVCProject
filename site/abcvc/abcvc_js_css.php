@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="/abcvc/css/abcvc.css">
 <link rel="stylesheet" href="/abcvc/js/datatables.min.css">
 <link rel="stylesheet" href="/abcvc/css/bootstrap-slider.min.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 
 <script src="/abcvc/js/bootstrap-3.3.7/js/bootstrap.min.js" type="text/javascript" ></script>
 <script src="/abcvc/js/jquery-ui-timepicker-addon.js" type="text/javascript" ></script>

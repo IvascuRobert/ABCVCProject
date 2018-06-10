@@ -4955,8 +4955,6 @@ Recuperation timespent dates/ task/user
     // 
     // 
     //**************************************************************************************************************
-
-
     //projects structure tree
     public function getProjectsTree($user, $filterproject=1, $full = true) {
 
@@ -5007,86 +5005,43 @@ Recuperation timespent dates/ task/user
             return -1;
         }
 
-        //LOTS
-        //----------------------------------------------------------------------------------
-        foreach ($projects as $key => $project) {
-            
-            $project->cost_calculated = 0;
-            $project->cost = 0;
-            $project->pv = 0;
-            $project->marge = 0;
-
-            $project->progress = 0;
-            $project->progress_estimated = 0;
-
-            $project->nb_postes = 0;
-
-
-            //lots
-            $sql = "
-            SELECT pl.rowid, pl.ref,pl.label, pl.datec, pl.ordering, pl.fk_user_creat, pl.fk_statut
-            FROM " . MAIN_DB_PREFIX . "abcvc_projet_lots as pl
-            WHERE pl.fk_projet=".$project->rowid." 
-            ORDER BY pl.ordering ASC";
-
-            $resql = $this->db->query($sql);
-            
-            if ($resql) {
-                $nb_lots = $this->db->num_rows($resql);
-                if ($nb_lots) {
-
-                    $i = 0;
-                    while ($i < $nb_lots)  { 
-                        $obj = $this->db->fetch_object($resql);
-                        //$obj->cost_lot = 0;
-                        $project->lots[]=$obj;
-                        $i++;
-                    }    
-
-                    $this->db->free($resql);
-                } 
-            } else {
-                $this->error = $this->db->lasterror();
-                return -1;
-            }
-
-
-            //CATEGORIES
+        if (is_array($projects) || is_object($projects))
+        {
+            //LOTS
             //----------------------------------------------------------------------------------
-            foreach ($project->lots as $key => $lot) {
-
-                $lot->categories = array();
+            foreach ($projects as $key => $project) {
                 
-                $lot->pv_lot = 0;
-                $lot->marge = 0;
+                $project->cost_calculated = 0;
+                $project->cost = 0;
+                $project->pv = 0;
+                $project->marge = 0;
 
-                //categories
+                $project->progress = 0;
+                $project->progress_estimated = 0;
+
+                $project->nb_postes = 0;
+
+
+                //lots
                 $sql = "
-                SELECT pc.rowid, pc.ref, pc.fk_lot, pc.label, pc.datec, pc.ordering, pc.fk_user_creat, pc.fk_statut
-                FROM " . MAIN_DB_PREFIX . "abcvc_projet_categories as pc
-                WHERE 
-                    pc.fk_projet=".$project->rowid."
-                    AND pc.fk_lot=".$lot->rowid."
-                ORDER BY pc.ordering ASC";
+                SELECT pl.rowid, pl.ref,pl.label, pl.datec, pl.ordering, pl.fk_user_creat, pl.fk_statut
+                FROM " . MAIN_DB_PREFIX . "abcvc_projet_lots as pl
+                WHERE pl.fk_projet=".$project->rowid." 
+                ORDER BY pl.ordering ASC";
 
                 $resql = $this->db->query($sql);
                 
                 if ($resql) {
-                    $nb_cat = $this->db->num_rows($resql);
-
-                    $lot->nb_child = $nb_cat;
-
-                    $nb_categories += $nb_cat;
-                    if ($nb_cat) {
+                    $nb_lots = $this->db->num_rows($resql);
+                    if ($nb_lots) {
 
                         $i = 0;
-                        while ($i < $nb_cat)  { 
-
+                        while ($i < $nb_lots)  { 
                             $obj = $this->db->fetch_object($resql);
-                            $obj->cost_categorie = 0;
-                            $lot->categories[]=$obj;
+                            //$obj->cost_lot = 0;
+                            $project->lots[]=$obj;
                             $i++;
-                        }
+                        }    
 
                         $this->db->free($resql);
                     } 
@@ -5095,168 +5050,206 @@ Recuperation timespent dates/ task/user
                     return -1;
                 }
 
-                //POSTES
-                //----------------------------------------------------------------------------------
-                foreach ($lot->categories as $key => $categorie) {
+                if (is_array($project->lots) || is_object($project->lots))
+                {
+                    //CATEGORIES
+                    //----------------------------------------------------------------------------------
+                    foreach ($project->lots as $key => $lot) {
+                        $lot->categories = array();
+                        $lot->pv_lot = 0;
+                        $lot->marge = 0;
+                        //categories
+                        $sql = "
+                        SELECT pc.rowid, pc.ref, pc.fk_lot, pc.label, pc.datec, pc.ordering, pc.fk_user_creat, pc.fk_statut
+                        FROM " . MAIN_DB_PREFIX . "abcvc_projet_categories as pc
+                        WHERE 
+                            pc.fk_projet=".$project->rowid."
+                            AND pc.fk_lot=".$lot->rowid."
+                        ORDER BY pc.ordering ASC";
+                        $resql = $this->db->query($sql);
+                        if ($resql) {
+                            $nb_cat = $this->db->num_rows($resql);
+                            $lot->nb_child = $nb_cat;
+                            $nb_categories += $nb_cat;
+                            if ($nb_cat) {
+                                $i = 0;
+                                while ($i < $nb_cat)  { 
+                                    $obj = $this->db->fetch_object($resql);
+                                    $obj->cost_categorie = 0;
+                                    $lot->categories[]=$obj;
+                                    $i++;
+                                }
+                                $this->db->free($resql);
+                            } 
+                        } else {
+                            $this->error = $this->db->lasterror();
+                            return -1;
+                        }
 
-                    $categorie->postes = array();
-                    
-                    $categorie_cost = 0;
-                    $categorie_cost_calculated = 0;
-                    $categorie_marge = 0;
-                    $categorie_pv = 0;
-                    $categorie_marge = 0;
+                        if (is_array($lot->categories) || is_object($lot->categories))
+                        {
+                            //POSTES
+                            //----------------------------------------------------------------------------------
+                            foreach ($lot->categories as $key => $categorie) {
+                                $categorie->postes = array();
+                                $categorie_cost = 0;
+                                $categorie_cost_calculated = 0;
+                                $categorie_marge = 0;
+                                $categorie_pv = 0;
+                                $categorie_marge = 0;
 
-                    $sql = "
-                    SELECT pc.rowid, pc.ref, pc.fk_categorie, pc.fk_task_parent, pc.label, pc.datec, pc.fk_user_creat, pc.fk_statut, pc.planned_workload, pc.progress,  pc.cost, pc.progress_estimated, pc.fact_fourn, pc.poste_pv, pc.tx_tva
-                    FROM " . MAIN_DB_PREFIX . "abcvc_projet_task as pc
-                    WHERE 
-                        pc.fk_projet=".$project->rowid."
-                        AND pc.fk_categorie=".$categorie->rowid."
-                    ";
-                    //$sql.= " ORDER BY pc.ordering ASC";
-                    //var_dump($sql);
-                    //exit();
-                    $resql = $this->db->query($sql);
-                    
-                    if ($resql) {
-                        $nb_post = $this->db->num_rows($resql);
+                                $sql = "
+                                SELECT pc.rowid, pc.ref, pc.fk_categorie, pc.fk_task_parent, pc.label, pc.datec, pc.fk_user_creat, pc.fk_statut, pc.planned_workload, pc.progress,  pc.cost, pc.progress_estimated, pc.fact_fourn, pc.poste_pv, pc.tx_tva
+                                FROM " . MAIN_DB_PREFIX . "abcvc_projet_task as pc
+                                WHERE 
+                                    pc.fk_projet=".$project->rowid."
+                                    AND pc.fk_categorie=".$categorie->rowid."
+                                ";
+                                //$sql.= " ORDER BY pc.ordering ASC";
+                                //var_dump($sql);
+                                //exit();
+                                $resql = $this->db->query($sql);
+                                
+                                if ($resql) {
+                                    $nb_post = $this->db->num_rows($resql);
 
-                        $categorie->nb_child = $nb_post;
+                                    $categorie->nb_child = $nb_post;
 
-                        $project->nb_postes += $nb_post;
-                        if ($nb_post) {
+                                    $project->nb_postes += $nb_post;
+                                    if ($nb_post) {
 
-                            $i = 0;
-                            while ($i < $nb_post)  { 
-                                $obj = $this->db->fetch_object($resql);
+                                        $i = 0;
+                                        while ($i < $nb_post)  { 
+                                            $obj = $this->db->fetch_object($resql);
 
-                                    //add CONTACT TO POSTE 
-                                    $objtask->id = $obj->rowid;
+                                                //add CONTACT TO POSTE 
+                                                $objtask->id = $obj->rowid;
 
-                                    if( $full ){
-                                        $contacts = $objtask->liste_contact(4,'internal',1,'TASKEXECUTIVE');
-                                    }else{
-                                        $contacts = $objtask->liste_contact(4,'internal',0,'TASKEXECUTIVE');
-                                    }
-                                    $obj->contacts_executive = $contacts;     
+                                                if( $full ){
+                                                    $contacts = $objtask->liste_contact(4,'internal',1,'TASKEXECUTIVE');
+                                                }else{
+                                                    $contacts = $objtask->liste_contact(4,'internal',0,'TASKEXECUTIVE');
+                                                }
+                                                $obj->contacts_executive = $contacts;     
 
-                                    if( $full ){
-                                        $contacts = $objtask->liste_contact(4,'internal',1,'TASKCONTRIBUTOR');
-                                    }else{
-                                        $contacts = $objtask->liste_contact(4,'internal',0,'TASKCONTRIBUTOR');
-                                    }
-                                    $obj->contacts_contributor = $contacts; 
+                                                if( $full ){
+                                                    $contacts = $objtask->liste_contact(4,'internal',1,'TASKCONTRIBUTOR');
+                                                }else{
+                                                    $contacts = $objtask->liste_contact(4,'internal',0,'TASKCONTRIBUTOR');
+                                                }
+                                                $obj->contacts_contributor = $contacts; 
 
-                                    //arrays of id contact
-                                    $ids_contact = array_merge($obj->contacts_executive,$obj->contacts_contributor);
-                                   //var_dump($ids_contact);
-                                    
-                                    //manuel estime
-                                    $obj->cost = round($obj->cost,2);
+                                                //arrays of id contact
+                                                $ids_contact = array_merge($obj->contacts_executive,$obj->contacts_contributor);
+                                            //var_dump($ids_contact);
+                                                
+                                                //manuel estime
+                                                $obj->cost = round($obj->cost,2);
 
-                                    //return COST_MO
-                                    $obj->cost_mo = round($objtask->getCostByUser($ids_contact,$obj->planned_workload),2);
+                                                //return COST_MO
+                                                $obj->cost_mo = round($objtask->getCostByUser($ids_contact,$obj->planned_workload),2);
 
-                                    //return COST_MO_CALCULATED
-                                    // array (size=3)
-                                    //   'amount' => string '0' (length=1)
-                                    //   'nbseconds' => string '14400' (length=5)
-                                   
+                                                //return COST_MO_CALCULATED
+                                                // array (size=3)
+                                                //   'amount' => string '0' (length=1)
+                                                //   'nbseconds' => string '14400' (length=5)
+                                            
 
-                                   //exit();
-                                    $timespent_task = $objtask->getSumOfAmount($ids_contact);
-                                    //if($obj->rowid == 46){
-                                    //    var_dump($timespent_task);
-                                    //    exit();
-                                    //}
-                                    $obj->calculated_workload = (int)$timespent_task['nbseconds'];
-                                    $obj->cost_mo_calculated = round($timespent_task['amount'],2);
+                                            //exit();
+                                                $timespent_task = $objtask->getSumOfAmount($ids_contact);
+                                                //if($obj->rowid == 46){
+                                                //    var_dump($timespent_task);
+                                                //    exit();
+                                                //}
+                                                $obj->calculated_workload = (int)$timespent_task['nbseconds'];
+                                                $obj->cost_mo_calculated = round($timespent_task['amount'],2);
 
-                                    if($obj->planned_workload>0){
-                                        $obj->progress_estimated = round($obj->calculated_workload * 100 / $obj->planned_workload,2);
-                                    } else {
-                                        $obj->progress_estimated = 0;
-                                    }
+                                                if($obj->planned_workload>0){
+                                                    $obj->progress_estimated = round($obj->calculated_workload * 100 / $obj->planned_workload,2);
+                                                } else {
+                                                    $obj->progress_estimated = 0;
+                                                }
 
-                                    //return COST_FOURN
-                                    $obj->cost_fourn = round($objtask->getCostByTask($obj),2);
+                                                //return COST_FOURN
+                                                $obj->cost_fourn = round($objtask->getCostByTask($obj),2);
 
-                                    //INSERT FINAL COST hmmmm zarbi mais client roi => il faut faire : prix de vente-(couts estimes-charges calculées) 
-                                    //OOOKAYYY fff on a une regle "realiste" !
-                                    //si pas de cout calcule -> marge = poste_pv - cost
-                                    //si cout calcule -> marge = poste_pv - (cost_mo + cost_fourn)
-                                    //---------------------------------------------------
-                                    if( ($obj->cost_mo_calculated>0) || ($obj->cost_fourn>0)  ){
-                                        $cost_mo_final = $obj->cost_mo_calculated; //($obj->cost_mo_calculated>0?$obj->cost_mo_calculated:$obj->cost_mo);
-                                        $obj->cost_final = ( $cost_mo_final + $obj->cost_fourn );
-                                    } else {
-                                        $cost_mo_final=0;//$obj->cost_mo;
-                                        $obj->cost_final = 0;$obj->cost;
-                                    }
+                                                //INSERT FINAL COST hmmmm zarbi mais client roi => il faut faire : prix de vente-(couts estimes-charges calculées) 
+                                                //OOOKAYYY fff on a une regle "realiste" !
+                                                //si pas de cout calcule -> marge = poste_pv - cost
+                                                //si cout calcule -> marge = poste_pv - (cost_mo + cost_fourn)
+                                                //---------------------------------------------------
+                                                if( ($obj->cost_mo_calculated>0) || ($obj->cost_fourn>0)  ){
+                                                    $cost_mo_final = $obj->cost_mo_calculated; //($obj->cost_mo_calculated>0?$obj->cost_mo_calculated:$obj->cost_mo);
+                                                    $obj->cost_final = ( $cost_mo_final + $obj->cost_fourn );
+                                                } else {
+                                                    $cost_mo_final=0;//$obj->cost_mo;
+                                                    $obj->cost_final = 0;$obj->cost;
+                                                }
 
-                                    $obj->poste_pv = round($obj->poste_pv,2);
-                                    
-                                    //SUM FOR CATEGORIE
-                                    //---------------------------
-                                    $categorie_cost_calculated += $cost_mo_final + $obj->cost_fourn;
-                                    $categorie_marge += $obj->poste_pv - $obj->cost_final;
-                                    $categorie_cost += $obj->cost;    
-                                    $categorie_pv += $obj->poste_pv; 
+                                                $obj->poste_pv = round($obj->poste_pv,2);
+                                                
+                                                //SUM FOR CATEGORIE
+                                                //---------------------------
+                                                $categorie_cost_calculated += $cost_mo_final + $obj->cost_fourn;
+                                                $categorie_marge += $obj->poste_pv - $obj->cost_final;
+                                                $categorie_cost += $obj->cost;    
+                                                $categorie_pv += $obj->poste_pv; 
 
-                                    //sum progress projet
-                                    $project->progress_estimated += $obj->progress_estimated;
-                                    $project->progress += $obj->progress;
+                                                //sum progress projet
+                                                $project->progress_estimated += $obj->progress_estimated;
+                                                $project->progress += $obj->progress;
 
 
-                                $categorie->postes[]=$obj;
-                                $i++;
+                                            $categorie->postes[]=$obj;
+                                            $i++;
+                                        }
+
+                                        $this->db->free($resql);
+                                    } 
+                                } else {
+                                    $this->error = $this->db->lasterror();
+                                    return -1;
+                                }
+
+
+                                //RETURNING SUM FOR ALL TASKS (POSTE/SUBPOSTE/SUBSUBPOSTE)
+                                $categorie->cost = $categorie_cost;
+                                $categorie->cost_calculated = $categorie_cost_calculated;
+                                $categorie->pv_categorie = $categorie_pv;
+                                $categorie->marge_categorie = $categorie_marge; //round($categorie->pv_categorie - $categorie->cost_categorie,2);
+                                
+                                $lot->cost_calculated += $categorie_cost_calculated;
+                                $lot->cost += $categorie_cost;
+                                $lot->pv_lot += $categorie_pv;
+                                $lot->marge += $categorie_marge;
                             }
+                        }
 
-                            $this->db->free($resql);
-                        } 
-                    } else {
-                        $this->error = $this->db->lasterror();
-                        return -1;
+                        $project->cost_calculated += $lot->cost_calculated;
+                        $project->cost += $lot->cost;
+                        $project->pv += $lot->pv_lot;
+                        $project->marge += $lot->marge; 
                     }
+                }
+                //injection charges fixes
+                $project->cost += $project->chargesfixe;
+                $project->cost_calculated += $project->chargesfixe;
+                $project->marge = $project->pv - $project->cost_calculated; 
 
-
-                    //RETURNING SUM FOR ALL TASKS (POSTE/SUBPOSTE/SUBSUBPOSTE)
-                    $categorie->cost = $categorie_cost;
-                    $categorie->cost_calculated = $categorie_cost_calculated;
-                    $categorie->pv_categorie = $categorie_pv;
-                    $categorie->marge_categorie = $categorie_marge; //round($categorie->pv_categorie - $categorie->cost_categorie,2);
-                    
-                    $lot->cost_calculated += $categorie_cost_calculated;
-                    $lot->cost += $categorie_cost;
-                    $lot->pv_lot += $categorie_pv;
-                    $lot->marge += $categorie_marge;
+                //calcul progression moyenne
+                if($project->nb_postes>0){
+                    $project->progress_estimated = round( (100*$project->progress_estimated)/($project->nb_postes*100),2);
+                    $project->progress = round( (100*$project->progress)/($project->nb_postes*100),2);
+                } else {
+                    $project->progress_estimated = 0;
+                    $project->progress = 0;
                 }
 
-                $project->cost_calculated += $lot->cost_calculated;
-                $project->cost += $lot->cost;
-                $project->pv += $lot->pv_lot;
-                $project->marge += $lot->marge; 
+                //test
+                //$project->cost_calculated = 36000;
+                //$project->marge = $project->pv - $project->cost_calculated;
             }
-            //injection charges fixes
-            $project->cost += $project->chargesfixe;
-            $project->cost_calculated += $project->chargesfixe;
-            $project->marge = $project->pv - $project->cost_calculated; 
-
-            //calcul progression moyenne
-            if($project->nb_postes>0){
-                $project->progress_estimated = round( (100*$project->progress_estimated)/($project->nb_postes*100),2);
-                $project->progress = round( (100*$project->progress)/($project->nb_postes*100),2);
-            } else {
-                $project->progress_estimated = 0;
-                $project->progress = 0;
-            }
-
-            //test
-            //$project->cost_calculated = 36000;
-            //$project->marge = $project->pv - $project->cost_calculated;
-        }  
-
+        }
         // var_dump($projects);
         // exit();          
         

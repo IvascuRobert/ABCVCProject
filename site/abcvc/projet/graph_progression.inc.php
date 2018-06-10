@@ -1,6 +1,4 @@
 <?php 
-
-
 //var_dump($projectsTree);
 //exit();
 /*  0 => 
@@ -26,16 +24,13 @@
       public 'lots' => 
 
 */
-
 $WIDTH='100%'; //DolGraph::getDefaultGraphSizeForStats('width');
 $HEIGHT=DolGraph::getDefaultGraphSizeForStats('height');
 
 $dir=$conf->projet->dir_temp;
 //var_dump($dir);
 //exir();
-
 $nb_projets = count($projectsTree);
-
 $data=array();
 $legend=array();
 /*
@@ -51,9 +46,7 @@ $intervales = array(
 	'101+%'=>0
 );	
 foreach ($projectsTree as $project) {
-	
 	//var_dump($project->progress);
-
 	if($project->progress<80){
 		$intervales['0-79%']++;
 		//$progress_color = 'progress-bar-success';
@@ -74,58 +67,40 @@ foreach ($intervales as $label => $intervale) {
 	);
 	//$legend[]=$label;	
 }
-
-
-
-
 $filenamenb = $dir."/avancements.png";
 $fileurlnb = DOL_URL_ROOT.'/viewimage.php?modulepart=projet&amp;file=avancements.png';
-
 //var_dump($data);
 //var_dump($legend);
 //var_dump($fileurlnb);
 //exit(); 
-
-?>      
-
-		<table class="noborder nohover centpercent">
-			<tbody>
-				<tr class="liste_titre">
-					<td >Statistiques - Avancements</td>
-				</tr>
-				<tr class="impair">
-					<td class="">
-
-					<?php 
-						$px1 = new DolGraph();
-						$mesg = $px1->isGraphKo();
-						if (! $mesg) {
-							$px1->SetData($data);
-
-							$px1->SetLegend($legend);
-							$px1->SetMaxValue($px1->GetCeilMaxValue());
-							
-							$px1->SetWidth($WIDTH);
-							$px1->SetHeight($HEIGHT);
-
-							//$px1->SetYLabel("NumberOfBills");
-							$px1->SetShading(3);
-							$px1->SetHorizTickIncrement(6);
-							$px1->SetPrecisionY(0);
-							///$px1->mode='depth';
-							$px1->SetTitle('Répartition avancements par projets');
-
-							$px1->draw($filenamenb,$fileurlnb,1);
-
-							echo $px1->show();
-						}
-					?>
-
-					</td>	
-				</tr>
-			</tbody>
-		</table>
-
-		</div>		
-
-<?php
+?>
+<table class="noborder nohover centpercent">
+	<tbody>
+		<tr class="liste_titre">
+			<td >Statistică - Progres</td>
+		</tr>
+		<tr class="impair">
+			<td class="">
+			<?php 
+				$px1 = new DolGraph();
+				$mesg = $px1->isGraphKo();
+				if (! $mesg) {
+					$px1->SetData($data);
+					$px1->SetLegend($legend);
+					$px1->SetMaxValue($px1->GetCeilMaxValue());
+					$px1->SetWidth($WIDTH);
+					$px1->SetHeight($HEIGHT);
+					//$px1->SetYLabel("NumberOfBills");
+					$px1->SetShading(3);
+					$px1->SetHorizTickIncrement(6);
+					$px1->SetPrecisionY(0);
+					///$px1->mode='depth';
+					$px1->SetTitle('Repartizarea proiectelor în funcție de progres');
+					$px1->draw($filenamenb,$fileurlnb,1);
+					echo $px1->show();
+				}
+			?>
+			</td>
+		</tr>
+	</tbody>
+</table>

@@ -55,7 +55,7 @@ $(document).ready(function(){
     });
     $('.bt_delete').on('click',function(e){
         e.preventDefault();
-        var ok = confirm(" Confirmez-vous ? ");
+        var ok = confirm(" Doriți să ștergeți acest șantier ? ");
         var url = $(this).attr("href");
         if(ok)
         {

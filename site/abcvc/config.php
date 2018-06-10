@@ -69,71 +69,15 @@ if ($user->socid > 0) {
 	// External user
 	accessforbidden();
 }
-
-
-//ini_set('display_errors', 'On');
-//error_reporting(E_ALL);
-
-//var_dump($user->rights->abcvc->read);
-
-
-//ACTIONS
-//--------------------------------------------------------
-
-// var_dump($_POST);
-// exit;
-/*array (size=7)
-  'token' => string 'c07ac0830c35e9781443d71f15dc465c' (length=32)
-  'rowid' => string '2' (length=1)
-  'action' => string 'update' (length=6)
-  'label' => string 'Argent' (length=6)
-  'active' => string '1' (length=1)
-  'description' => string '' (length=0)
-  'cancel' => string 'Annuler' (length=7)*/
-
-
 // Default action
 if (empty($action) && empty($id) && empty($ref)) {
 	$action='list';
 }
-
 //action cancel ??? fff retour en mode liste...
 if ( $cancel == "Annuler" ) {
 	header("Location: ".$_SERVER["PHP_SELF"]);
 	exit;
 }
-
-/*
-// add
-if ($action == 'add') {
-
-	//var_dump($_POST);
-	
-	if (! $cancel) {	
-		$myobject = new abcvcConfig($db);
-		$myobject->label = trim($label);
-		$myobject->value = $value;
-		$myobject->kilometers = trim($kilometers);
-		$myobject->active = $active;
-		$myobject->gd = $gd;
-
-
-		$result = $myobject->create($user);
-		if ($result > 0) {
-			// Creation OK
-			header("Location: ".$_SERVER["PHP_SELF"]);
-			exit;
-		} else {
-			// Creation KO
-			$mesg = $myobject->error;
-			$action = 'create';
-		}
-	}	
-	
-}
-*/
-
-
 // update
 if ($action == 'update') {
 	if (! $cancel) {
@@ -151,18 +95,6 @@ if ($action == 'update') {
 	}
 }
 
-/*
-// delete
-if ($action == 'delete') {
-	$object = new abcvcConfig($db);
-	$object->rowid = $rowid;	
-	$object->delete($user);
-	header("Location: ".$_SERVER["PHP_SELF"]);
-	exit;
-}
-*/
-
-
 // Load object if id or ref is provided as parameter
 $object = new abcvcConfig($db);
 if (($rowid > 0 || ! empty($ref)) && $action != 'add') {
@@ -171,32 +103,24 @@ if (($rowid > 0 || ! empty($ref)) && $action != 'add') {
 		dol_print_error($db);
 	}
 }
-
-
 /*
  * VIEW
  *
  * Put here all code to build page*/
 llxHeader('', $langs->trans('ABCVC - Configuration'), '');
-
 $form = new Form($db);
-
-
 // BOOTSTRAP 3 + css + js custom
 require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';
 ?>
 
 <div class="container-fluid">
 	<div class="row">
-
-
 		<?php
 		//******************************************************************************************************
 		// 
 		// Liste mode
 		// 
 		//******************************************************************************************************
-
 		if (!$rowid && $action != 'create' && $action != 'edit') {
 
 			$sql = "SELECT d.* FROM ".MAIN_DB_PREFIX."abcvc_config as d ORDER BY d.label ASC";
@@ -205,27 +129,25 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';
 				$num = $db->num_rows($result);
 				$i = 0;
 				?>
-
-				<div class="panel panel-primary filterable">
+				<div class="panel panel-info filterable">
 		            <div class="panel-heading">
-		                <h1 class="panel-title">Configuration</h1>
-						<div class="container-fluid">
-					        <div class="row">
-
-			                    <div class="pull-left">
-				                    <button class="btn btn-default btn-sm btn-filter"><span class="glyphicon glyphicon-filter"></span>Filtre</button>
-				                </div>
-					        </div>  
-					    </div>  
+		                <h1 class="panel-title">
+							Configurare
+							<div class="pull-right">
+								<button class="btn btn-link btn-lg btn-filter"><span class="glyphicon glyphicon-filter"></span>Filtre</button>
+							</div>
+						</h1>
 		            </div>
-
-		            <table class="table table-responsive">
+					<div class="panel-body">
+						<p>TO DO : pune o descriere scurta despre ce face configurarea</p>
+					</div>
+		            <table class="table table-hover table-responsive">
 		                <thead>
 		                    <tr class="filters">
 			                    <th><input type="text" class="form-control" placeholder=<?php echo $langs->trans("Ref interne"); ?> disabled></th>
 								<th><input type="text" class="form-control" placeholder=<?php echo $langs->trans("Label"); ?> disabled></th>
-								<th><input type="text" class="form-control" placeholder=<?php echo $langs->trans("Valeur"); ?> disabled></th>
-								<th><input type="text" class="form-control" placeholder=<?php echo $langs->trans("Actif"); ?> disabled></th>
+								<th><input type="text" class="form-control" placeholder=<?php echo $langs->trans("Price"); ?> disabled></th>
+								<th><input type="text" class="form-control" placeholder=<?php echo $langs->trans("Active"); ?> disabled></th>
 		                   	</tr>
 		                </thead>
 		                <tbody>
@@ -235,124 +157,55 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';
 									$objp = $db->fetch_object($result);
 									$var=!$var; 
 									?>
-
 				                    <tr <?php echo $bc[$var]; ?> >
-				                        <td><a href="<?php echo $_SERVER["PHP_SELF"];?>?rowid=<?php echo $objp->rowid ?>"> <?php echo img_object('ref','product').$objp->rowid; ?> </a></td>
+				                        <td><a href="<?php echo $_SERVER["PHP_SELF"];?>?rowid=<?php echo $objp->rowid ?>"> <?php echo img_object('ref','bookmark').$objp->rowid; ?> </a></td>
 										<td><?php echo dol_escape_htmltag($objp->label); ?> </td>
 										<td><?php echo price($objp->value); ?> €</td>
 										<td><?php echo yn($objp->active); ?> </td>
-				                    </tr>	    
-
-									<?php 
-									$i++; 
-								} 
+				                    </tr>
+									<?php
+									$i++;
+								}
 							?>
-						</tbody>						
+						</tbody>
 		            </table>
 			    </div>
-
-			<?php						
+			<?php
 		    } else {
 			    echo dol_print_error($db);
 			} 
 		}
-
-
 		//******************************************************************************************************
 		//
-		// creation mode                                    
-		// 
-		//******************************************************************************************************
-		/*
-		if ($action == 'create'){ ?>
-
-			<form method="post" action="<?php echo $_SERVER["PHP_SELF"] ?>">
-
-				<div class="panel panel-primary filterable">
-		            <div class="panel-heading">
-		                <h3 class="panel-title">Nouvelle zone</h3>
-						<div class="container-fluid">
-					        <div class="row">
-								<div class="pull-left">
-									<input type="submit" class="button btn btn-success" value= "Enregistrer">
-									<input name="cancel" class="button btn btn-default" value="Annuler" type="submit"> <!-- onclick="history.go(-1)" -->
-								</div>
-					        </div>  
-					    </div>  
-		            </div>
-
-					<input type="hidden" name="token" value="<?php echo $_SESSION['newtoken'] ?>">
-					<input type="hidden" name="action" value="add">
-
-					<table class="border" width="100%">
-	
-						<tr><td width="15%"><?php echo $langs->trans("Zone"); ?></td><td><input type="text" name="label" size="40" value=""></td></tr>
-
-						<tr><td><?php echo $langs->trans("Prix(€)"); ?></td><td><input type="text" name="price" size="40" value=""></td></tr>
-
-						<tr><td><?php echo $langs->trans("Kilometres(km)"); ?></td><td><input type="text" name="kilometers" size="40" value=""></td></tr>
-
-						<tr><td><?php echo $langs->trans("Actif"); ?></td><td><?php echo $form->selectyesno("active",$_POST['active'],1);?></td></tr>
-
-						<tr><td><?php echo $langs->trans("Grand deplacement"); ?></td><td><?php echo $form->selectyesno("gd",$_POST['gd'],1);?></td></tr>
-
-					</table>
-
-					
-				</div>
-			</form>
-
-			<?php						
-		} */
-
-
-		//******************************************************************************************************
-		//
-		// fiche mode                                                                  
+		//  EDIT VIEW , fiche mode                                                                  
 		// 
 		//******************************************************************************************************
 		if ($rowid > 0) { 
-
 			$object = new abcvcConfig($db);
 			$object->rowid = $rowid;
 			$object->fetch($rowid); 
 			?>
-
 			<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>?rowid=<?php echo $rowid; ?>">
-				<div class="panel panel-primary filterable">
+				<div class="panel panel-info filterable">
 		            <div class="panel-heading">
-		                <h3 class="panel-title">Modifier configuration</h3>
-							<div class="container-fluid">
-				        		<div class="row">
-									<div class="pull-left">
-										<input  type="submit" href="/abcvc/zones.php?idmenu=87&mainmenu=abcvc&leftmenu=" class="button btn btn-success btn-sm" value="Enregistrer">
-									
-										<input name="cancel" class="button btn btn-default btn-sm" value="Annuler" type="submit"> <!--//onclick="history.go(-1)" --> 
-										
-									</div>
-					    		</div>  
-					    	</div>
+		                <h3 class="panel-title">Modifică Configurația
+							<div class="pull-right">
+									<input  type="submit" href="/abcvc/zones.php?idmenu=87&mainmenu=abcvc&leftmenu=" class="button btn btn-link btn-lg" value="Enregistrer">
+									<input name="cancel" class="button btn btn-link btn-lg" value="Annuler" type="submit"> <!--//onclick="history.go(-1)" --> 
+							</div>
+						</h3>
 		            </div>
 					<input type="hidden" name="token" value="<?php echo $_SESSION['newtoken']; ?>">
 					<input type="hidden" name="rowid" value="<?php echo $rowid; ?>">
 					<input type="hidden" name="action" value="update">
-					
-
-					<table class="border" width="100%">
-
-					<tr><td width="15%"><?php echo $langs->trans("Ref"); ?> </td><td><?php echo $object->rowid; ?></td></tr>
-
-					<tr><td><?php echo $langs->trans("Label");?></td><td><input type="text" name="label" size="40" value="<?php echo dol_escape_htmltag($object->label);?>"></td></tr>
-
-					<tr><td><?php echo $langs->trans("Valeur");?></td><td><input type="text" name="value" size="40" value="<?php echo dol_escape_htmltag($object->value);?>"></td></tr>
-
-
+					<table class="border"  width="100%">
+						<tr><td width="15%"><?php echo $langs->trans("Ref"); ?> </td><td><?php echo $object->rowid; ?></td></tr>
+						<tr><td><?php echo $langs->trans("Label");?></td><td><input type="text" name="label" size="40" value="<?php echo dol_escape_htmltag($object->label);?>"></td></tr>
+						<tr><td><?php echo $langs->trans("Price");?></td><td><input type="text" name="value" size="40" value="<?php echo dol_escape_htmltag($object->value);?>"></td></tr>
 					</table>
-
 				</div>	
 			</form>
-
-			<?php						
+			<?php	
 		} 
 		?>
 	</div>
