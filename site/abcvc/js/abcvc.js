@@ -756,25 +756,18 @@ $(document).ready(function(){
     $('#table_contacts').DataTable({
         responsive: true,
         "language": {
-                    "sProcessing":     "Traitement en cours...",
-                    "sSearch":         "Rechercher&nbsp;:",
-                    "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments",
-                    "sInfo":           "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-                    "sInfoEmpty":      "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
-                    "sInfoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-                    "sInfoPostFix":    "",
-                    "sLoadingRecords": "Chargement en cours...",
-                    "sZeroRecords":    "Aucun &eacute;l&eacute;ment &agrave; afficher",
-                    "sEmptyTable":     "Aucune donn&eacute;e disponible dans le tableau",
+                    "sProcessing":     "Tratament in curs...",
+                    "sSearch":         "Caută&nbsp;:",
+                    "sLoadingRecords": "Se încarcă înregistrările...",
                     "oPaginate": {
-                        "sFirst":      "Premier",
-                        "sPrevious":   "Pr&eacute;c&eacute;dent",
-                        "sNext":       "Suivant",
-                        "sLast":       "Dernier"
+                        "sFirst":      "Prima",
+                        "sPrevious":   "Înapoi",
+                        "sNext":       "Următoarea",
+                        "sLast":       "Ultima"
                     },
                     "oAria": {
-                        "sSortAscending":  ": activer pour trier la colonne par ordre croissant",
-                        "sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
+                        "sSortAscending":  ": Sortează crescător",
+                        "sSortDescending": ": Sortează descrescător"
                     }
         }
     });
@@ -1000,7 +993,7 @@ $(document).ready(function(){
         var timespentid = $(this).data('timespentid');
         var task_type =  $('#edit_type_tempspasse').val();
         if( (task_type== null) || (heure_de=='') || (heure_a=='') ){
-            alert('Veuillez renseigner les champs requis')
+            alert('Pentru a putea înregistra timpul trebuie să completați câmpurile obligatorii')
             return true;
         }
 
@@ -1297,7 +1290,7 @@ $(document).ready(function(){
         //+5h ->1h repas ?
         var hrepas = 0;
         if(delta_min>=300){
-            delta_heurerepas = '1h repas / ';
+            delta_heurerepas = '1h pauză / ';
             var hrepas = 60;
             delta_min -= 60;
         }
@@ -1317,7 +1310,7 @@ $(document).ready(function(){
         var m = delta_min % 60;
         h = h < 10 ? '0' + h : h;
         m = m < 10 ? '0' + m : m;
-        var ok_h_m = '&nbsp;&nbsp; Heures travail: '+ h+':'+m;
+        var ok_h_m = '&nbsp;&nbsp; Ore de lucru: '+ h+':'+m;
 
         if( (delta_heurerepas!='') || (delta_heuresup>0) ){
             ok_h_m += ' ( ';
@@ -1326,7 +1319,7 @@ $(document).ready(function(){
             ok_h_m += delta_heurerepas;
         }
         if(delta_heuresup>0){
-            ok_h_m += 'Heures sup: ' + hsup + ':' + msup;
+            ok_h_m += 'Ore suplimentare: ' + hsup + ':' + msup;
         }
         if( (delta_heurerepas!='') || (delta_heuresup>0) ){
             ok_h_m += ' ) ';

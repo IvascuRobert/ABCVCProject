@@ -670,7 +670,7 @@ foreach ($listofreferent as $key => $value)
 
 		// Note private
 		print '<td>';
-		print $langs->trans("Note (privée)");
+		print $langs->trans("Notițe private");
 		print '</td>';
 
 

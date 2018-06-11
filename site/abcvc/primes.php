@@ -213,7 +213,7 @@ $to = GETPOST('to','alpha');
 
 <!-- FORM TO INPUT DATE  -->
 <form method="POST" id="searchFormList" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-    <div class="panel panel-primary filterable">
+    <div class="panel panel-info filterable">
         <div class="panel-heading">
 			<form name="selectperiod" method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
 				<input type="hidden" name="token" value="<?php echo $_SESSION['newtoken']; ?>">
@@ -224,10 +224,10 @@ $to = GETPOST('to','alpha');
 						<tr>
 							<td class="nobordernopadding valignmiddle">
 								<img src="/theme/eldy/img/title_generic.png" alt="" title="" class="hideonsmartphone valignmiddle" id="pictotitle" border="0">
-								<div class="titre inline-block">Présences Collaborateur</div>
+								<div class="titre inline-block">Prezență colaborator</div>
 							</td>
 							<td class="nobordernopadding valignmiddle" align="right">
-								<button type="submit" class="btn btn-warning" name="action" value="builddoc"><span class="glyphicon glyphicon-file"></span> Generer PDF Document</button>
+								<button type="submit" class="btn btn-warning" name="action" value="builddoc"><span class="glyphicon glyphicon-file"></span> Genereză document PDF</button>
 							</td>
 						</tr>
 					</tbody>
@@ -237,20 +237,20 @@ $to = GETPOST('to','alpha');
 				<table class="" cellpadding="2" cellspacing="2">
 					<tbody>
 						<tr>
-							<td width="170px">Période</td>
+							<td width="170px">Perioadă</td>
 							<td width="170px">
 								<div class="input-group input-group-sm">
-								  	<span class="input-group-addon" id="sizing-addon1">Du</span>
+								  	<span class="input-group-addon" id="sizing-addon1">De la</span>
 									<input  id="prime_from" name="from" value="<?php if($from != "") { echo  $from; }  ?>">
 
-									<span class="input-group-addon" id="sizing-addon1">Au</span>
+									<span class="input-group-addon" id="sizing-addon1">La</span>
 									<input  id="prime_to" name="to" value="<?php if($to != "") { echo  $to; }  ?>">
 								</div>
 							</td>
 							<td></td>
 						</tr>
 						<tr>
-							<td><?php echo $langs->trans("UserToDisplay"); ?></td>
+							<td>Selecteză colaborator</td>
 								<?php $showempty=0;
 									// attention le dernier paramétre n'est dispo que sur la 3.7 et le patch fournis
 									$filteruser="";
@@ -261,7 +261,7 @@ $to = GETPOST('to','alpha');
 								<?php echo $form->select_dolusers($perioduser, 'perioduser', $showempty, '', 0,'', '', 0, 0, 0, $filteruser); //var_dump($perioduser); ?>	
 								
 							</td>
-							<td >&nbsp;<input class="btn btn-primary btn-success" type=submit name="select" value="<?php echo $langs->trans("Afficher"); ?>"> </td>
+							<td >&nbsp;<input class="btn btn-primary btn-success" type=submit name="select" value="<?php echo $langs->trans("Afișează"); ?>"> </td>
 						</tr>
 
 					</tbody>
@@ -605,7 +605,7 @@ $to = GETPOST('to','alpha');
 					  											<?php 
 					  											//trajet
 					  											//price($timespentday->zone_price)
-					  											$label_trajet = "Trajet (".$timespentday->zone."): <b>".price($timespentday->zone_price)." €</b>";
+					  											$label_trajet = "Drum (".$timespentday->zone."): <b>".price($timespentday->zone_price)." €</b>";
 					  											?>
 					  											<div class="timespent_trajet classfortooltip" title="<?php echo dol_escape_htmltag($label_trajet, 1);?>"">
 					  												<?php if ($ar_trajetGDWeek[$idx_day]==1) :
@@ -624,7 +624,7 @@ $to = GETPOST('to','alpha');
 					  											<?php if( $timespentday->task_duration >= 18000 ) : 
 						  											//panier > 5h  / 18000sec
 						  											$nbpanierWeek++;
-						  											$label_panier = "Panier: <b>".price($prix_panier)." €</b>";
+						  											$label_panier = "Pachet: <b>".price($prix_panier)." €</b>";
 						  											?>
 						  											<div class="timespent_panier classfortooltip" title="<?php echo dol_escape_htmltag($label_panier, 1);?>"><i class="fa fa-shopping-basket" aria-hidden="true"></i></div>
 					  											<?php endif; ?>
@@ -638,7 +638,7 @@ $to = GETPOST('to','alpha');
 														        if (! empty($timespentday->projet_ref))
 														            $label .= '<b>Ref: </b> ' . $timespentday->projet_ref;
 														        if (! empty($timespentday->projet_title))
-														            $label .= '<br><b>Nom: </b> ' . $timespentday->projet_title;
+														            $label .= '<br><b>Nume: </b> ' . $timespentday->projet_title;
 														        
 													        ?>
 				  											<div class="pull-left small classfortooltip" title="<?php echo dol_escape_htmltag($label, 1);?>">
@@ -649,7 +649,7 @@ $to = GETPOST('to','alpha');
 														        if (! empty($timespentday->task_ref))
 														            $label .= '<b>Ref: </b> ' . $timespentday->task_ref;
 														        if (! empty($timespentday->task_title))
-														            $label .= '<br><b>Nom: </b> ' . $timespentday->task_title;
+														            $label .= '<br><b>Nume: </b> ' . $timespentday->task_title;
 														        
 													        ?>		  											
 				  											<div class="pull-right small classfortooltip" title="<?php echo dol_escape_htmltag($label, 1);?>">
@@ -728,13 +728,13 @@ $to = GETPOST('to','alpha');
 				
 				<!-- total cumule mois -->
 				<tr>
-					<td bgcolor="#0080ff" align="center">TOTAL MOIS</td> 
+					<td bgcolor="#0080ff" align="center">TOTAL LUNĂ</td> 
 			  		<td bgcolor="#0080ff" colspan="<?php echo count($year_array[$month]); ?>">
 
 						<table class="table small" cellspacing="4" cellpadding="4">
 						  	<tbody>
 								<tr>
-									<td>Total heures mois: 
+									<td>Total ore pe lună: 
 										<?php 
 										$month_potential_works_secondes = $month_potential_works_hours*60*60;
 										if($sumWorkMonth>$month_potential_works_secondes){
@@ -758,8 +758,8 @@ $to = GETPOST('to','alpha');
 										echo format_time($month_potential_works_secondes); 
 										?> 
 										( 
-										travail : <?php echo format_time($sumWorkMonth); ?>, heures sup: <?php echo format_time($sumSupMonth); ?>
-										, heures dûes: <?php echo format_time($heuresDues_Month); ?>
+										Muncă : <?php echo format_time($sumWorkMonth); ?>, ore suplimentare: <?php echo format_time($sumSupMonth); ?>
+										, ore de lucru: <?php echo format_time($heuresDues_Month); ?>
 										)
 
 									</td>
@@ -773,11 +773,11 @@ $to = GETPOST('to','alpha');
 								</tr>
 								<tr>
 									<td colspan="7"> 
-										<i class="fa fa-shopping-basket" aria-hidden="true"></i> Total paniers: <?php echo $nbpanierMonth; ?> ( <b><?php echo price($nbpanierMonth*$prix_panier);?> €</b> )
+										<i class="fa fa-shopping-basket" aria-hidden="true"></i> Total pachet: <?php echo $nbpanierMonth; ?> ( <b><?php echo price($nbpanierMonth*$prix_panier);?> €</b> )
 										&nbsp;&nbsp;&nbsp;&nbsp;
-										<i class="fa fa-road" aria-hidden="true"></i> Total trajets: <?php echo $nbtrajetMonth; ?> <?php echo $ok_labelcost_trajets_month;?> 
+										<i class="fa fa-road" aria-hidden="true"></i>  Total călătorii: <?php echo $nbtrajetMonth; ?> <?php echo $ok_labelcost_trajets_month;?> 
 										&nbsp;&nbsp;&nbsp;&nbsp;
-				  						<i class="fa fa-moon-o" aria-hidden="true"></i> Total trajets GD: <?php echo $nbtrajetGDMonth; ?> <?php echo $ok_labelcost_trajetsGD_month;?> 
+				  						<i class="fa fa-moon-o" aria-hidden="true"></i> Total călătorie pe deplasare mare: <?php echo $nbtrajetGDMonth; ?> <?php echo $ok_labelcost_trajetsGD_month;?> 
 									</td>
 								</tr>
 							</tbody>
@@ -863,11 +863,11 @@ $to = GETPOST('to','alpha');
 				        ?> - <b><?php echo $contact->job;?></b> -
 				        <i class="fa fa-phone" aria-hidden="true"></i> <?php echo $contact->user_mobile;?> - 
 				        <i class="fa fa fa-envelope-o" aria-hidden="true"></i> <?php echo $contact->email;?> - 
-						[ Salaire: <?php echo price($contact->salary);?>€, salaire horaire moyen: <?php echo price($contact->thm);?>€, Heures de travail hebdomadaires: <?php echo (float)($contact->weeklyhours);?> ]
+						[ Salariu: <?php echo price($contact->salary);?>€, Ore de lucru pe săptămână: <?php echo (float)($contact->weeklyhours);?> ]
 			    	</td>
 			    </tr>
 				<tr>
-					<td with="80%" bgcolor="#cce6ff">Periode du <?php echo date('d/m/Y',$stt_from)." au ".date('d/m/Y',$stt_to); ?></td>
+					<td with="80%" bgcolor="#cce6ff">Perioada de la <?php echo date('d/m/Y',$stt_from)." până la ".date('d/m/Y',$stt_to); ?></td>
 					<td></td>
 					<td with="18%" bgcolor="#cce6ff" rowspan="2">
 						<?php 
@@ -904,11 +904,11 @@ $to = GETPOST('to','alpha');
 						  	<tbody>
 								<tr>
 									<td>
-										Total heures: <span class="pull-right"><?php echo format_time($matrice_work_Periode['potential_works']); ?></span> <br />
-										Travail: <span class="pull-right"><?php echo format_time($matrice_work_Periode['sumWork']); ?></span> <br />
-										Heures sup.: <span class="pull-right"><?php echo format_time($matrice_work_Periode['heuresSup']); ?></span> <br />
-										Collaborateur doit: <span class="pull-right"><?php echo format_time($collaborateur_doit); ?></span> <br /> 
-										ABCVC doit: <span class="pull-right"><?php echo format_time($abcvc_doit); ?></span>
+										Total ore: <span class="pull-right"><?php echo format_time($matrice_work_Periode['potential_works']); ?></span> <br />
+										Muncă: <span class="pull-right"><?php echo format_time($matrice_work_Periode['sumWork']); ?></span> <br />
+										Ore suplimentare.: <span class="pull-right"><?php echo format_time($matrice_work_Periode['heuresSup']); ?></span> <br />
+										Colaboratorul trebuie să realizeze: <span class="pull-right"><?php echo format_time($collaborateur_doit); ?></span> <br /> 
+										<br/>
 									</td>
 								</tr>
 							</tbody>
@@ -921,7 +921,7 @@ $to = GETPOST('to','alpha');
 						<table class="table small" cellspacing="4" cellpadding="4">
 						  	<tbody>
 								<tr>
-									<td>Travail: <?php echo format_time($sumWorkPeriode); ?> </td>
+									<td>Muncă: <?php echo format_time($sumWorkPeriode); ?> </td>
 									<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#5cb85c;"><?php echo format_time($sumTravailPeriode); ?></div></td>
 									<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#185a18;"><?php echo format_time($sumSAVPeriode); ?></div></td>
 									<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#00ffbf"><?php echo format_time($sumEcolePeriode); ?></div></td>								
@@ -932,11 +932,11 @@ $to = GETPOST('to','alpha');
 								</tr>
 								<tr>
 									<td colspan="7"> 
-										<i class="fa fa-shopping-basket" aria-hidden="true"></i> Total paniers: <?php echo $nbpanierPeriode; ?> ( <b><?php echo price($nbpanierPeriode*$prix_panier);?> €</b> )
+										<i class="fa fa-shopping-basket" aria-hidden="true"></i> Total pachet: <?php echo $nbpanierPeriode; ?> ( <b><?php echo price($nbpanierPeriode*$prix_panier);?> €</b> )
 										&nbsp;&nbsp;&nbsp;&nbsp;
-										<i class="fa fa-road" aria-hidden="true"></i> Total trajets: <?php echo $nbtrajetPeriode; ?> <?php echo $ok_labelcost_trajets_periode;?> 
+										<i class="fa fa-road" aria-hidden="true"></i> Total călătorii: <?php echo $nbtrajetPeriode; ?> <?php echo $ok_labelcost_trajets_periode;?> 
 										&nbsp;&nbsp;&nbsp;&nbsp;
-				  						<i class="fa fa-moon-o" aria-hidden="true"></i> Total trajets GD: <?php echo $nbtrajetGDPeriode; ?> <?php echo $ok_labelcost_trajetsGD_periode;?> 
+				  						<i class="fa fa-moon-o" aria-hidden="true"></i> Total călătorie pe deplasare mare: <?php echo $nbtrajetGDPeriode; ?> <?php echo $ok_labelcost_trajetsGD_periode;?> 
 									</td>
 								</tr>
 							</tbody>
@@ -955,13 +955,13 @@ $to = GETPOST('to','alpha');
 	  	<tbody>
 			<tr>
 				<td>Legende: </td>
-				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#5cb85c;">Travail</div></td>
-				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#185a18;">MES/SAV</div></td>
-				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#00ffbf">Ecole</div></td>								
-				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#00ff80;">Ferie</div></td>
-				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#8000ff">Maladie</div></td>								
-				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#ffbf00;">Conges</div></td>
-				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#ff0000">Recup</div></td>
+				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#5cb85c;">Muncă</div></td>
+				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#185a18;">MY/Serviciu</div></td>
+				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#00ffbf">Școală</div></td>								
+				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#00ff80;">Vacanță</div></td>
+				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#8000ff">Boală</div></td>								
+				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#ffbf00;">Concediu</div></td>
+				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#ff0000">Recupera</div></td>
 			</tr>
 		</tbody>
 	</table>
@@ -970,7 +970,7 @@ $to = GETPOST('to','alpha');
 
 <?php else : ?>
 
-Séléctionner une période et un collaborateur afin de consulter ses temps passés.
+Selectează o perioadă și un colaborator pentru a consulta timpul de lucru.
 
 <?php endif; ?>	
 

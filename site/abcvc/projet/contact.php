@@ -209,17 +209,17 @@ if ($id > 0 || ! empty($ref))
 			<table class="table table-hover display responsive no-wrap display" width="100%" cellspacing="0" id="table_contacts">
 				<thead>
 					<tr>
-						<th>Postes</th>
-						<th>Type</th>
-						<th>Collaborateurs</th>
+						<th>Denumire Task</th>
+						<th>Tip</th>
+						<th>Colaboratori</th>
 					</tr>
 				</thead>
 
 				<tfoot>
-		            <tr>
-						<th>Postes</th>
-						<th>Type</th>
-						<th>Collaborateurs</th>
+					<tr>
+						<th>Denumire Task</th>
+						<th>Tip</th>
+						<th>Colaboratori</th>
 					</tr>
 		        </tfoot>
 

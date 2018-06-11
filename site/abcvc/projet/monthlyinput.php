@@ -236,7 +236,7 @@ dol_htmloutput_mesg($mesg);
 require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';?>
 
 <!-- header -->
-<div class="panel panel-primary filterable">
+<div class="panel panel-info filterable">
     <div class="panel-heading">
 		<form name="selectperiod" method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
 			<input type="hidden" name="token" value="<?php echo $_SESSION['newtoken']; ?>">
@@ -247,24 +247,26 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';?>
 
 			<div class="row">
 				<div class="col-sm-2">
-					Période
+					Perioada
 				</div>
 				<div class="col-sm-10">
 					<?php echo $formother->selectyear($periodyear,'periodyear'); echo $formother->select_month($periodmonth,'periodmonth'); ?>
 					<div id="lblBlurWeekEnd" class="pull-right">
-						<a href="#" onclick="return false;"><?php 
-						//echo img_picto("ShowHideWeekendColumns","edit_add"); 
-						echo $langs->trans("ShowHideWeekend"); 
-						?></a>
+						<a href="#" onclick="return false;">
+							<?php 
+							//echo img_picto("ShowHideWeekendColumns","edit_add"); 
+							echo $langs->trans("ShowHideWeekend"); 
+							?>
+						</a>
 					</div>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-sm-2">
-					Collaborateur
+					Colaborator
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-2">
 					
 					<?php if(!$collaborateur): ?>
 						<?php 
@@ -282,22 +284,17 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';?>
 					<?php endif; ?>	
 
 				</div>
-				<div class="col-sm-4">
-					&nbsp;
-				</div>
 			</div>
-
-
 			<div class="row">
 				<div class="col-sm-2">
-					Projet
+					Proiect
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-8">
 					<?php echo $formprojets->select_projects_list_collaborateurs(-1,$projectid,'projectid',24,0,1,1); ?>
 				</div>
-				<div class="col-sm-4">
+				<div class="col-sm-2">
 					<div class="pull-right">
-						<input type=submit name="select" class="btn btn-success pull-right" value="Afficher">
+						<input type=submit name="select" class="btn btn-default pull-right" value="Afișează">
 					</div>
 				</div>
 			</div>
@@ -305,7 +302,7 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';?>
 			<div class="row">
 				<div class="col-sm-12">
 				<?php if( ($perioduser=='') || ($projectid=='') || ($projectid=='0') ):?>
-					Séléctionner une période, un collaborateur et un projet afin de saisir les temps passés
+					Selectează o perioadă, un colaborator și un proiect pentru a seta programul
 				<?php else:?>
 					&nbsp;
 				<?php endif;?>
@@ -331,21 +328,21 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';?>
 	<table class="noborder table small table-hover" width="100%">
 		<tr class="liste_titre">
 			<td width="20%">
-				Projet / Ref. tâche
+				Proiect / Ref. sarcină
 				<div class="type_time_legend">
 					<table class="small" cellspacing="4" cellpadding="4">
 					  	<tbody>
 							<tr>
-								<td >Legende: </td>
-								<td ><div class="" style="color:#fff; padding:2px; background-color:#5cb85c;">Travail</div></td>
-								<td ><div class="" style="color:#fff; padding:2px; background-color:#185a18;">MES/SAV</div></td>
+								<td >Legendă: </td>
+								<td ><div class="" style="color:#fff; padding:2px; background-color:#5cb85c;">Muncă</div></td>
+								<td ><div class="" style="color:#fff; padding:2px; background-color:#185a18;">MY/Serviciu</div></td>
 								
-								<td ><div class="" style="color:#fff; padding:2px; background-color:#00ffbf">Ecole</td>								
+								<td ><div class="" style="color:#fff; padding:2px; background-color:#00ffbf">Școală</td>								
 								
-								<td ><div class="" style="color:#fff; padding:2px; background-color:#00ff80;">Ferie</td>
-								<td ><div class="" style="color:#fff; padding:2px; background-color:#8000ff">Maladie</td>								
-								<td ><div class="" style="color:#fff; padding:2px; background-color:#ffbf00;">Conges</div></td>
-								<td ><div class="" style="color:#fff; padding:2px; background-color:#ff0000">Recup</td>
+								<td ><div class="" style="color:#fff; padding:2px; background-color:#00ff80;">Vacanță</td>
+								<td ><div class="" style="color:#fff; padding:2px; background-color:#8000ff">Boală</td>								
+								<td ><div class="" style="color:#fff; padding:2px; background-color:#ffbf00;">Concediu</div></td>
+								<td ><div class="" style="color:#fff; padding:2px; background-color:#ff0000">Recupera</td>
 							</tr>
 						</tbody>
 					</table>
@@ -573,7 +570,7 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';?>
 				<td >
 					<div class="row">
 						<div class="col-xs-2">
-							Estime: 
+							Estimat: 
 						</div>
 						<div class="col-xs-10">
 							<div class="progress" >
@@ -596,7 +593,7 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';?>
 					</div>	
 					<div class="row">
 						<div class="col-xs-2">
-							Reel: 
+							Real: 
 						</div>
 						<div class="col-xs-10">
 							<div class="progress" >
@@ -741,7 +738,7 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';?>
     <div class="modal-content">
 	    <div class="modal-header">
         	<h4 class="modal-title" id="myModalLabel" style="position: relative;">
-        		Temps passes
+				Timp petrecut
         		<div id="qui_jour_tempspasse"> 
         			<span class="label_task" id="jour_tempspasse">00/00/0000</span> - <span class="label_task" id="qui_tempspasse"> - </span>
         		</div>
@@ -758,7 +755,7 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';?>
 				<div class="col-md-12">				
 
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="edit_tempspasse">Temps passe *</label>
+						<label class="col-sm-3 control-label" for="edit_tempspasse">Timp petrecut *</label>
 						<div class="col-sm-9">
 
 							<div class="input-group">
@@ -773,39 +770,21 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';?>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Type *</label>
+						<label class="col-sm-3 control-label">Tip *</label>
 						<div class="col-sm-9">
 							<select name="type_tempspasse" class="form-control required" id="edit_type_tempspasse"  required="">
-								<option value="0">Travail</option>
-								<option value="6">MES / SAV</option>
-
-								<option value="5">Ecole</option>
-
-								<option value="1">Congés Payés</option>
-								<option value="3">Maladie</option>
-
-								<option value="2">Feries</option>
-								<option value="4">Recup</option>
-
-								
-
+								<option value="0">Muncă</option>
+								<option value="6">MY/Serviciu</option>
+								<option value="5">Școală</option>
+								<option value="1">Concediu plătit</option>
+								<option value="3">Boală</option>
+								<option value="2">Concediu</option>
+								<option value="4">Recuperare</option>
 							</select>
 						</div>
-					</div>		
-					<?php /*
-						if( $timespent['type'] == 0 ) $bgcolor="bgcolor='#5cb85c'";	//Travail 
-						if( $timespent['type'] == 6 ) $bgcolor="bgcolor='#5cb85c'";	//MES / SAV 
-
-						if( $timespent['type'] == 1 ) $bgcolor="bgcolor='#ffbf00'";	//Conges
-						if( $timespent['type'] == 2 ) $bgcolor="bgcolor='#00ff80'";	//Ferie
-						if( $timespent['type'] == 3 ) $bgcolor="bgcolor='#8000ff'";	//Maladie
-						if( $timespent['type'] == 4 ) $bgcolor="bgcolor='#ff0000'";	//Recup
-						if( $timespent['type'] == 5 ) $bgcolor="bgcolor='#00ffbf'";	//Ecole
-					*/ ?>
-
-
+					</div>	
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="edit_desc_tempspasse">Commentaires</label>
+						<label class="col-sm-3 control-label" for="edit_desc_tempspasse">Comentarii</label>
 						<div class="col-sm-9">
 							<textarea class="form-control" name="desc_tempspasse" id="edit_desc_tempspasse"></textarea>
 						</div>	
@@ -817,8 +796,8 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';?>
 
 		</div>
 		<div class="modal-footer">
-			<button type="button" class="btn btn-success" id="bt_save_timespent">Enregistrer</button>
-			<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+			<button type="button" class="btn btn-success" id="bt_save_timespent">Înregistreză</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">Închide</button>
 		</div>
 	</div>
   </div>
@@ -831,68 +810,5 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';?>
 llxFooter();
 
 $db->close();
-
-
-
-/*
-
-
-postes tree
-------------------------------------------------------------------------
-
-array (size=1)
-  0 => 
-    object(stdClass)[143]
-      public 'rowid' => string '35' (length=2)
-      public 'ref' => string '1.1.1' (length=5)
-      public 'fk_categorie' => string '2' (length=1)
-      public 'fk_task_parent' => string '0' (length=1)
-      public 'label' => string 'Poste 1' (length=7)
-      public 'datec' => string '2017-08-02 20:00:32' (length=19)
-      public 'fk_user_creat' => string '2' (length=1)
-      public 'fk_statut' => string '0' (length=1)
-      public 'planned_workload' => string '360611.99971151' (length=15)
-      public 'progress' => string '85' (length=2)
-      public 'cost' => string '10.00000000' (length=11)
-      public 'progress_estimated' => string '0' (length=1)
-      public 'fact_fourn' => string '' (length=0)
-      public 'poste_pv' => string '0.00000000' (length=10)
-      public 'timespent' => 
-        array (size=1)
-          0 => 
-            object(stdClass)[134]
-              public 'rowid' => string '19' (length=2)
-              public 'fk_task' => string '35' (length=2)
-              public 'task_date' => string '2017-10-04' (length=10)
-              public 'task_datehour' => string '2017-10-04 00:00:00' (length=19)
-              public 'task_date_withhour' => string '0' (length=1)
-              public 'task_duration' => string '25200' (length=5)
-              public 'task_type' => string '0' (length=1)
-              public 'fk_user' => string '2' (length=1)
-              public 'thm' => string '5.00000000' (length=10)
-              public 'invoice_id' => null
-              public 'invoice_line_id' => null
-              public 'note' => string '' (length=0)
-              public 'date_pause' => null
-              public 'date_start' => null
-              public 'date_end' => null
-              public 'import_key' => null
-
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ?>
