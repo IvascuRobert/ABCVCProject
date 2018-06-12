@@ -1071,7 +1071,7 @@ if (empty($reshook))
 	    }
 	}
 
-	if ($action == 'confirm_delete' && GETPOST("confirm") == "yes" && $user->rights->projet->Șterge)
+	if ($action == 'confirm_delete' && GETPOST("confirm") == "yes" && $user->rights->projet->supprimer)
 	{
 	    $object->fetch($id);
 	    $result=$object->delete($user);
@@ -1419,12 +1419,14 @@ elseif ($object->id > 0)
 	   
 	    // Confirmation delete
 	    if ($action == 'delete') {
+			// var_dump("a ajuns?"); exit;
 	        $text=$langs->trans("ConfirmDeleteAProject");
 	        $task=new TaskABCVC($db);
 	        $taskarray=$task->getTasksArray(0,0,$object->id,0,0);
 	        $nboftask=count($taskarray);
 	        if ($nboftask) $text.='<br>'.img_warning().' '.$langs->trans("ThisWillAlsoRemoveTasks",$nboftask);
-	        print $form->formconfirm($_SERVER["PHP_SELF"]."?id=".$object->id,$langs->trans("DeleteAProject"),$text,"confirm_delete",'','',1);
+			print $form->formconfirm($_SERVER["PHP_SELF"]."?id=".$object->id,$langs->trans("DeleteAProject"),$text,"confirm_delete",'','',1);
+			// var_dump($form->formconfirm($_SERVER["PHP_SELF"]."?id=".$object->id,$langs->trans("DeleteAProject"),$text,"confirm_delete",'','',1));
 	    }
 
 	    // Clone confirmation
@@ -2349,7 +2351,7 @@ elseif ($object->id > 0)
 		        }
 
 		        // Delete
-		        if ($user->rights->projet->Șterge || ($object->statut == 0 && $user->rights->projet->creer)) {
+		        if ($user->rights->projet->supprimer || ($object->statut == 0 && $user->rights->projet->creer)) {
 		        
 		            if ($userDelete > 0 || ($object->statut == 0 && $user->rights->projet->creer)) {
 		            	//print '<div class="inline-block divButAction"><a class="butActionDelete" href="card.php?id='.$object->id.'&amp;action=delete">'.$langs->trans("Delete").'</a></div>';
@@ -2599,7 +2601,7 @@ else {
 								</div>
 							</div>	
 							<div class="form-group">
-								<label class="col-sm-3 control-label">Pilote(s) </label>
+								<label class="col-sm-3 control-label">Șofer(i) </label>
 
 								<div class="col-sm-9">
 									<div class="row">
@@ -2612,7 +2614,7 @@ else {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">Intervenant(s) </label>
+								<label class="col-sm-3 control-label">Executant(i) al activității </label>
 								<div class="col-sm-9">
 									<div class="row">
 									<select class="js-example-basic-multiple col-sm-12" id="poste_add_contributor" multiple="multiple">
@@ -3005,7 +3007,7 @@ else {
 						</div>	
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Pilote(s) </label>
+							<label class="col-sm-3 control-label">Șofer(i) </label>
 							<input type="hidden" id="poste_edit_executive_initial">
 							<div class="col-sm-9">
 								<div class="row">
@@ -3019,7 +3021,7 @@ else {
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Intervenant(s) </label>
+							<label class="col-sm-3 control-label">Executant(i) al activității </label>
 							<input type="hidden" id="poste_edit_contributor_initial">
 							<div class="col-sm-9">
 								<div class="row">
@@ -3254,7 +3256,7 @@ else {
 						</div>	
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Pilote(s) </label>
+							<label class="col-sm-3 control-label">Șofer(i) </label>
 							<input type="hidden" id="subposte_edit_executive_initial">
 							<div class="col-sm-9">
 								<div class="row">
@@ -3268,7 +3270,7 @@ else {
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Intervenant(s) </label>
+							<label class="col-sm-3 control-label">Executant(i) al activității </label>
 							<input type="hidden" id="subposte_edit_contributor_initial">						
 							<div class="col-sm-9">
 								<div class="row">
@@ -3465,7 +3467,7 @@ else {
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Pilote(s) </label>
+							<label class="col-sm-3 control-label">Șofer(i) </label>
 							<input type="hidden" id="subsubposte_edit_executive_initial">
 							<div class="col-sm-9">
 								<div class="row">
@@ -3479,7 +3481,7 @@ else {
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Intervenant(s) </label>
+							<label class="col-sm-3 control-label">Executant(i) al activității </label>
 							<input type="hidden" id="subsubposte_edit_contributor_initial">
 							<div class="col-sm-9">
 								<div class="row">
