@@ -959,7 +959,7 @@ $to = GETPOST('to','alpha');
 				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#185a18;">MY/Serviciu</div></td>
 				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#00ffbf">Școală</div></td>								
 				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#00ff80;">Vacanță</div></td>
-				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#8000ff">Boală</div></td>								
+				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#8000ff">Maladie</div></td>								
 				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#ffbf00;">Concediu</div></td>
 				<td align="center"><div class="" style="color:#fff; padding:2px; background-color:#ff0000">Recupera</div></td>
 			</tr>

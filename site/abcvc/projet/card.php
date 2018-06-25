@@ -1441,7 +1441,7 @@ elseif ($object->id > 0)
 	        	array('type' => 'checkbox', 'name' => 'clone_project_files','label' => $langs->trans("CloneProjectFiles"),	    'value' => false),
 	        	array('type' => 'checkbox', 'name' => 'clone_task_files',	'label' => $langs->trans("CloneTaskFiles"),         'value' => false)
 	        );
-	        print $form->formconfirm($_SERVER["PHP_SELF"]."?id=".$object->id, $langs->trans("CloneProject"), $langs->trans("ConfirmCloneProject"), "confirm_clone", $formquestion, '', 1, 300, 590);
+			print $form->formconfirm($_SERVER["PHP_SELF"]."?id=".$object->id, $langs->trans("CloneProject"), $langs->trans("ConfirmCloneProject"), "confirm_clone", $formquestion, '', 1, 300, 590);
 	    }
 	    print '<form action="'.$_SERVER["PHP_SELF"].'" method="POST" class="form-horizontal">';
 	    print '<input type="hidden" name="token" value="'.$_SESSION['newtoken'].'">';
@@ -2602,7 +2602,6 @@ else {
 							</div>	
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Șofer(i) </label>
-
 								<div class="col-sm-9">
 									<div class="row">
 									<select class="js-example-basic-multiple col-sm-12" id="poste_add_executive" multiple="multiple">

@@ -268,7 +268,7 @@ if (!empty($conf->global->MAIN_EASTER_EGG_COMMITSTRIP)) {
 {
 ?>
 	<div class="center login_main_home" style="max-width: 70%">
-	<?php echo $main_home; ?>
+		Bine ați venit!
 	</div><br>
 <?php
 }

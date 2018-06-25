@@ -72,7 +72,7 @@ class modabcvc extends DolibarrModules
 	);
 
 	/** @var string Module name */
-	public $name = "ABCVC Module";
+	public $name = "Modul Licență";
 
 	/** @var string Module short description */
 	public $description = "Module de gestion ABCVC";

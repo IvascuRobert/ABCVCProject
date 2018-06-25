@@ -340,7 +340,7 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';?>
 								<td ><div class="" style="color:#fff; padding:2px; background-color:#00ffbf">Școală</td>								
 								
 								<td ><div class="" style="color:#fff; padding:2px; background-color:#00ff80;">Vacanță</td>
-								<td ><div class="" style="color:#fff; padding:2px; background-color:#8000ff">Boală</td>								
+								<td ><div class="" style="color:#fff; padding:2px; background-color:#8000ff">Maladie</td>								
 								<td ><div class="" style="color:#fff; padding:2px; background-color:#ffbf00;">Concediu</div></td>
 								<td ><div class="" style="color:#fff; padding:2px; background-color:#ff0000">Recupera</td>
 							</tr>
@@ -777,7 +777,7 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';?>
 								<option value="6">MY/Serviciu</option>
 								<option value="5">Școală</option>
 								<option value="1">Concediu plătit</option>
-								<option value="3">Boală</option>
+								<option value="3">Maladie</option>
 								<option value="2">Concediu</option>
 								<option value="4">Recuperare</option>
 							</select>
