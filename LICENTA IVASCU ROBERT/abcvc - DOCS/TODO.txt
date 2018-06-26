@@ -1,0 +1,1003 @@
+/* ********************************************************************************************
+
+DATABASE
+
+******************************************************************************************** */
+    CREATE TABLE `llx_abcvc_projet_task` (
+      `rowid` int(11) NOT NULL AUTO_INCREMENT,
+      `ref` varchar(50) DEFAULT NULL,
+      `entity` int(11) NOT NULL DEFAULT '1',
+      `fk_projet` int(11) NOT NULL,
+      `fk_task_parent` int(11) NOT NULL DEFAULT '0',
+      `datec` datetime DEFAULT NULL,
+      `tms` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      `dateo` datetime DEFAULT NULL,
+      `datee` datetime DEFAULT NULL,
+      `datev` datetime DEFAULT NULL,
+      `label` varchar(255) NOT NULL,
+      `description` text,
+      `duration_effective` double DEFAULT '0',
+      `planned_workload` double DEFAULT '0',
+      `progress` int(11) DEFAULT '0',
+      `priority` int(11) DEFAULT '0',
+      `fk_user_creat` int(11) DEFAULT NULL,
+      `fk_user_valid` int(11) DEFAULT NULL,
+      `fk_statut` smallint(6) NOT NULL DEFAULT '0',
+      `note_private` text,
+      `note_public` text,
+      `rang` int(11) DEFAULT '0',
+      `model_pdf` varchar(255) DEFAULT NULL,
+      `billingmode` int(11) DEFAULT NULL,
+      `fk_product` int(11) DEFAULT NULL,
+      `average_thm` double(24,8) DEFAULT NULL,
+      `import_key` varchar(14) DEFAULT NULL,
+      PRIMARY KEY (`rowid`),
+      UNIQUE KEY `uk_projet_task_ref` (`ref`,`entity`),
+      KEY `idx_projet_task_fk_projet` (`fk_projet`),
+      KEY `idx_projet_task_fk_user_creat` (`fk_user_creat`),
+      KEY `idx_projet_task_fk_user_valid` (`fk_user_valid`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+    CREATE TABLE `llx_abcvc_projet_extrafields` (
+      `rowid` int(11) NOT NULL AUTO_INCREMENT,
+      `tms` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      `fk_object` int(11) NOT NULL,
+      `import_key` varchar(14) DEFAULT NULL,
+      PRIMARY KEY (`rowid`),
+      KEY `idx_projet_extrafields` (`fk_object`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+    CREATE TABLE `llx_abcvc_projet_task` (
+      `rowid` int(11) NOT NULL AUTO_INCREMENT,
+      `ref` varchar(50) DEFAULT NULL,
+      `entity` int(11) NOT NULL DEFAULT '1',
+      
+      `fk_projet` int(11) NOT NULL,
+
+      `fk_task_parent` int(11) NOT NULL DEFAULT '0',
+      `datec` datetime DEFAULT NULL,
+      `tms` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      `dateo` datetime DEFAULT NULL,
+      `datee` datetime DEFAULT NULL,
+      `datev` datetime DEFAULT NULL,
+      `label` varchar(255) NOT NULL,
+      `description` text,
+      `duration_effective` double DEFAULT '0',
+      `planned_workload` double DEFAULT '0',
+      `progress` int(11) DEFAULT '0',
+      `priority` int(11) DEFAULT '0',
+      `fk_user_creat` int(11) DEFAULT NULL,
+      `fk_user_valid` int(11) DEFAULT NULL,
+      `fk_statut` smallint(6) NOT NULL DEFAULT '0',
+      `note_private` text,
+      `note_public` text,
+      `rang` int(11) DEFAULT '0',
+      `model_pdf` varchar(255) DEFAULT NULL,
+      `billingmode` int(11) DEFAULT NULL,
+      `fk_product` int(11) DEFAULT NULL,
+      `average_thm` double(24,8) DEFAULT NULL,
+      `import_key` varchar(14) DEFAULT NULL,
+      PRIMARY KEY (`rowid`),
+      UNIQUE KEY `uk_projet_task_ref` (`ref`,`entity`),
+      KEY `idx_projet_task_fk_projet` (`fk_projet`),
+      KEY `idx_projet_task_fk_user_creat` (`fk_user_creat`),
+      KEY `idx_projet_task_fk_user_valid` (`fk_user_valid`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+
+    CREATE TABLE `llx_abcvc_projet_task_billed` (
+      `rowid` int(11) NOT NULL AUTO_INCREMENT,
+      `fk_task` int(11) NOT NULL,
+      `task_date` date DEFAULT NULL,
+      `task_duration_billed` double DEFAULT NULL,
+      `fk_facture` int(11) NOT NULL,
+      `fk_user` int(11) DEFAULT NULL,
+      `note` text,
+      PRIMARY KEY (`rowid`),
+      KEY `idx_projet_task_billed_task` (`fk_task`),
+      KEY `idx_projet_task_billed_facture` (`fk_facture`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+    CREATE TABLE `llx_abcvc_projet_task_extrafields` (
+      `rowid` int(11) NOT NULL AUTO_INCREMENT,
+      `tms` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      `fk_object` int(11) NOT NULL,
+      `import_key` varchar(14) DEFAULT NULL,
+      PRIMARY KEY (`rowid`),
+      KEY `idx_projet_task_extrafields` (`fk_object`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+    CREATE TABLE `llx_abcvc_projet_task_time` (
+      `rowid` int(11) NOT NULL AUTO_INCREMENT,
+      `fk_task` int(11) NOT NULL,
+      `task_date` date DEFAULT NULL,
+      `task_datehour` datetime DEFAULT NULL,
+      `task_date_withhour` int(11) DEFAULT '0',
+      `task_duration` double DEFAULT NULL,
+      `fk_user` int(11) DEFAULT NULL,
+      `thm` double(24,8) DEFAULT NULL,
+      `invoice_id` int(11) DEFAULT NULL,
+      `invoice_line_id` int(11) DEFAULT NULL,
+      `note` text,
+      `date_pause` datetime DEFAULT NULL,
+      `date_start` datetime DEFAULT NULL,
+      `date_end` datetime DEFAULT NULL,
+      `import_key` varchar(14) DEFAULT NULL,
+      PRIMARY KEY (`rowid`),
+      KEY `idx_projet_task_time_task` (`fk_task`),
+      KEY `idx_projet_task_time_date` (`task_date`),
+      KEY `idx_projet_task_time_datehour` (`task_datehour`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+    CREATE TABLE `llx_abcvc_sites` (
+      `rowid` int(11) NOT NULL AUTO_INCREMENT,
+      `label` varchar(255) DEFAULT NULL,
+      `active` tinyint(4) NOT NULL DEFAULT '1',
+      `description` varchar(255) DEFAULT NULL,
+      `id_zone` int(11) NOT NULL DEFAULT '0',
+      PRIMARY KEY (`rowid`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+
+
+    CREATE TABLE `llx_abcvc_zones` (
+      `rowid` int(11) NOT NULL AUTO_INCREMENT,
+      `label` varchar(255) DEFAULT NULL,
+      `active` tinyint(4) NOT NULL DEFAULT '1',
+      `kilometers` varchar(255) NOT NULL,
+      `price` float(10,4) NOT NULL,
+      `description` varchar(255) DEFAULT NULL,
+      PRIMARY KEY (`rowid`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+
+
+
+
+
+
+    DROP TABLE IF EXISTS `llx_abcvc_projet_lots`;
+    CREATE TABLE `llx_abcvc_projet_lots` (
+      `rowid` int(11) NOT NULL AUTO_INCREMENT,
+      `ref` varchar(50) DEFAULT NULL,
+      `entity` int(11) NOT NULL DEFAULT '1',
+      
+      `fk_projet` int(11) NOT NULL,
+
+      `label` varchar(255) NOT NULL,
+      `description` text,
+
+      `note_private` text,
+      `note_public` text,
+
+
+      `datec` datetime DEFAULT NULL,
+      `tms` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      `dateo` datetime DEFAULT NULL,
+      `datee` datetime DEFAULT NULL,
+      `datev` datetime DEFAULT NULL,
+
+      `ordering` int(11) DEFAULT '0', 
+
+      `fk_user_creat` int(11) DEFAULT NULL,
+      `fk_user_valid` int(11) DEFAULT NULL,
+      `fk_statut` smallint(6) NOT NULL DEFAULT '0',
+
+      PRIMARY KEY (`rowid`),
+      KEY `idx_projet_lot_fk_projet` (`fk_projet`),
+      KEY `idx_projet_lot_fk_user_creat` (`fk_user_creat`),
+      KEY `idx_projet_lot_fk_user_valid` (`fk_user_valid`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+    DROP TABLE IF EXISTS `llx_abcvc_projet_categories`;
+    CREATE TABLE `llx_abcvc_projet_categories` (
+      `rowid` int(11) NOT NULL AUTO_INCREMENT,
+      `ref` varchar(50) DEFAULT NULL,
+      `entity` int(11) NOT NULL DEFAULT '1',
+      
+      `fk_projet` int(11) NOT NULL,
+      `fk_lot` int(11) NOT NULL,
+
+
+      `label` varchar(255) NOT NULL,
+      `description` text,
+
+      `note_private` text,
+      `note_public` text,
+
+
+      `datec` datetime DEFAULT NULL,
+      `tms` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      `dateo` datetime DEFAULT NULL,
+      `datee` datetime DEFAULT NULL,
+      `datev` datetime DEFAULT NULL,
+
+      `ordering` int(11) DEFAULT '0', 
+
+      `fk_user_creat` int(11) DEFAULT NULL,
+      `fk_user_valid` int(11) DEFAULT NULL,
+      `fk_statut` smallint(6) NOT NULL DEFAULT '0',
+
+      PRIMARY KEY (`rowid`),
+      KEY `idx_projet_categorie_fk_projet` (`fk_projet`),
+      KEY `idx_projet_categorie_fk_user_creat` (`fk_user_creat`),
+      KEY `idx_projet_categorie_fk_user_valid` (`fk_user_valid`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+
+
+
+
+
+
+/* ********************************************************************************************
+
+DEVLOG
+
+******************************************************************************************** */
+
+question eric:
+---------------------
+ok reference exposé lot/category/etc.
+
+
+
+      ok NEW Module ABCVC
+
+ok structure menus
+
+      general
+      ----------
+      OK package & injection bootstrap 3
+
+
+
+Configuration
+ok cpanel multiblocs tables params
+-------------
+      ok Sites crud / liste filtrable triable/fiche
+      ok Zones crud / liste filtrable triable/fiche
+
++ type activité(PANNIERS, TRAJETS, PANNIERS + TRAJETS, etc. )
++ params divers exposés ici (% max, etc.)
+
+
+Projects
++ refonte cpanel
+--------------
+  ok List 
+   + expose / hide columns ABCVC
+
+  ok fiche
+  ok tasks ABCVC
+    +champs sup  
+
+
+
++ Statistics
+
+
++ Time Spent
++ acces mode liste tree dynamique + ACL visibility !
+
+
+  + tasks abcvc
+
+
+A reflechir
+-------------
+Monthly Input
+Timesheet
+Agenda
+Project Report
+
+
+************************************************************************************************************************************************************************
+1) Classification de construction :
+-----------------------------------
+La classification de construction d’ABCVC est la suivante :
+Un Client
+ Un client peut avoir 1 à n Projet
+  Un projet contient 1 à n Lot
+  Un lot est organisé dans 1 à n Catégorie
+  Une catégorie contient 1 à n Poste (les postes sont aussi bien des l’achats que du temps homme passé
+ Un poste est constitué de 1 à n Sous-Poste
+  Un sous-poste est découpé en 1 à n Sous-Sous-Postes (dans ces sous-
+
+
+2) Projet :
+-----------------------------------
+Un projet peut être assimilé à un chantier pour un client donné.
+Sur ce projet, il est donc important d’y retrouver toutes les informations, tel que :
+- Achat de matériel associé à un poste
+- Les factures fournisseurs
+- Le pourcentage d’avancement par poste
+- Les factures de différent sous-traitant
+- Les répartitions des coûts (achat de matériel et sous-traitant) par poste
+- Les collaborateurs affectés à chaque poste.
+
+
+3) Facture d’avancement :
+-----------------------------------
+Les factures d’avancement découlent directement du document Excel qui a été envoyé au client lors de la validation du devis.
+Ces factures d’avancements étant le suivi comptable d’un chantier avec un client il doit pour rappel retracer les étapes précédentes, ainsi les champs obligatoires à retrouver sont :
+- Reprise des postes et sous-postes
+- L’avancement précédent (en %)
+- L’avancement estimatif (en %) – Un calcul par rapport à la somme de l’avancement des postes et sous-postes sera proposée. Mais cette information pourra être modifiée au besoin.
+Ces factures d’avancement seront stockées toutes les mois, dans un projet, il peut donc y avoir un grand nombre de facture d’avancement.Dans le pied de page de chaque facture d’avancement, le reste de la facture global doit être renseigné (en % et en montant €).
+
+
+4) Primes :
+-----------------------------------
+Les primes sont tous les frais liés au déplacement des collaborateurs ABCVC.
+Ces frais peuvent être de divers type : Trajet, Panier, etc.
+Un récapitulatif de l’ensemble des frais par chantier doit pouvoir être visualisé par chantier, par collaborateur sur une période précise.
+Ces frais sont présentés jour par jour car ils peuvent être déduits d’une journée notamment en cas d’absence ou de congés.
+
+
+5) Etat des fiches de chantier :
+-----------------------------------
+Pour suivre le temps passé par les collaborateurs, ils saisissent le nombre de temps passé sur chaque poste du chantier sur lequel ils sont affectés.
+Ventilation automatique des heures saisies dans les Postes vers les « sous » et « sous-sous » Postes
+• Ventilation équitable sur tous les sous-postes, sous-sous-postes des heures passées saisies dans les postes.
+• Cette ventilation sera aussi bien remplie pour les postes que les sous-Postes suivant la construction des Projets.
+• Prise en compte uniquement pour les postes du type « Temps passée ABCVC », et pas des temps passé des prestataires.
+Pour le calcul : Temps passée par Poste = (temps passée par Poste / nb Sous-Poste) = (temps passée par Poste / nb Sous-Sous-Poste)
+Pour le temps passé par sous-Poste : Temps passée par poste / nb-SousPoste
+Pour le temps passée par sous-sous-Poste : Temps passée par sous-Poste / nb-Sous-Sous-Poste
+En déterminant un type bien précis pour les «sous » et « sous-sous » Postes, (tâche Dolibarr) à affecter, cela peut-être réalisé sans refaire tout un système.
+
+Il faut également prévoir de saisir le temps travaillé les sous-traitants et leur pourcentage d’avancement qui soit différent de celui des temps travaillés ABCVC.
+
+Cette saisie des heures est une information indispensable pour le suivi du chantier car plusieurs collaborateurs peuvent être affectés sur un même chantier simultanément 
+mais sur des postes différents.
+
+La somme des temps passés par poste fait donc l’avancement estimatif du chantier.
+
+
+
+
+
+
+
+
+****************************************************************************
+
+DATABASE update
+
+****************************************************************************
+
+
+  ALTER TABLE `llx_abcvc_projet_task` 
+  ADD COLUMN `fk_zone` INT(11) NOT NULL DEFAULT '0' AFTER `fk_task_parent`,
+  ADD COLUMN `progress_estimated` INT(11) NOT NULL DEFAULT '0' AFTER `progress`,
+  ADD COLUMN `cost` DOUBLE(24,8) NULL DEFAULT NULL AFTER `progress_estimated`,
+  ADD COLUMN `fact_fourn` VARCHAR(255) NOT NULL DEFAULT '' AFTER `cost`;
+
+
+  INSERT INTO `llx_c_type_contact` (`rowid`, `element`, `source`, `code`, `libelle`, `active`, `position`) VALUES ('192', 'projectabcvc', 'internal', 'PROJECTLEADER', 'Chef de Projet', '1', '0');
+  INSERT INTO `llx_c_type_contact` (`rowid`, `element`, `source`, `code`, `libelle`, `active`, `position`) VALUES ('193', 'projectabcvc', 'internal', 'PROJECTCONTRIBUTOR', 'Intervenant', '1', '0');
+  INSERT INTO `llx_c_type_contact` (`rowid`, `element`, `source`, `code`, `libelle`, `active`, `position`) VALUES ('194', 'projectabcvc', 'external', 'PROJECTLEADER', 'Chef de Projet', '1', '0');
+  INSERT INTO `llx_c_type_contact` (`rowid`, `element`, `source`, `code`, `libelle`, `active`, `position`) VALUES ('195', 'projectabcvc', 'external', 'PROJECTCONTRIBUTOR', 'Intervenant', '1', '0');
+
+  INSERT INTO `llx_c_type_contact` (`rowid`, `element`, `source`, `code`, `libelle`, `active`, `position`) VALUES ('196', 'projectabcvc_task', 'internal', 'TASKEXECUTIVE', 'Responsable', '1', '0');
+  INSERT INTO `llx_c_type_contact` (`rowid`, `element`, `source`, `code`, `libelle`, `active`, `position`) VALUES ('197', 'projectabcvc_task', 'internal', 'TASKCONTRIBUTOR', 'Intervenant', '1', '0');
+  INSERT INTO `llx_c_type_contact` (`rowid`, `element`, `source`, `code`, `libelle`, `active`, `position`) VALUES ('198', 'projectabcvc_task', 'external', 'TASKEXECUTIVE', 'Responsable', '1', '0');
+  INSERT INTO `llx_c_type_contact` (`rowid`, `element`, `source`, `code`, `libelle`, `active`, `position`) VALUES ('199', 'projectabcvc_task', 'external', 'TASKCONTRIBUTOR', 'Intervenant', '1', '0');
+
+
+
+
+  ALTER TABLE `llx_abcvc_projet` 
+  ADD COLUMN `fk_sites` INT(11) NOT NULL DEFAULT '0' AFTER `fk_soc`,
+
+
+  ALTER TABLE `llx_abcvc_projet_task_time` 
+  ADD COLUMN `task_type` INT(11) NOT NULL DEFAULT '0' AFTER `task_duration`;
+
+
+  ALTER TABLE `llx_abcvc_projet` 
+  CHANGE COLUMN `fk_sites` `fk_zones` INT(11) NOT NULL DEFAULT '0' ,
+  ADD COLUMN `address` VARCHAR(255) NOT NULL DEFAULT '' AFTER `description`,
+  ADD COLUMN `postal_code` VARCHAR(10) NOT NULL DEFAULT '' AFTER `address`,
+  ADD COLUMN `city` VARCHAR(255) NOT NULL DEFAULT '' AFTER `postal_code`;
+
+
+  ALTER TABLE `llx_abcvc_projet_task` 
+  ADD COLUMN `cost_mo` DOUBLE(24,8) NULL DEFAULT NULL AFTER `cost`;
+
+
+  ALTER TABLE `llx_abcvc_projet_task` 
+  ADD COLUMN `poste_pv` DOUBLE(24,8) NULL DEFAULT NULL AFTER `cost_mo`;
+
+
+ALTER TABLE `abcvc`.`llx_facture` 
+DROP FOREIGN KEY `fk_facture_fk_projet`;
+
+ALTER TABLE `abcvc`.`llx_propal` 
+DROP FOREIGN KEY `fk_propal_fk_projet`;
+
+
+
+
+****************************************************************************
+
+analyse ecran gestion temps saisis
+
+****************************************************************************
+
+CORE                                                            ABCVC
+------------------------------------------------------------------------------------------------
+monthly input
+/management/projet/listtime.php?idmenu=60&leftmenu=             /abcvc/projet/monthlyinput.php?idmenu=91&mainmenu=abcvc&leftmenu=
+
+TimeSheetWeek
+/management/projet/listtimeweek.php?idmenu=61&leftmenu=
+
+New enter on the fly                                            *** COUIC ***
+/management/projet/startstoptime.php?perioduser=2
+
+
+New time spent                                                  temps passe
+/projet/activity/perweek.php                                    /abcvc/projet/activity/perweek.php?&day=30&month=08&year=2017
+
+
+
+!!! a cibler sur PROJET uniquement !!!
+-------------------------------------------------
+ok - chantier/site
+
+
+!!! a cibler sur POSTE uniquement !!!
+-------------------------------------------------
+ok - affectation zone & affectation + sous....
+ok - affectation collaborateurs +  sous....
+     + prise en compte cas update apres coup...
+
+
+
+
+
+****************************************************************************
+
+TODO
+
+****************************************************************************
+
++ refonte PDF projet full
+
++ harmonisation date/calendar input 
+  - nouveau/edit projet
++ pb load/init datetimepicker  !!!! argh
+
++ controle integrite temps saisies
+  - max x heures/jours (7 + heures sup?)
+
++ utilisation periodes (trigger APPROVED) module HRM pour auto injecter des timespent avec bon type
+
++ refonte facturation projet (incluant le template PDF projet full robert)
+
+
+test
+pgs91f3w
+
+
+****************************************************************************
+
+RV / questions
+
+****************************************************************************
+
+confirmation / explication :
+
+ecran/pdf primes
+---------------------
+- calcul couts panier ?
+- calcul couts trajet ? -> prix  par zone ?
+- grand trajet = Zone 5 ?
+
+
+
+projet / poste,  
+---------------------
+- Charge prévue typique / format abcvc
+- valider pertinence poste ONLY !!!!!!!!!!!!!!!!!!!!!!!! *
+- valider cout lie factures fournisseur !!!!!!!!!!!!!!!!!!!!!!!! **
+  + champ prix vente ?! pour avoir une marge ???
+
+* permettra un calcul correct global % progression
+** permettra un calcul correct facturation
+
+
+
+
+
+
+
+****************************************************************************
+
+**********************    timespent   **************************************
+
+****************************************************************************
+
+
+//cumul temps par date
+------------------------------------------
+    $projectstatic->weekWorkLoadPerTask
+
+    array (size=1)
+      1505080800 => 
+        array (size=1)
+          17 => string '34200' (length=5)
+
+
+//temp par user
+------------------------------------------      
+    $timespent=Abcvc_fetchSumTimeSpent($taskstatic->id, $curday, $perioduser);
+
+    array (size=8)
+      'date_debut' => string '2017-09-11 08:00:00' (length=19)
+      'debut' => string '08:00' (length=5)
+      'debut_sec' => int 28800
+      'date_fin' => string '2017-09-11 22:00:00' (length=19)
+      'fin' => string '22:00' (length=5)
+      'fin_sec' => int 79200
+      'duration_sec' => 50400
+      'type' => string '0' (length=1)
+
+    array (size=8)
+      'date_debut' => null
+      'debut' => string ':' (length=1)
+      'debut_sec' => int 0
+      'date_fin' => string '1970-01-01 01:00:00' (length=19)
+      'fin' => string '01:00' (length=5)
+      'fin_sec' => int 3600
+      'duration_sec' => null
+      'type' => int 0
+
+
+
+410 gone
+https://www.echosens.com/fr/viagra-by-overnight-delivery/      
+
+
+https://sitecheck.sucuri.net/results/www.echosens.com
+https://sitecheck.sucuri.net/results/www.echosens.com#blacklist-status
+
+
+
+
+    location ~ /(.*)viagra(.*)$ {
+        return 410;
+    }
+
+
+
+----------------------------------------------------------
+- fct update joomla
+
+- mecanisme detect hack
+
+
+100.5  
+19,5161 * 50.25 = 980.68
+7,32 * 50.25 = 367.83
+
+
+INSERT INTO llx_abcvc_projet_task (ref, entity, fk_projet, fk_task_parent, datec, dateo, datee, label, description, progress, planned_workload, fk_user_creat, fk_statut, cost, progress_estimated, fk_zone, fact_fourn) VALUES ( '2.1.1.1', 1, '16', '31', '20170927195850', NULL, NULL, 'sposte1', '', '', '0', 2, 1, '', '', '0', '')'</font> <i>(length=328)</i>
+</pre>
+
+
+
+
+https://assets.adobe.com/assets
+Nouveau mot de passe pour l'application Addon Adobe.
+- Password : Webintelligence_0403
+
+=> Login : contact@webintelligence.fr
+=> Password : Webintelligence_0403
+
+-----------------------------------------------------------
+
+suppression lot/categorie/poste/sousposte/sousousposte (recursif)
+---
+ok
+
+erreur dans calcul de marge par poste : 
+il faut faire : prix de vente-(couts estimes-charges calculées) 
+---
+ok, zarbi mais le client est roi...
+
+pouvoir numeroter les postes et catégories comme souhaité (donc influence sur l’ordre de présentation)
+---
+ok, choix reference lot ouvert avec controle doublon, numerotation auto en fct.
+
+
+
+
+champ projet core: Montant charges fixes Projet
+a ajouter en cout projet total
+---
+ALTER TABLE `llx_abcvc_projet` 
+ADD COLUMN `chargesfixe` DOUBLE(24,8) NULL DEFAULT NULL AFTER `import_key`;
+OK
+
+
+
+---
+
+
+- est-ce la facturation reelle et les temps réels passés par poste generent des nouveaux calculs de renta en fin de chantier, 
+ou a chaque facture de situation
+---
+
+
+
+
+TODO final
+******************************************
+
+projet
+--------------
+ 
+
+
++ champ Montant charges fixes Projet ajout dans circuit -> ecrans/PDF facturations
+
+
++ liens auto factures projets -> devis initial pour calcul correct analytique
++ permettre affectation projet/poste direct depuis une facture fournisseur
+
+ALTER TABLE `llx_facture_fourn` 
+DROP FOREIGN KEY `fk_facture_fourn_fk_projet`;
+ALTER TABLE `llx_facture_fourn` 
+DROP INDEX `idx_facture_fourn_fk_projet` ;
+
+
+
++ TEST final desactivation module projet CORE, pour fonctionement autonome module projet ABCVC
+
++ nettoyer/reformuler divers ecrans
+
++ paNiers
+
+
+A VALIDER / PRECISER
+******************************************
+
+
+dashboard abcvc
+****************************
++ quel stats serait pertinente a mettre en graph camenbert ? (trivial)
+---------------
+- camenbert ventilation progression reelle nb projet
+OK : tableau liste ici de projets avec totaux couts/ventes/marges actuel et % progression totale projet
+
+
++ notification mail a declencher pour quels evenements ?
+  actuel : 
+    - generation devis projet
+    - generation facture projet
+
+
+  **** DESTACTIVE **** Données quanti.
+  ****************************
+  + a valider ? : 
+    tableau liste ici de projets avec totaux couts/ventes/marges actuel et % progression totale projet
+    + listes documents generes ? (devis/factures)
+    + autres element projet a faire remonter ici ?
+    stats pertinente en histogramme ? (trivial)
+
+
+saise mensuelle
+****************************
++ actuellement accessible QUE pour les collaborateurs enregistres ds dolibarr (avec compte d'acces)
++ laisser la possibilite de saisie de temps passe HORS collaborateurs enregistres dans le poste? non affecte par poste
++ type de temps passe ok ? en lien avec calcul presence collaborateurs ci-dessous
+
+
+Presence collaborateurs
+****************************
++ mode de calcul :
+  - heures passes ok
+  - cout trajet ok
+  - heures supp ok
+
+  - paniers ?
+  - RTT/maladie/recup/ecole ?
+  - Collaborateur doit ?
+  - ABCVC doit ?
+
+
+
+
+
+
+Function Catalogue(log As String, pass As String) As Catalogue
+
+Function CalendrierDispoTarifs(log As String,pass As String) As Disponibilites
+
+Function VerifDispo(log As String,pass As String, DateDeb As String, DateFin As String, oXmlEtab As DispEtablissement) As Disponibilites
+
+Function Reservation(log As String, pass As String, r As resa.Reservations) As String
+
+Function Reglement (log As String, pass As String, reg As Regle.Reservation) As String
+
+Function getProtocolVersion() As String
+
+
+ALTER TABLE `llx_abcvc_projet_task_time`
+ADD COLUMN `task_type` int(11) NOT NULL DEFAULT '0' AFTER `task_duration`;
+-------------------------------------
+
+prix panier fixe
+9.88
+
+7h + panier
+
+1h intervalle bouffe
+
+
+primes
+-------------------------------------
+
+- Collaborateur doit ?
+
+nb travail + ferie - ( conges payes + recup )
+35h semaine / 5semaines conges payes (semaine annee en cours 51/52)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***************************************************************************************
+
+TODO finale
+
+***************************************************************************************
+
+      upgrade dolibar 6.03
+      --------------------
+      MAIN_ONLY_LOGIN_ALLOWED => Only the specified login is allowed to log in Dolibarr (maintenance mode) 
+
+    ALTER TABLE llx_abcvc_projet_task 
+    ADD COLUMN unite VARCHAR(45) NULL DEFAULT '' AFTER priority,
+    ADD COLUMN quantite DOUBLE NULL DEFAULT '0' AFTER unite;
+
+     Cannot declare class FormProjets, because the name is already in use in 
+     /srv/web/crm.abcvc-chauffage.com/htdocs/abcvc/projet/class/html.formprojet.class.php on line 29" 
+
+
+    Mettre un ordre logique dans l'affichage en liste des postes (aujourd'hui 1.14.10 est avant 1.14.2) mettre cela par ordre croissant
+    --
+    ok
+
+
+
+    DONE
+    ***************************************************************************************
+    re(re)ventilation couts
+    ------------------------
+    ok - si pas charges auto -> couts estimes
+    ok - ds tableau colonne cout estimes/couts calcules  
+    ok - calcul charges heures / !!! SEULEMENT sur heures PASSES !!!
+      couleurs barre progression:
+        0    -> 79 vert
+        80   -> 99 orange
+        100  -> bleu
+        101+ -> rouge
+
+    OK ecran contacs lien fiche contact direct
+    OK ecran agenda debug
+
+
+    table config zone ; arrondi à 2 chiffres après virgule, séparateur décimale "," et francisation
+    ---
+    ok
+
+    Table config zones : ajout coche "GD", calculer sur jours -1 ajout frais
+    ---
+    ALTER TABLE `llx_abcvc_zones` 
+    ADD COLUMN `gd` TINYINT(4) NOT NULL DEFAULT '0' AFTER `description`;
+    OK
+
+    Nouveau projet : obligé de passer par la vue d'un des projets pour avoir accès au menu de nouveau projet.
+    ---
+    ok, bouton nouveau projet sur dashboard
+
+    saisie des temps : pré-saisir l'heure de début à 07h00 (valeur par défaut)
+    ---
+    OK
+
+    saisie des temps : rajouter la valeur : MES / SAV et décompter et affecter le temps comme pour la valeur "Travail" 
+    ---
+    OK
+
+    Saisie des heures : si pas d'heures budgétées, et heures consommées mettre avancement estimé en rouge (>101%)
+    ---
+    OK
+
+    Saisie des heures : quid de la saisie d'heures de personnes son affecxtées à la tache ?
+    ---
+    ...il faut les affecter...
+
+
+    Saisie des temps : toujours 1 heure de pause le midi à décompter
+    ---
+    si 5+ heures (inclure 1h repas)
+    ok : ex
+    07:00 -> 17h44 = 7H +1h repas + 2h44 Heures sup.
+
+
+
+    synthèse : creation devis > erreur à validation accepter/refuser
+    ---
+    OK, waaa mecanisme d'evenement n'avais pas les index/autoincrement ?! pb precedent update ?
+
+    ALTER TABLE `llx_actioncomm` 
+    CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ,
+    ADD PRIMARY KEY (`id`);
+    ALTER TABLE `llx_actioncomm_resources` 
+    CHANGE COLUMN `rowid` `rowid` INT(11) NOT NULL AUTO_INCREMENT ,
+    ADD PRIMARY KEY (`rowid`);
+    ALTER TABLE `llx_actioncomm_extrafields` 
+    CHANGE COLUMN `rowid` `rowid` INT(11) NOT NULL AUTO_INCREMENT ,
+    ADD PRIMARY KEY (`rowid`);
+
+
+    tableau presence colab : supprimer grand déplacement dans legende et liste deroulante  et supprimer légende : paniers / paniers + trajets / trajets
+    ---
+    tableau presence colab : Pas de liaison à date entre "saisie mensuelle" et "presence collaborateurs"
+    ---
+    ok refonte ecran presence
+
+    Ecole : heures à exclure des calculs de panier et trajet et à ne pas compter en "Travail"  > avancement du projet
+    ---
+    OK
+
+
+
+    config generale 1->n
+    + config montant fixe panier
+    ---
+    CREATE TABLE `llx_abcvc_config` (
+      `rowid` int(11) NOT NULL AUTO_INCREMENT,
+      `label` varchar(255) DEFAULT NULL,
+      `value` varchar(255) DEFAULT NULL,  
+      `description` varchar(255) DEFAULT NULL,
+      `active` tinyint(4) NOT NULL DEFAULT '1',
+      PRIMARY KEY (`rowid`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+    ---
+    ok
+
+
+    refonte factures avancements nouveau format
+    ---
+    OK! fff
+
+    ============================================================================================================================
+    Nbre heure par an qui sert de base de calcul : 1645 ; si collab + d'heure > ABCVC doit ; si collab - d'heures > collab doit. 
+    ============================================================================================================================
+
+    ABCVC doit / Collab doit : Nbr heures ("travail"+ "feries"+"maladie") - ("conges" + "recup")  annualisés (35h/Semaine) - de 51 à 52 semaines par an - 5 semaines de CP 
+    ---
+    ok mais a valider...
+
+
+
+    1 - pas de modification du fonctionnement initialement prévu et validé par ses soins
+    2 - tu as désactivé le fonctionnement de la demande de prix fournisseur (commercial /proposition commerciale fournisseur ou Tiers / Fournisseur / choix d’un et creer une demande de prix.
+    ---
+    ok
+
+
+
+    synthese : ajouter comme dans projets originels dolibarr : les propositions commerciales fournisseurs (demandes de prix), liste des commandes fournisseurs et liste des factures fournisseurs.
+    ---
+    OK
+
+
+
+    3 - et c’est le principal : lors de la création de l’arborescence, on a déterminé de calculer le prix de vente du sous-poste en divisant le prix du poste par le nombre de sous-poste. / idem pour le sous-sous poste.
+    => Il faut lui laisser la possibilité de saisir un montant en fait
+    ---
+    prrff OK...
+
+
+
+
+    modif menu left
+    ---------------
+    INSERT INTO `llx_menu`
+     (`menu_handler`, `entity`, `module`, `type`, `mainmenu`, `leftmenu`, `fk_menu`, `position`, `url`, `titre`, `langs`, `perms`, `enabled`, `usertype`, `tms`) VALUES 
+    ('all', '1', 'abcvc', 'left', 'abcvc', 'abcvc', '88', '100', '/abcvc/projet/card.php?leftmenu=abcvc&action=create', 'Nouveau projet', 'abcvc', '1', '$conf->abcvc->enabled', '2', '2017-09-14 10:37:00');
+    UPDATE `llx_menu` SET `position`='101' WHERE `rowid`='91';
+    UPDATE `llx_menu` SET `position`='102' WHERE `rowid`='93';
+    UPDATE `llx_menu` SET `position`='103' WHERE `rowid`='97';
+    ---
+    OK
+
+
+    ACL / login groupe collaborateurs
+    ---------------
+    -> acces presences collaborateurs ONLY !!!
+
+      UPDATE `llx_menu` SET `perms`='1' WHERE `rowid`='84';
+      UPDATE `llx_menu` SET `perms`='$user->rights->projet->lire' WHERE `rowid`='85';
+      UPDATE `llx_menu` SET `perms`='$user->rights->projet->lire' WHERE `rowid`='87';
+      UPDATE `llx_menu` SET `perms`='$user->rights->projet->lire' WHERE `rowid`='88';
+      UPDATE `llx_menu` SET `perms`='$user->rights->projet->lire' WHERE `rowid`='93';
+      UPDATE `llx_menu` SET `perms`='$user->rights->projet->lire' WHERE `rowid`='97';
+      UPDATE `llx_menu` SET `perms`='$user->rights->projet->lire' WHERE `rowid`='98';
+    ---
+    OK  
+
+
+    + TEST final desactivation module projet CORE, pour fonctionement autonome module projet ABCVC
+    ---
+    OK
+
+
+    + evenement manuel projet  / ABCVC
+    ---
+    OK
+
+    + agenda refonte multiples ecrans / ABCVC
+    ---
+    OK
+
+
+    ! PDF timeout
+    --------------
+    ok...
+
+
+    ! PDF pas de breakpage ds tableau mois...
+    --------------
+    ok
+
+
+    3 - suite arrondi !!!
+    ---
+    ok.. ffff
+
+
+
+
+    ! Page accueil blocs widgets Statistiques
+    --------------
+    OK...
+
+

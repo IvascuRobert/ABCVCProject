@@ -1357,7 +1357,7 @@ if ($action == 'create' && $user->rights->projet->creer)
 							<label for="zones" class="col-sm-2 control-label">Cheltuieli fixe</label>
 							<div class="col-sm-10">
 								<div class="input-group"> 
-									<span class="input-group-addon">€</span>
+									<span class="input-group-addon">lei</span>
 									<input type="text" name="id_chargesfixe" class="form-control currency"> 
 								</div>	
 							</div>
@@ -1569,7 +1569,7 @@ elseif ($object->id > 0)
 									<label for="zones" class="col-sm-2 control-label">Cheltuieli fixe</label>
 									<div class="col-sm-10">
 										<div class="input-group"> 
-											<span class="input-group-addon">€</span>
+											<span class="input-group-addon">lei</span>
 											<input name="id_chargesfixe" type="text" class="form-control currency" value="<?php echo price($object->chargesfixe); ?>">
 										</div>
 									</div>
@@ -1660,7 +1660,7 @@ elseif ($object->id > 0)
 							<div class="form-group">
 						    	<label for="zones" class=" control-label">Cheltuieli fixe</label><br />
 						    	<?php 
-									echo price($object->chargesfixe)." €";
+									echo price($object->chargesfixe)." lei";
 								?>
 						    </div>
 
@@ -1770,14 +1770,14 @@ elseif ($object->id > 0)
 								data-nbchild = "<?php echo $lot->nb_child; ?>"> 
 							<b><?php echo $lot->ref;?>. <?php echo $lot->label; ?></b></a>
 						</td>
-						<td align="right"> <?php echo price($lot->cost); ?>€</td>
-						<td align="right"><b> <?php echo price($lot->cost_calculated); ?>€</b></td>
-						<td align="right"><?php echo price($lot->pv_lot); ?>€</td>
+						<td align="right"> <?php echo price($lot->cost); ?>lei</td>
+						<td align="right"><b> <?php echo price($lot->cost_calculated); ?>lei</b></td>
+						<td align="right"><?php echo price($lot->pv_lot); ?>lei</td>
 						<td align="right"><?php 
 							if( $lot->marge>=0){
-								echo price( $lot->marge).'€'; 
+								echo price( $lot->marge).'lei'; 
 							} else {
-								echo '<span style="color:red;">'.price( $lot->marge).'€</span>'; 
+								echo '<span style="color:red;">'.price( $lot->marge).'lei</span>'; 
 							}
 							?>
 						</td>
@@ -1805,14 +1805,14 @@ elseif ($object->id > 0)
 								data-nbchild = "<?php echo $categorie->nb_child; ?>">
 								<?php echo $categorie->ref; ?>. <?php echo $categorie->label; ?></a>		
 							</td>
-							<td align="right"> <?php echo price($categorie->cost); ?>€</td>
-							<td align="right"><b> <?php echo price($categorie->cost_calculated); ?>€</b></td>
-							<td align="right"><?php echo price($categorie->pv_categorie); ?>€</td>
+							<td align="right"> <?php echo price($categorie->cost); ?>lei</td>
+							<td align="right"><b> <?php echo price($categorie->cost_calculated); ?>lei</b></td>
+							<td align="right"><?php echo price($categorie->pv_categorie); ?>lei</td>
 							<td align="right"><?php 
 								if( $categorie->marge_categorie>=0){
-									echo price( $categorie->marge_categorie).'€'; 
+									echo price( $categorie->marge_categorie).'lei'; 
 								} else {
-									echo '<span style="color:red;">'.price( $categorie->marge_categorie).'€</span>'; 
+									echo '<span style="color:red;">'.price( $categorie->marge_categorie).'lei</span>'; 
 								}
 								?>
 							</td>
@@ -1854,17 +1854,17 @@ elseif ($object->id > 0)
 										data-nbchild = "<?php echo $poste->nb_child; ?>">
 										<?php echo $poste->ref; ?>. <?php echo $poste->label; ?></a>				
 								</td>
-								<td align="right"><?php echo price($poste->cost); ?>€</td>						
+								<td align="right"><?php echo price($poste->cost); ?>lei</td>						
 								<td align="right">
-									<b> <?php echo price($poste->cost_final); ?>€</b>
+									<b> <?php echo price($poste->cost_final); ?>lei</b>
 								</td>
-								<td align="right"><?php echo price($poste->poste_pv); ?>€</td>
+								<td align="right"><?php echo price($poste->poste_pv); ?>lei</td>
 								<td align="right"><?php 
 									$marge = $poste->poste_pv - $poste->cost_final;
 									if($marge>=0){
-										echo price($marge).'€'; 
+										echo price($marge).'lei'; 
 									} else {
-										echo '<span style="color:red;">'.price($marge).'€</span>'; 
+										echo '<span style="color:red;">'.price($marge).'lei</span>'; 
 									}
 									?>
 								</td>
@@ -1999,27 +1999,27 @@ elseif ($object->id > 0)
 									?>
 									<?php echo $subposte->ref; ?>. <?php echo $subposte->label; ?></a>					
 									</td>
-									<td align="right"><i> <?php echo price($subposte->cost); ?>€</i></td>
-									<td align="right"><i> <?php echo price($subposte->cost_final); ?>€</i></td>
+									<td align="right"><i> <?php echo price($subposte->cost); ?>lei</i></td>
+									<td align="right"><i> <?php echo price($subposte->cost_final); ?>lei</i></td>
 
 									<td align="right">
 										<?php if($info_pv_detail == 'sup'):?>
-											<i><span style="color:red;"><i class="fa fa-exclamation-triangle" aria-hidden="true" title="Attention, somme des PV manuel est superieure au PV poste"></i> <?php echo price($subposte->poste_pv); ?>€</span></i>
+											<i><span style="color:red;"><i class="fa fa-exclamation-triangle" aria-hidden="true" title="Attention, somme des PV manuel est superieure au PV poste"></i> <?php echo price($subposte->poste_pv); ?>lei</span></i>
 
 										<?php elseif($info_pv_detail == 'inf'):?>
-											<i><span style="color:#f0ad4e;"><i class="fa fa-exclamation-triangle" aria-hidden="true" title="Attention, somme des PV manuel est inferieure au PV poste"></i> <?php echo price($subposte->poste_pv); ?>€</span></i>
+											<i><span style="color:#f0ad4e;"><i class="fa fa-exclamation-triangle" aria-hidden="true" title="Attention, somme des PV manuel est inferieure au PV poste"></i> <?php echo price($subposte->poste_pv); ?>lei</span></i>
 
 										<?php else: ?>
-											<i><?php echo price($subposte->poste_pv); ?>€</i>
+											<i><?php echo price($subposte->poste_pv); ?>lei</i>
 										<?php endif; ?>
 									</td>
 									<td align="right"><i><?php 
 										//echo $info_pv_detail;
 										$marge = $subposte->poste_pv - $subposte->cost_final;
 										if( ($marge>=0) && ($info_pv_detail == 'equ') ){
-											echo price($marge).'€'; 
+											echo price($marge).'lei'; 
 										} else {
-											echo '<span style="color:red;">'.price($marge).'€</span>'; 
+											echo '<span style="color:red;">'.price($marge).'lei</span>'; 
 										}
 
 									?></i></td>
@@ -2100,26 +2100,26 @@ elseif ($object->id > 0)
 										>
 										<?php echo $subsubposte->ref; ?>. <?php echo $subsubposte->label; ?></a>
 										</td>
-										<td align="right"><i> <?php echo price($subsubposte->cost); ?>€</i></td>
-										<td align="right"><i> <?php echo price($subsubposte->cost_final); ?>€</i></td>
+										<td align="right"><i> <?php echo price($subsubposte->cost); ?>lei</i></td>
+										<td align="right"><i> <?php echo price($subsubposte->cost_final); ?>lei</i></td>
 
 										<td align="right">
 											<?php if($info_subpv_detail == 'sup'):?>
-												<i><span style="color:red;"><i class="fa fa-exclamation-triangle" aria-hidden="true" title="Attention, somme des PV manuel est superieure au PV sous-poste"></i> <?php echo price($subsubposte->poste_pv); ?>€</span></i>
+												<i><span style="color:red;"><i class="fa fa-exclamation-triangle" aria-hidden="true" title="Attention, somme des PV manuel est superieure au PV sous-poste"></i> <?php echo price($subsubposte->poste_pv); ?>lei</span></i>
 
 											<?php elseif($info_subpv_detail == 'inf'):?>
-												<i><span style="color:#f0ad4e;"><i class="fa fa-exclamation-triangle" aria-hidden="true" title="Attention, somme des PV manuel est inferieure au PV sous-poste"></i> <?php echo price($subsubposte->poste_pv); ?>€</span></i>
+												<i><span style="color:#f0ad4e;"><i class="fa fa-exclamation-triangle" aria-hidden="true" title="Attention, somme des PV manuel est inferieure au PV sous-poste"></i> <?php echo price($subsubposte->poste_pv); ?>lei</span></i>
 
 											<?php else: ?>
-												<i><?php echo price($subsubposte->poste_pv); ?>€</i>
+												<i><?php echo price($subsubposte->poste_pv); ?>lei</i>
 											<?php endif; ?>
 										</td>
 										<td align="right"><i><?php 
 											$marge = $subsubposte->poste_pv - $subsubposte->cost_final;
 											if( ($marge>=0) && ($info_subpv_detail == 'equ') ){
-												echo price($marge).'€'; 
+												echo price($marge).'lei'; 
 											} else {
-												echo '<span style="color:red;">'.price($marge).'€</span>'; 
+												echo '<span style="color:red;">'.price($marge).'lei</span>'; 
 											}
 
 										?></i></td>
@@ -2139,21 +2139,21 @@ elseif ($object->id > 0)
 			?>
 			<tr>
 		        <td ><i> Cheltuielile fixe ale proiectului </i></td>
-		        <td  align="right"><b><?php echo price($object->chargesfixe)?>€</b></td>
-		        <td  align="right"><b><?php echo price($object->chargesfixe)?>€</b></td>
+		        <td  align="right"><b><?php echo price($object->chargesfixe)?>lei</b></td>
+		        <td  align="right"><b><?php echo price($object->chargesfixe)?>lei</b></td>
 		        <td colspan="4"></td>
 		    </tr>    
 			<tr>
 		        <td ><b> Total </b></td>
-		        <td align="right"><b><?php echo price($total)?>€</b></td>
-		        <td align="right"><b><?php echo price($total_calculated)?>€</b></td>
-		        <td align="right"><b><?php echo price($total_vente)?>€</b></td>
+		        <td align="right"><b><?php echo price($total)?>lei</b></td>
+		        <td align="right"><b><?php echo price($total_calculated)?>lei</b></td>
+		        <td align="right"><b><?php echo price($total_vente)?>lei</b></td>
 		        <td align="right"><?php 
 					//$marge_total = $total_vente-$total;
 					if($total_marge>0){
-						echo '<b>'.price($total_marge).'€</b>'; 
+						echo '<b>'.price($total_marge).'lei</b>'; 
 					} else {
-						echo '<span style="color:red;">'.price($total_marge).'€</span>'; 
+						echo '<span style="color:red;">'.price($total_marge).'lei</span>'; 
 					}
 				?></td>
 		        <td  align="right"></td>
@@ -3064,7 +3064,7 @@ else {
 							<label class="col-sm-3 control-label">Cost estimat</label>
 							<div class="col-sm-9">
 								<div class="input-group">
-							         <div class="input-group-addon">€</div>
+							         <div class="input-group-addon">lei</div>
 							      <input type="text" class="form-control" id="edit_poste_price" >
 							    </div><!-- /input-group -->
 							</div>	
@@ -3087,7 +3087,7 @@ else {
 							<div class="col-sm-4">
 								<div>&nbsp;&nbsp;Estimat</div>
 								<div class="input-group">
-							         <div class="input-group-addon">€</div>
+							         <div class="input-group-addon">lei</div>
 							      <input type="text" class="form-control" id="edit_poste_cost_mo" disabled="true">
 							    </div>
 							</div>	
@@ -3095,7 +3095,7 @@ else {
 							<div class="col-sm-4">
 								<div>&nbsp;&nbsp;Calculat</div>
 								<div class="input-group">
-							         <div class="input-group-addon">€</div>
+							         <div class="input-group-addon">lei</div>
 							      <input type="text" class="form-control" id="edit_poste_cost_mo_calculated" disabled="true">
 							    </div>
 							</div>							
@@ -3116,7 +3116,7 @@ else {
 
 									<div class="col-sm-12">
 										<div class="input-group">
-									         <div class="input-group-addon">€</div>
+									         <div class="input-group-addon">lei</div>
 									      <input type="text" class="form-control" id="edit_poste_cost_fourn" disabled="true">
 									    </div>
 									</div>
@@ -3139,11 +3139,11 @@ else {
 									</thead>
 									<tbody>
 										<tr>
-											<td ><span id="TD_edit_poste_price">0</span> €</td>
-											<td ><span id="TD_edit_poste_price_calculated">0</span> €</td>
+											<td ><span id="TD_edit_poste_price">0</span> lei</td>
+											<td ><span id="TD_edit_poste_price_calculated">0</span> lei</td>
 											<td >
 												<div class="input-group">
-											        <div class="input-group-addon">€</div>
+											        <div class="input-group-addon">lei</div>
 											      	<input type="text" class="form-control" id="edit_poste_pv" >
 											    </div>
 											</td>
@@ -3305,7 +3305,7 @@ else {
 							<label class="col-sm-3 control-label">Cost estimat</label>
 							<div class="col-sm-9">
 								<div class="input-group">
-							        <div class="input-group-addon">€</div>
+							        <div class="input-group-addon">lei</div>
 							      	<input type="text" class="form-control" id="edit_subposte_price" disabled="true">
 							    </div><!-- /input-group -->
 							</div>	
@@ -3315,7 +3315,7 @@ else {
 							<label class="col-sm-3 control-label">Cheltuieli Salariale</label>
 							<div class="col-sm-9">
 								<div class="input-group">
-							        <div class="input-group-addon">€</div>
+							        <div class="input-group-addon">lei</div>
 							      	<input type="text" class="form-control" id="edit_subposte_cost_mo" disabled="true">
 							    </div>
 							</div>	
@@ -3335,7 +3335,7 @@ else {
 								</select>
 								<div class="col-sm-12">
 									<div class="input-group">
-								         <div class="input-group-addon">€</div>
+								         <div class="input-group-addon">lei</div>
 								      <input type="text" class="form-control" id="edit_subposte_cost_fourn" disabled="true">
 								    </div>
 								</div>								
@@ -3370,10 +3370,10 @@ else {
 									        		</select>
 												</div>
 											</td>
-											<td ><span id="TD_edit_subposte_price">0</span> €</td>
+											<td ><span id="TD_edit_subposte_price">0</span> lei</td>
 											<td >
 												<div class="input-group">
-											        <div class="input-group-addon">€</div>
+											        <div class="input-group-addon">lei</div>
 											      	<input type="text" class="form-control" id="edit_subposte_pv" >
 											    </div>
 											</td>
@@ -3521,7 +3521,7 @@ else {
 							<label class="col-sm-3 control-label">Cost estimat</label>
 							<div class="col-sm-9">
 								<div class="input-group">
-							        <div class="input-group-addon">€</div>
+							        <div class="input-group-addon">lei</div>
 							      	<input type="text" class="form-control" id="edit_subsubposte_price" disabled="true">
 							    </div><!-- /input-group -->
 							</div>	
@@ -3531,7 +3531,7 @@ else {
 							<label class="col-sm-3 control-label">Cheltuieli Salariale</label>
 							<div class="col-sm-9">
 								<div class="input-group">
-							        <div class="input-group-addon">€</div>
+							        <div class="input-group-addon">lei</div>
 							      	<input type="text" class="form-control" id="edit_subsubposte_cost_mo" disabled="true">
 							    </div>
 							</div>	
@@ -3551,7 +3551,7 @@ else {
 								</select>
 								<div class="col-sm-12">
 									<div class="input-group">
-								         <div class="input-group-addon">€</div>
+								         <div class="input-group-addon">lei</div>
 								      <input type="text" class="form-control" id="edit_subsubposte_cost_fourn" disabled="true">
 								    </div>
 								</div>								
@@ -3589,10 +3589,10 @@ else {
 									        		</select>
 												</div>
 											</td>
-											<td ><span id="TD_edit_subsubposte_price">0</span> €</td>
+											<td ><span id="TD_edit_subsubposte_price">0</span> lei</td>
 											<td >
 												<div class="input-group">
-											        <div class="input-group-addon">€</div>
+											        <div class="input-group-addon">lei</div>
 											      	<input type="text" class="form-control" id="edit_subsubposte_pv" >
 											    </div>												
 											</td>

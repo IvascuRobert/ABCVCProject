@@ -1,0 +1,54 @@
+
+image1
+Ecran gauche : erreur de calcul par rapport aux nombre d’heures passées : pas d’heures sup.
+----
+=> duree de 7h insere 2 fois en DB pour user 17 / date 2017-09-04... piste: JS non a jour / refresh cache ?
+OK en ligne resolution => SQL group by date
+
+
+image2
+Point n° 2 : (écran de gauche)
+Temps 1 : supprimer la mention du pays sur le PDF des factures
+-----
+=> dolibarr par defaut: le pays s'affiche s'il est different entre la societe et le client
+OK en ligne => resolution : désactivation affichage pays ds tt les cas
+
+Temps 2 : quantifier la notion de sous-traitance ; donc TVA auto-liquidée (à 0) en facturation sur l’ensemble du projet.
+-----
+???
+
+
+image3
+Point n° 3 : 
+Passage en alerte sur les montants. Pourquoi en orange ou en rouge, sachant que le PV et la marge sont égaux… 
+-----
+=> fonction de calcul d'intégrité montant PV manuel ne prenait pas en compte tt les cas de figures
+OK en ligne => resolution: refonte fct 
+
+
+*********************************************************
+
+[ABCVC 0000980]: Problème temps de repas
+Pendant saisie mensuelle des heures pouvoir modifier les temps de repas entre 30min, 1h ou 2h
+------
+Proposition:
+- Ajouter une liste deroulante des 3 temps possible sur le popup d'indications des heures travailles, par defaut sur 1h
+- Possibilite de choisir ce temps par defaut au niveau d'un projet ?
+=> 0.5j
+
+
+[ABCVC 0000981]: Saisie des noms dans postes
+Pour saisir les heures des ouvriers, il est obligatoire de saisir son nom dans chaque poste du projet sur lequel il travaille. 
+C'est une perte de temps, il faudrait pouvoir l'affilier au projet complet. 
+------
+Proposition:
+- ajouter les collaborateurs/ouvriers au niveau du projet 
+- ils seront automatiquement affecte a chaque *nouveau* poste cree en tant qu'intervenant.
+=> 1j
+
+
+[ABCVC 0000982]: Saisie mensuelle des heures / zones
+Sur le récapitulatif collaborateur, le total des trajets est noté mais il faudrait le partager dans chacune des zones 
+Par exemple : Total des trajets : 16 --> Z4 : 5 et Z5 : 11 Et bien laisser les montants 
+------
+ok, 30 minutes de taf max, a faire lors du top go action des precedents tickets
