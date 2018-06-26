@@ -2291,44 +2291,11 @@ Recuperation timespent dates/ task/user
                                 <li><a href="/abcvc/projet/card.php?id=<?php echo $id_project?>&action=close">Închide</a></li>
                                 <li><a href="/abcvc/projet/card.php?id=<?php echo $id_project?>&action=validate">Activează</a></li>
                                 <li><a href="/abcvc/projet/card.php?id=<?php echo $id_project?>&action=delete">Șterge</a></li>
-                                <!--
-                                <li><a href="/abcvc/projet/list.php?idmenu=89&mainmenu=abcvc&leftmenu=">Liste</a></li>
-                                -->
-                                <?php /*if($this->statut == 0) : ?>
-                                    <li><a href="/abcvc/projet/card.php?id=14&action=validate">Validate</a></li>
-                                <?php endif;*/ ?>
                             </ul>
                             <a href="/abcvc/projet/contact.php?id=<?php echo $id_project?>" class="btn btn-default">Contacte</a>
-                            <a href="/abcvc/projet/element.php?id=<?php echo $id_project?>" class="btn btn-default">Sinteză</a>
-                            <!-- <a href="/abcvc/projet/note.php?id=<?php echo $id_project?>" class="btn btn-default">Notițe</a> -->
-                            <a href="/abcvc/projet/document.php?id=<?php echo $id_project?>" class="btn btn-default">Fișiere similare</a>
-                        <!--
-
-                            <a href="/abcvc/projet/tasks.php?id=<?php echo $id_project?>" class="btn btn-default">Tasks</a>
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="/abcvc/projet/tasks.php?id=<?php echo $id_project?>&action=create">Create task</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="/abcvc/projet/tasks/time.php?projectid=<?php echo $id_project?>&withproject=1">List of time consumed</a></li>
-
-
-                            </ul>
-                        </div>
-                        -->
+                            <a href="/abcvc/projet/element.php?id=<?php echo $id_project?>" class="btn btn-default">Documente</a>
                             <a href="/abcvc/projet/ganttview.php?id=<?php echo $id_project?>" class="btn btn-default">Program</a>
                             <a href="/abcvc/projet/info.php?id=<?php echo $id_project?>" class="btn btn-default">Jurnal</a>
-                            <!--
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="/comm/action/card.php?action=create&projectid=<?php echo $id_project?>&backtopage=/abcvc/projet/info.php?id=<?php echo $id_project?>">Nouveau évenement</a></li>
-                            </ul>
-                            -->
                 </div>
             </div>  
             <hr/>

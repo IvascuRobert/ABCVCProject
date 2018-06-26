@@ -139,7 +139,7 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';
 						</h1>
 		            </div>
 					<div class="panel-body">
-						<p>TO DO : pune o descriere scurta despre ce face configurarea</p>
+						<p>Vizualizarea beneficiilor pe care le pot avea angajații interni.</p>
 					</div>
 		            <table class="table table-hover table-responsive">
 		                <thead>

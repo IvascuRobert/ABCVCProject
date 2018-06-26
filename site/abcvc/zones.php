@@ -214,7 +214,8 @@ require_once DOL_DOCUMENT_ROOT.SUPP_PATH.'/abcvc_js_css.php';
 						</h1>
 		            </div>
 					<div class="panel-body">
-						<p>TO DO : pune o descriere scurta despre ce face configurarea</p>
+						<p>	Puteți crea, modifica, vizualiza și șterge șantiere. </br>
+							D.M. = Deplasare mare</p>
 					</div>
 
 		            <table class="table table-hover table-responsive">
